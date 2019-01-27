@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TruckCheckUp.Core.Models
 {
-    public class PartReported
+    public class PartReported :BaseEntity
     {
         // Additional fields needed
         [DataType(DataType.Date)]

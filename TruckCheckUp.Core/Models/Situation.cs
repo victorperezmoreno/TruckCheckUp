@@ -10,8 +10,7 @@ using System.Threading.Tasks;
 namespace TruckCheckUp.Core.Models
 {
     public class Situation : BaseEntity
-    {
-        
+    {  
         [Required]
         public bool Status { get; set; }
 

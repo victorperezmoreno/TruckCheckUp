@@ -3,3 +3,14 @@ C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\bin\Debug\TruckCheckUp.Data
 C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.csprojResolveAssemblyReference.cache
 C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.dll
 C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.pdb
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\bin\Debug\TruckCheckUp.DataAccess.SQL.dll.config
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\bin\Debug\EntityFramework.dll
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\bin\Debug\TruckCheckUp.Core.dll
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\bin\Debug\log4net.dll
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\bin\Debug\TruckCheckUp.Core.pdb
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\bin\Debug\EntityFramework.xml
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\bin\Debug\log4net.xml
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.Initial.resources
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.csproj.GenerateResource.Cache

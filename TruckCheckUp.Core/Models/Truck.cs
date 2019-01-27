@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TruckCheckUp.Core.Models
 {
-    public class Truck
+    public class Truck : BaseEntity
     {
         [StringLength(30)]
         [DisplayName("VIN Number")]
