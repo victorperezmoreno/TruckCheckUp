@@ -79,3 +79,7 @@ C:\Projects\TruckCheckUp\TruckCheckUp.WebUI\obj\Debug\TruckCheckUp.WebUI.dll
 C:\Projects\TruckCheckUp\TruckCheckUp.WebUI\obj\Debug\TruckCheckUp.WebUI.pdb
 C:\Projects\TruckCheckUp\TruckCheckUp.WebUI\bin\log4net.dll
 C:\Projects\TruckCheckUp\TruckCheckUp.WebUI\bin\log4net.xml
+C:\Projects\TruckCheckUp\TruckCheckUp.WebUI\bin\TruckCheckUp.Core.dll
+C:\Projects\TruckCheckUp\TruckCheckUp.WebUI\bin\TruckCheckUp.DataAccess.SQL.dll
+C:\Projects\TruckCheckUp\TruckCheckUp.WebUI\bin\TruckCheckUp.Core.pdb
+C:\Projects\TruckCheckUp\TruckCheckUp.WebUI\bin\TruckCheckUp.DataAccess.SQL.pdb

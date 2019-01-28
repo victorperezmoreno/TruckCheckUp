@@ -283,6 +283,16 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TruckCheckUp.Core\TruckCheckUp.Core.csproj">
+      <Project>{CBD38FCD-255B-49AC-853A-81CFF2E786D1}</Project>
+      <Name>TruckCheckUp.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TruckCheckUp.DataAccess.SQL\TruckCheckUp.DataAccess.SQL.csproj">
+      <Project>{61067D1A-DE8A-4839-9DBC-91A8983397AD}</Project>
+      <Name>TruckCheckUp.DataAccess.SQL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

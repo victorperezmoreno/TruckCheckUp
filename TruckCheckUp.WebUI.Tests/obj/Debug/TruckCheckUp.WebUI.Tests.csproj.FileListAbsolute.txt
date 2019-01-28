@@ -65,3 +65,7 @@ C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\obj\Debug\TruckCheckUp.WebUI.T
 C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\obj\Debug\TruckCheckUp.WebUI.Tests.pdb
 C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\bin\Debug\log4net.dll
 C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\bin\Debug\log4net.xml
+C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\bin\Debug\TruckCheckUp.Core.dll
+C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\bin\Debug\TruckCheckUp.DataAccess.SQL.dll
+C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\bin\Debug\TruckCheckUp.Core.pdb
+C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\bin\Debug\TruckCheckUp.DataAccess.SQL.pdb

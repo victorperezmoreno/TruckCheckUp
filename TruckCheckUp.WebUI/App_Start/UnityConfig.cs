@@ -1,5 +1,9 @@
+using log4net.Core;
 using System;
-
+using TruckCheckUp.Core.Contracts;
+using TruckCheckUp.Core.Contracts.Logger;
+using TruckCheckUp.Core.Models;
+using TruckCheckUp.DataAccess.SQL;
 using Unity;
 
 namespace TruckCheckUp.WebUI
@@ -42,6 +46,20 @@ namespace TruckCheckUp.WebUI
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
+            //TableType Container
+            container.RegisterType<IRepository<Driver>, SQLRepository<Driver>>();
+            container.RegisterType<IRepository<DriverComment>, SQLRepository<DriverComment>>();
+            container.RegisterType<IRepository<MechanicComment>, SQLRepository<MechanicComment>>();
+            container.RegisterType<IRepository<PartCatalog>, SQLRepository<PartCatalog>>();
+            container.RegisterType<IRepository<PartCategory>, SQLRepository<PartCategory>>();
+            container.RegisterType<IRepository<PartReported>, SQLRepository<PartReported>>();
+            container.RegisterType<IRepository<Situation>, SQLRepository<Situation>>();
+            container.RegisterType<IRepository<Truck>, SQLRepository<Truck>>();
+            //IdentityType Container /**Once Identity configured un-comment the below command
+            //container.RegisterType<AccountController>(new InjectionConstructor());
+            //LoggerType Container
+            container.RegisterType<Core.Contracts.Logger.ILogger, Log4NetLogger>();
+            //ServicesType Container
         }
     }
 }
