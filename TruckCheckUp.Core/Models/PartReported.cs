@@ -17,6 +17,8 @@ namespace TruckCheckUp.Core.Models
         [Required]
         public int Mileage { get; set; }
 
+        public bool IsChecked { get; set; }
+
         [ForeignKey("Driver")]
         public string DriverId { get; set; }
 
