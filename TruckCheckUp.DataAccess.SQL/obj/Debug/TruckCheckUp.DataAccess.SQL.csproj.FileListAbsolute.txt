@@ -15,3 +15,6 @@ C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\bin\Debug\log4net.xml
 C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.Initial.resources
 C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.csproj.GenerateResource.Cache
 C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.IsCheckedfieldaddedtoPartReportedtable.resources
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.ActiveInactivestatusaddedtoDriverandTrucktables.resources
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.StatusinforequiredforTruckandDriverclasses.resources
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.RemovedRequiredNotationforDriverClass.resources

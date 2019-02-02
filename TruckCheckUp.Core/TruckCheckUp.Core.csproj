@@ -58,6 +58,8 @@
     <Compile Include="Models\Situation.cs" />
     <Compile Include="Models\Truck.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\DriverUI\DriverEditViewModel.cs" />
+    <Compile Include="ViewModels\DriverUI\DriverInsertViewModel.cs" />
     <Compile Include="ViewModels\TruckInspectionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

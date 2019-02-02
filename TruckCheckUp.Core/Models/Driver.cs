@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,13 +13,24 @@ namespace TruckCheckUp.Core.Models
     {
         [StringLength(30)]
         [DisplayName("First Name")]
-        [Required]
         public string FirstName { get; set; }
 
         [StringLength(30)]
         [DisplayName("Last Name")]
-        [Required]
         public string LastName { get; set; }
+
+        //Indicate whether a driver is active nor inactive, default value is true
+        public bool Status { get; set; }
+
+        //Helps to display a message based on user selection
+        [NotMapped]
+        public string MessageBasedOnStatusSelection
+        {
+            get
+            {
+                return (bool)this.Status ? "Active" : "Inactive";
+            }
+        }
 
         [Display(Name = "Full Name")]
         public string FullName

@@ -199,6 +199,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DriverManagementController.cs" />
     <Compile Include="Controllers\ErrorHandlerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -270,6 +271,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\NotFound.cshtml" />
     <Content Include="Views\Shared\ServerError.cshtml" />
+    <Content Include="Views\DriverManagement\Index.cshtml" />
+    <Content Include="Views\DriverManagement\Create.cshtml" />
+    <Content Include="Views\DriverManagement\Edit.cshtml" />
+    <Content Include="Views\DriverManagement\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -291,6 +296,10 @@
     <ProjectReference Include="..\TruckCheckUp.DataAccess.SQL\TruckCheckUp.DataAccess.SQL.csproj">
       <Project>{61067D1A-DE8A-4839-9DBC-91A8983397AD}</Project>
       <Name>TruckCheckUp.DataAccess.SQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TruckCheckUp.Services\TruckCheckUp.Services.csproj">
+      <Project>{29250bae-ff16-422e-91de-1964c8ee7ad0}</Project>
+      <Name>TruckCheckUp.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

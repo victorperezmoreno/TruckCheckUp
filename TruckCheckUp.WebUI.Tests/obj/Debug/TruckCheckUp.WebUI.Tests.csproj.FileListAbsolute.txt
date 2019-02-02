@@ -69,3 +69,5 @@ C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\bin\Debug\TruckCheckUp.Core.dl
 C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\bin\Debug\TruckCheckUp.DataAccess.SQL.dll
 C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\bin\Debug\TruckCheckUp.Core.pdb
 C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\bin\Debug\TruckCheckUp.DataAccess.SQL.pdb
+C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\bin\Debug\TruckCheckUp.Services.dll
+C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\bin\Debug\TruckCheckUp.Services.pdb

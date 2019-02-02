@@ -58,6 +58,18 @@
     <Compile Include="Migrations\201901282128498_IsChecked field added to PartReported table.Designer.cs">
       <DependentUpon>201901282128498_IsChecked field added to PartReported table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901290003100_Active-Inactive status added to Driver and Truck tables.cs" />
+    <Compile Include="Migrations\201901290003100_Active-Inactive status added to Driver and Truck tables.Designer.cs">
+      <DependentUpon>201901290003100_Active-Inactive status added to Driver and Truck tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901311841268_Status info required for Truck and Driver classes.cs" />
+    <Compile Include="Migrations\201901311841268_Status info required for Truck and Driver classes.Designer.cs">
+      <DependentUpon>201901311841268_Status info required for Truck and Driver classes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902022118505_Removed Required Notation for Driver Class.cs" />
+    <Compile Include="Migrations\201902022118505_Removed Required Notation for Driver Class.Designer.cs">
+      <DependentUpon>201902022118505_Removed Required Notation for Driver Class.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLRepository.cs" />
@@ -78,6 +90,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901282128498_IsChecked field added to PartReported table.resx">
       <DependentUpon>201901282128498_IsChecked field added to PartReported table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901290003100_Active-Inactive status added to Driver and Truck tables.resx">
+      <DependentUpon>201901290003100_Active-Inactive status added to Driver and Truck tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901311841268_Status info required for Truck and Driver classes.resx">
+      <DependentUpon>201901311841268_Status info required for Truck and Driver classes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902022118505_Removed Required Notation for Driver Class.resx">
+      <DependentUpon>201902022118505_Removed Required Notation for Driver Class.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -33,6 +33,19 @@ namespace TruckCheckUp.Core.Models
         [Required]
         public int Year { get; set; }
 
+        //Indicate whether a truck is active nor inactive
+        [Required]
+        public bool Status { get; set; }
+
+        //Helps to display a message based on user selection
+        public string MessageBasedOnStatusSelection
+        {
+            get
+            {
+                return (bool)this.Status ? "Active" : "Inactive";
+            }
+        }
+
         //Link or connection to "join" table
         public virtual ICollection<PartReported> PartReported { get; set; }
 
