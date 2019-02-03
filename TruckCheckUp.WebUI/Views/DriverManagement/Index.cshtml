@@ -1,14 +1,18 @@
 ﻿@model IEnumerable<TruckCheckUp.Core.Models.Driver>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Drivers";
 }
 
-<h2>Index</h2>
+<h2>Drivers</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add New Driver", "Create")
 </p>
+<p>
+    @Html.ActionLink("Back to Administration Page", "Index", "Administration")
+</p> 
+<br />
 <table class="table">
     <tr>
         <th>
