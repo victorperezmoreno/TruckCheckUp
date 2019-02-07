@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using TruckCheckUp.Core.Contracts;
+using TruckCheckUp.Core.Contracts.DataAccess;
+using TruckCheckUp.Core.Contracts.Services;
 using TruckCheckUp.Core.Models;
 using TruckCheckUp.Core.ViewModels;
 using TruckCheckUp.Core.ViewModels.DriverUI;
 
 namespace TruckCheckUp.Services
 {
-    public class DriverService
+    public class DriverService : IDriverService
     {
         private IRepository<Driver> _driverContext;
 
@@ -16,23 +18,23 @@ namespace TruckCheckUp.Services
             _driverContext = driverContext;
         }
 
-        // GET: User
-        public List<Driver> ListDrivers()
+        // GET: Driver
+        public List<Driver> RetrieveAllDrivers()
         {
             //Get a list of drivers
-            var users = _driverContext.Collection().ToList();
+            var driversRetrieved = _driverContext.Collection().ToList();
 
-            return users;
+            return driversRetrieved;
         }
 
-        public DriverInsertViewModel CreateNewDriver()
+        public DriverInsertViewModel CreateNewDriverObject()
         {
             var driver = new DriverInsertViewModel();
 
             return driver;
         }
 
-        public void CreateNewDriverPost(DriverInsertViewModel driver)
+        public void PostNewDriverToDB(DriverInsertViewModel driver)
         {
             var driverToInsert = new Driver();
             driverToInsert.FirstName = driver.FirstName;
@@ -43,31 +45,31 @@ namespace TruckCheckUp.Services
             _driverContext.Commit();
         }
 
-        public DriverEditViewModel EditDriver(string driverId)
+        public DriverUpdateViewModel RetrieveDriverDataToUpdate(string driverId)
         {
             //Look for driver and return her data
-            var driver = (
-                    from d in _driverContext.Collection()
-                    where d.Id == driverId
-                    select new DriverEditViewModel()
+            var driverToUpdate = (
+                    from driverStoredInDB in _driverContext.Collection()
+                    where driverStoredInDB.Id == driverId
+                    select new DriverUpdateViewModel()
                     {
-                        Id = d.Id,
-                        FirstName = d.FirstName,
-                        LastName = d.LastName,
-                        Status = d.Status
+                        Id = driverStoredInDB.Id,
+                        FirstName = driverStoredInDB.FirstName,
+                        LastName = driverStoredInDB.LastName,
+                        Status = driverStoredInDB.Status
                     }).FirstOrDefault();
 
-            if (driver != null)
+            if (driverToUpdate != null)
             {
-                return driver;
+                return driverToUpdate;
             }
             else
             {
-                return new DriverEditViewModel();
+                return new DriverUpdateViewModel();
             }
         }
 
-        public void ConfirmEditDriver(DriverEditViewModel driver, string driverId)
+        public void UpdateDriverData(DriverUpdateViewModel driver, string driverId)
         {
             var driverToUpdate = _driverContext.Find(driverId);
             if (driverToUpdate != null)
@@ -80,7 +82,7 @@ namespace TruckCheckUp.Services
             }
         }
 
-        public Driver RemoveDriver(string driverId)
+        public Driver RetrieveDriverToDelete(string driverId)
         {
             var driverToDelete = _driverContext.Find(driverId);
             if (driverToDelete != null)
@@ -93,10 +95,10 @@ namespace TruckCheckUp.Services
             }
         }
 
-        public void ConfirmRemoveDriver(string driverId)
+        public void DeleteDriver(string driverId)
         {
-            var userToDelete = _driverContext.Find(driverId);
-            if (userToDelete != null)
+            var driverToDelete = _driverContext.Find(driverId);
+            if (driverToDelete != null)
             {
                 _driverContext.Delete(driverId);
                 _driverContext.Commit();

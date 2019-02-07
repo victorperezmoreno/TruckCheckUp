@@ -48,6 +48,7 @@
     <Compile Include="Contracts\DataAccess\IRepository.cs" />
     <Compile Include="Contracts\Logger\ILogger.cs" />
     <Compile Include="Contracts\Logger\Log4NetLogger.cs" />
+    <Compile Include="Contracts\Services\IDriverService.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\DriverComment.cs" />
@@ -58,13 +59,13 @@
     <Compile Include="Models\Situation.cs" />
     <Compile Include="Models\Truck.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\DriverUI\DriverEditViewModel.cs" />
+    <Compile Include="ViewModels\DriverUI\DriverUpdateViewModel.cs" />
     <Compile Include="ViewModels\DriverUI\DriverInsertViewModel.cs" />
     <Compile Include="ViewModels\TruckInspectionViewModel.cs" />
+    <Compile Include="ViewModels\TruckUI\TruckEditViewModel.cs" />
+    <Compile Include="ViewModels\TruckUI\TruckInsertViewModel.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contracts\Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

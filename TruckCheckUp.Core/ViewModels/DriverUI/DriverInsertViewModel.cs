@@ -11,7 +11,6 @@ namespace TruckCheckUp.Core.ViewModels.DriverUI
     public class DriverInsertViewModel
     {        
         /***This view model helps to validate that Status checkbox is checked ***/
-        //public string Id { get; set; }
 
         [StringLength(30)]
         [DisplayName("First Name")]

@@ -1,9 +1,10 @@
-using log4net.Core;
 using System;
-using TruckCheckUp.Core.Contracts;
+using TruckCheckUp.Core.Contracts.DataAccess;
 using TruckCheckUp.Core.Contracts.Logger;
+using TruckCheckUp.Core.Contracts.Services;
 using TruckCheckUp.Core.Models;
 using TruckCheckUp.DataAccess.SQL;
+using TruckCheckUp.Services;
 using Unity;
 
 namespace TruckCheckUp.WebUI
@@ -55,11 +56,15 @@ namespace TruckCheckUp.WebUI
             container.RegisterType<IRepository<PartReported>, SQLRepository<PartReported>>();
             container.RegisterType<IRepository<Situation>, SQLRepository<Situation>>();
             container.RegisterType<IRepository<Truck>, SQLRepository<Truck>>();
+           
             //IdentityType Container /**Once Identity configured un-comment the below command
             //container.RegisterType<AccountController>(new InjectionConstructor());
+           
             //LoggerType Container
-            container.RegisterType<Core.Contracts.Logger.ILogger, Log4NetLogger>();
+            container.RegisterType<ILogger, Log4NetLogger>();
+
             //ServicesType Container
+            container.RegisterType<IDriverService, DriverService>();
         }
     }
 }

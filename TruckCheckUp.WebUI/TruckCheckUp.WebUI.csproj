@@ -204,6 +204,7 @@
     <Compile Include="Controllers\ErrorHandlerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TruckManagementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -287,6 +288,10 @@
     <Content Include="Views\DriverManagement\Edit.cshtml" />
     <Content Include="Views\DriverManagement\Delete.cshtml" />
     <Content Include="Views\Administration\Index.cshtml" />
+    <Content Include="Views\TruckManagement\Index.cshtml" />
+    <Content Include="Views\TruckManagement\Create.cshtml" />
+    <Content Include="Views\TruckManagement\Edit.cshtml" />
+    <Content Include="Views\TruckManagement\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -23,14 +23,14 @@ namespace TruckCheckUp.WebUI.Controllers
         public ActionResult Index()
         {
             //Get a list of drivers
-            var driver = _driverService.ListDrivers();
+            var driver = _driverService.RetrieveAllDrivers();
 
             return View(driver);
         }
 
         public ActionResult Create()
         {
-            var driver = _driverService.CreateNewDriver();
+            var driver = _driverService.CreateNewDriverObject();
 
             return View(driver);
         }
@@ -38,29 +38,29 @@ namespace TruckCheckUp.WebUI.Controllers
         [HttpPost]
         public ActionResult Create(DriverInsertViewModel driver)
         {
-            //if errors found return to view, otherwise insert in DB
+            //if errors found return to view, otherwise insert into DB
             if (!ModelState.IsValid)
             {
                 return View(driver);
             }
             else
             {
-                _driverService.CreateNewDriverPost(driver);
-                //Once user inserted then return to display list of drivers
+                _driverService.PostNewDriverToDB(driver);
+                //Once driver inserted then return to display list of drivers
                 return RedirectToAction("Index");
             }
         }
 
         public ActionResult Edit(string Id)
         {
-            //Look for user in DB
-            var driverToUpdate = _driverService.EditDriver(Id);
+            //Look for driver in DB
+            var driverToUpdate = _driverService.RetrieveDriverDataToUpdate(Id);
 
             return View(driverToUpdate);
         }
 
         [HttpPost]
-        public ActionResult Edit(DriverEditViewModel driver, string Id)
+        public ActionResult Edit(DriverUpdateViewModel driver, string Id)
         {
             if (!ModelState.IsValid)
             {
@@ -68,14 +68,14 @@ namespace TruckCheckUp.WebUI.Controllers
             }
             else
             {
-                _driverService.ConfirmEditDriver(driver, Id);
+                _driverService.UpdateDriverData(driver, Id);
                 return RedirectToAction("Index");
             }
         }
 
         public ActionResult Delete(string Id)
         {
-            var driverToDelete = _driverService.RemoveDriver(Id);
+            var driverToDelete = _driverService.RetrieveDriverToDelete(Id);
 
             return View(driverToDelete);
         }
@@ -84,7 +84,7 @@ namespace TruckCheckUp.WebUI.Controllers
         [ActionName("Delete")]
         public ActionResult ConfirmDelete(string Id)
         {
-            _driverService.ConfirmRemoveDriver(Id);
+            _driverService.DeleteDriver(Id);
             return RedirectToAction("Index");
         }
     }

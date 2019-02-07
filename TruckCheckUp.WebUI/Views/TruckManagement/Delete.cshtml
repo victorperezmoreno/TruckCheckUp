@@ -1,0 +1,79 @@
+﻿@model TruckCheckUp.Core.Models.Truck
+
+@{
+    ViewBag.Title = "Delete a Truck";
+}
+
+<h2>Delete a Truck</h2>
+
+<h3>Are you sure you want to delete this Truck?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TruckNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TruckNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Manufacturer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Manufacturer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+            @if (Model.Status)
+            {
+                <span class="text-success"><b>@Html.DisplayFor(model => model.MessageBasedOnStatusSelection)</b></span>
+            }
+            else
+            {
+                <span class="text-danger"><b>@Html.DisplayFor(model => model.MessageBasedOnStatusSelection)</b></span>
+
+            }
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List of Trucks", "Index")
+        </div>
+    }
+</div>

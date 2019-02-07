@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Linq;
-using TruckCheckUp.Core.Contracts;
+using TruckCheckUp.Core.Contracts.DataAccess;
 using TruckCheckUp.Core.Models;
 
 namespace TruckCheckUp.DataAccess.SQL

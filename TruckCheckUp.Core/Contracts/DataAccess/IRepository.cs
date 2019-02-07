@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TruckCheckUp.Core.Models;
 
-namespace TruckCheckUp.Core.Contracts
+namespace TruckCheckUp.Core.Contracts.DataAccess
 {
     public interface IRepository<T> where T : BaseEntity
     {
