@@ -50,8 +50,13 @@ namespace TruckCheckUp.Core.Models
         [ForeignKey("TruckManufacturer")]
         public string TruckManufacturerId { get; set; }
 
+        [ForeignKey("TruckModel")]
+        public string TruckModelId { get; set; }
+
         // Navigation properties
         public virtual TruckManufacturer TruckManufacturer { get; set; }
+
+        public virtual TruckModel TruckModel { get; set; }
 
         //Link or connection to "join" table
         public virtual ICollection<PartReported> PartReported { get; set; }

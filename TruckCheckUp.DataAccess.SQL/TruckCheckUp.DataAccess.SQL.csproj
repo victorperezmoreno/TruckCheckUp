@@ -74,6 +74,10 @@
     <Compile Include="Migrations\201902101944235_Added TruckManufacturer Table.Designer.cs">
       <DependentUpon>201902101944235_Added TruckManufacturer Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902102015079_Added TruckModel Table.cs" />
+    <Compile Include="Migrations\201902102015079_Added TruckModel Table.Designer.cs">
+      <DependentUpon>201902102015079_Added TruckModel Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLRepository.cs" />
@@ -106,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902101944235_Added TruckManufacturer Table.resx">
       <DependentUpon>201902101944235_Added TruckManufacturer Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902102015079_Added TruckModel Table.resx">
+      <DependentUpon>201902102015079_Added TruckModel Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
