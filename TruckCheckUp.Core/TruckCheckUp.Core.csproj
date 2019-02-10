@@ -58,6 +58,7 @@
     <Compile Include="Models\PartReported.cs" />
     <Compile Include="Models\Situation.cs" />
     <Compile Include="Models\Truck.cs" />
+    <Compile Include="Models\TruckManufacturer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DriverUI\DriverUpdateViewModel.cs" />
     <Compile Include="ViewModels\DriverUI\DriverInsertViewModel.cs" />

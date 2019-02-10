@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,6 +46,12 @@ namespace TruckCheckUp.Core.Models
                 return (bool)this.Status ? "Active" : "Inactive";
             }
         }
+
+        [ForeignKey("TruckManufacturer")]
+        public string TruckManufacturerId { get; set; }
+
+        // Navigation properties
+        public virtual TruckManufacturer TruckManufacturer { get; set; }
 
         //Link or connection to "join" table
         public virtual ICollection<PartReported> PartReported { get; set; }
