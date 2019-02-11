@@ -20,3 +20,4 @@ C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.Data
 C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.RemovedRequiredNotationforDriverClass.resources
 C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.AddedTruckManufacturerTable.resources
 C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.AddedTruckModelTable.resources
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.AddedTruckYearTable.resources
