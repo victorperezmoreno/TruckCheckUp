@@ -38,8 +38,10 @@ namespace TruckCheckUp.WebUI
             var exception = Server.GetLastError();
             Response.Clear();
             //Do not display error in browser
-            Server.ClearError();
+            //Commented on 2/13/2019, do not forget to revert back!!
+            //Server.ClearError();
             //Log error
+            log4net.Config.XmlConfigurator.Configure();
             _logger.Error("Unhandled Exception Application Error." + Environment.NewLine +
            "User : " + HttpContext.Current.User.Identity.GetUserId() + Environment.NewLine +
            "Page : " + HttpContext.Current.Request.Url.AbsoluteUri, exception);

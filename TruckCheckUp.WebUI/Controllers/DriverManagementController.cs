@@ -23,9 +23,9 @@ namespace TruckCheckUp.WebUI.Controllers
         public ActionResult Index()
         {
             //Get a list of drivers
-            var driver = _driverService.RetrieveAllDrivers();
+            var drivers = _driverService.RetrieveAllDrivers();
 
-            return View(driver);
+            return View(drivers);
         }
 
         public ActionResult Create()

@@ -56,15 +56,17 @@ namespace TruckCheckUp.WebUI
             container.RegisterType<IRepository<PartReported>, SQLRepository<PartReported>>();
             container.RegisterType<IRepository<Situation>, SQLRepository<Situation>>();
             container.RegisterType<IRepository<Truck>, SQLRepository<Truck>>();
-           
+            container.RegisterType<IRepository<TruckManufacturer>, SQLRepository<TruckManufacturer>>();
             //IdentityType Container /**Once Identity configured un-comment the below command
             //container.RegisterType<AccountController>(new InjectionConstructor());
-           
+
             //LoggerType Container
             container.RegisterType<ILogger, Log4NetLogger>();
 
             //ServicesType Container
             container.RegisterType<IDriverService, DriverService>();
+            container.RegisterType<ITruckManufacturerService, TruckManufacturerService>();
+
         }
     }
 }

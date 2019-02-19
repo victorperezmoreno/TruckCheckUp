@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DriverService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TruckManufacturerService.cs" />
     <Compile Include="TruckService.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,71 @@
+﻿<script src="~/Scripts/Custom/truckmanufacturer-1.0.js"></script>
+<div class="container">
+    <h2>Truck Manufacturer Records</h2>
+
+    <div class="form-group form-horizontal">
+        <div class="col-md-4">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBoxes();">Add Manufacturer</button>
+        </div>
+        <label class="control-label col-md-2">Find by Manufacturer:</label>
+        <div class="col-md-3">
+            <input type="text" id="manufacturerSearch_textbox" class="form-control input-normal" />
+            <div id="manufacturerSearch_error" class="text-danger"> </div>
+        </div>
+        <div class="col-md-1">
+            <button type="button" id="manufacturerSearch_button" class="btn btn-default" onclick="searchManufacturer();">Search</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" id="manufacturerClear_button" class="btn btn-default" onclick="clearManufacturerSearch();">Clear Filter</button>
+        </div>
+        <br />
+        <br />
+    </div>
+    <table class="table table-bordered table-hover table-striped">
+        <thead class="alert alert-info">
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Manufacturer
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tbody"></tbody>
+    </table>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<button type="button" class="close" data-dissmiss="modal"><span aria-hidden="true">×</span></button>*@
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title" id="myModalLabel">Truck Manufacturer</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="Id">Id</label>
+                        <input type="text" class="form-control" id="Id" placeholder="Id" disabled="disabled" />
+                    </div>
+                    <div class="form-group">
+                        <label for="ManufacturerDescription">Manufacturer</label>
+                        <input type="text" class="form-control" id="manufacturerDescription_textbox" placeholder="Manufacturer" />
+                        <div id="manufacturerDescription_error" class="text-danger"> </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="manufacturerAdd_button" onclick="return addManufacturer();">Add</button>
+                <button type="button" class="btn btn-primary" id="manufacturerUpdate_button" style="display:none;" onclick="updateManufacturer();">Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="clearTextBoxes();">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
