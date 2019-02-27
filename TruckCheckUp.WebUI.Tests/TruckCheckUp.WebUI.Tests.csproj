@@ -34,7 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -82,8 +84,10 @@
     <Reference Include="System.Net.Http.WebRequest" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mocks\MockTruckCheckUpContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="Services\TruckManufacturerUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -92,11 +96,20 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TruckCheckUp.Core\TruckCheckUp.Core.csproj">
+      <Project>{CBD38FCD-255B-49AC-853A-81CFF2E786D1}</Project>
+      <Name>TruckCheckUp.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TruckCheckUp.Services\TruckCheckUp.Services.csproj">
+      <Project>{29250BAE-FF16-422E-91DE-1964C8EE7AD0}</Project>
+      <Name>TruckCheckUp.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TruckCheckUp.WebUI\TruckCheckUp.WebUI.csproj">
       <Project>{1665B92E-A9D2-482E-9553-EA616D662BE4}</Project>
       <Name>TruckCheckUp.WebUI</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

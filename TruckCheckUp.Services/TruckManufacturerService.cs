@@ -32,7 +32,7 @@ namespace TruckCheckUp.Services
             return trucksViewModel;
         }
 
-        public TruckManufacturerViewModel UpdateTruckManufacturer(TruckManufacturerViewModel truckManufacturer)
+        public TruckManufacturerViewModel AddTruckManufacturer(TruckManufacturerViewModel truckManufacturer)
         {
             if (!string.IsNullOrEmpty(truckManufacturer.ManufacturerDescription))
             {
@@ -49,33 +49,35 @@ namespace TruckCheckUp.Services
                     truckManufacturer.ManufacturerExistInDB = RetrieveTruckManufacturerName(truckManufacturer.ManufacturerDescription);
                     if (!truckManufacturer.ManufacturerExistInDB)
                     {
-                        UpdateTruckManufacturerData(truckManufacturer);
+                        PostNewTruckManufacturerToDB(truckManufacturer);
                     }
                 }
             }
             return truckManufacturer;
         }
 
-        public TruckManufacturerViewModel AddTruckManufacturer(TruckManufacturerViewModel truckManufacturer)
+        public TruckManufacturerViewModel UpdateTruckManufacturer(TruckManufacturerViewModel truckManufacturer)
         {
             if (!string.IsNullOrEmpty(truckManufacturer.ManufacturerDescription))
             {
-                
-                    //Verify that only letters and numbers in string manufacturer entered by user
-                    if (!ValidateManufacturerString(truckManufacturer.ManufacturerDescription))
+
+                //Verify that only letters and numbers in string manufacturer entered by user
+                if (!ValidateManufacturerString(truckManufacturer.ManufacturerDescription))
+                {
+                    truckManufacturer.ManufacturerIsValid = false;
+                    //return Json(truckManufacturer, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    //Verify whether the manufacturer is already in DB and save value 
+                    //in object to return to View for validation purposes 
+                    truckManufacturer.ManufacturerExistInDB = RetrieveTruckManufacturerName(truckManufacturer.ManufacturerDescription);
+                    
+                    if (!truckManufacturer.ManufacturerExistInDB)
                     {
-                        truckManufacturer.ManufacturerIsValid = false;
-                        //return Json(truckManufacturer, JsonRequestBehavior.AllowGet);
+                        UpdateTruckManufacturerData(truckManufacturer);
                     }
-                    else
-                    {
-                        //Verify whether the manufacturer is already in DB
-                        truckManufacturer.ManufacturerExistInDB = RetrieveTruckManufacturerName(truckManufacturer.ManufacturerDescription);
-                        if (!truckManufacturer.ManufacturerExistInDB)
-                        {
-                            PostNewTruckManufacturerToDB(truckManufacturer);
-                        }
-                    }
+                }
             }
             return truckManufacturer;
         }

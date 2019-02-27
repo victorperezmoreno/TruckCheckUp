@@ -14,7 +14,6 @@ C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\bin\Debug\roslyn\VBCSCompiler.
 C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\bin\Debug\TruckCheckUp.WebUI.Tests.dll.config
 C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\bin\Debug\TruckCheckUp.WebUI.Tests.dll
 C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\bin\Debug\TruckCheckUp.WebUI.Tests.pdb
-C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\bin\Debug\Microsoft.Web.Infrastructure.dll
 C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\bin\Debug\Newtonsoft.Json.dll
 C:\Projects\TruckCheckUp\TruckCheckUp.WebUI.Tests\bin\Debug\System.Web.Helpers.dll
