@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using TruckCheckUp.Core.Contracts.DataAccess;
+using TruckCheckUp.Core.Contracts.Logger;
 using TruckCheckUp.Core.Contracts.Services;
 using TruckCheckUp.Core.Models;
 using TruckCheckUp.Core.ViewModels.TruckManufacturerUI;
@@ -11,10 +12,14 @@ namespace TruckCheckUp.Services
     public class TruckManufacturerService : ITruckManufacturerService
     {
         private IRepository<TruckManufacturer> _truckManufacturerContext;
-
-        public TruckManufacturerService(IRepository<TruckManufacturer> truckManufacturerContext)
+        private ILogger _logger;
+        string tableNameUsedByLogger = "";
+        public TruckManufacturerService(IRepository<TruckManufacturer> truckManufacturerContext
+            ,ILogger logger)
         {
             _truckManufacturerContext = truckManufacturerContext;
+            _logger = logger;
+            tableNameUsedByLogger = "TruckManufacturer";
         }
 
         public List<TruckManufacturerViewModel> RetrieveAllTruckManufacturers()
@@ -41,7 +46,6 @@ namespace TruckCheckUp.Services
                 if (!ValidateManufacturerString(truckManufacturer.ManufacturerDescription))
                 {
                     truckManufacturer.ManufacturerIsValid = false;
-                    //return Json(truckManufacturer, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
@@ -129,7 +133,9 @@ namespace TruckCheckUp.Services
             truckManufacturerToInsert.ManufacturerDescription = truckManufacturer.ManufacturerDescription;
 
             _truckManufacturerContext.Insert(truckManufacturerToInsert);
-            _truckManufacturerContext.Commit();
+            _truckManufacturerContext.Commit();  
+            _logger.Info("Inserted record Id " + truckManufacturerToInsert.Id + " into Table " + tableNameUsedByLogger);
+
         }
 
         public void UpdateTruckManufacturerData(TruckManufacturerViewModel truckManufacturer)
@@ -137,8 +143,11 @@ namespace TruckCheckUp.Services
             var truckManufacturerToUpdate = _truckManufacturerContext.Find(truckManufacturer.Id);
             if (truckManufacturerToUpdate != null)
             {
+                _logger.Info("Found record Id " + truckManufacturerToUpdate.Id + " in Table " + tableNameUsedByLogger);
                 truckManufacturerToUpdate.ManufacturerDescription = truckManufacturer.ManufacturerDescription;
                 _truckManufacturerContext.Commit();
+                _logger.Info("Updated record Id " + truckManufacturerToUpdate.Id + " in Table " + tableNameUsedByLogger);
+
             }
         }
 
@@ -147,9 +156,11 @@ namespace TruckCheckUp.Services
             var truckManufacturerToDelete = _truckManufacturerContext.Find(truckManufacturerId);
             if (truckManufacturerToDelete != null)
             {
-                _truckManufacturerContext.Delete(truckManufacturerId);
+                _logger.Info("Found record Id " + truckManufacturerToDelete.Id + " in Table " + tableNameUsedByLogger);
+                _truckManufacturerContext.Delete(truckManufacturerToDelete);
                 _truckManufacturerContext.Commit();
-            }
+                _logger.Info("Deleted record Id " + truckManufacturerToDelete.Id + " from Table " + tableNameUsedByLogger);
+            }            
         }
 
     }

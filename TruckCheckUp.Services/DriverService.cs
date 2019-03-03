@@ -100,7 +100,7 @@ namespace TruckCheckUp.Services
             var driverToDelete = _driverContext.Find(driverId);
             if (driverToDelete != null)
             {
-                _driverContext.Delete(driverId);
+                _driverContext.Delete(driverToDelete);
                 _driverContext.Commit();
             }
         }

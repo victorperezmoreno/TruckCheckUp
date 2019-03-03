@@ -30,9 +30,9 @@ namespace TruckCheckUp.WebUI.Tests.Mocks
             return;
         }
 
-        public void Delete(string Id)
+        public void Delete(T objectToDelete)
         {
-            T objectToDelete = items.Find(item => item.Id == Id);
+            //T objectToDelete = items.Find(item => item.Id == Id);
             if (objectToDelete != null)
             {
                 items.Remove(objectToDelete);

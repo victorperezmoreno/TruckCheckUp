@@ -105,7 +105,7 @@ namespace TruckCheckUp.Services
             var truckToDelete = _truckContext.Find(truckId);
             if (truckToDelete != null)
             {
-                _truckContext.Delete(truckId);
+                _truckContext.Delete(truckToDelete);
                 _truckContext.Commit();
             }
         }

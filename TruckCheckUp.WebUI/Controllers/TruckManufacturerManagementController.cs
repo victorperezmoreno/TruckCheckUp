@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
+using TruckCheckUp.Core.Contracts.Logger;
 using TruckCheckUp.Core.Models;
 using TruckCheckUp.Core.ViewModels.TruckManufacturerUI;
 using TruckCheckUp.Services;
@@ -13,10 +14,12 @@ namespace TruckCheckUp.WebUI.Controllers
     public class TruckManufacturerManagementController : Controller
     {
         private TruckManufacturerService _truckManufacturerService;
+        private ILogger _logger;
 
-        public TruckManufacturerManagementController(TruckManufacturerService truckManufacturerService)
+        public TruckManufacturerManagementController(TruckManufacturerService truckManufacturerService, ILogger logger)
         {
             this._truckManufacturerService = truckManufacturerService;
+            this._logger = logger;
         }
 
         // GET: TruckManufacturerManagement

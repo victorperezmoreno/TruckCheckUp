@@ -11,9 +11,9 @@ namespace TruckCheckUp.Core.Contracts.DataAccess
     {
         IQueryable<T> Collection();
         void Commit();
-        void Delete(string Id);
+        void Delete(T objectClass);
         T Find(string Id);
         void Insert(T objectClass);
-        void Update(T ObjectClass);
+        void Update(T objectClass);
     }
 }

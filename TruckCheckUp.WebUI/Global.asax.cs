@@ -1,10 +1,10 @@
-﻿using log4net;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using System;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using log4net;
 
 namespace TruckCheckUp.WebUI
 {
@@ -35,19 +35,19 @@ namespace TruckCheckUp.WebUI
 
         protected void Application_Error()
         {
+            //private static readonly ILog _logger = LogManager.GetLogger(typeof(MvcApplication));
             var exception = Server.GetLastError();
             Response.Clear();
             //Do not display error in browser
-            //Commented on 2/13/2019, do not forget to revert back!!
-            //Server.ClearError();
+            Server.ClearError();
             //Log error
-            log4net.Config.XmlConfigurator.Configure();
-            _logger.Error("Unhandled Exception Application Error." + Environment.NewLine +
+
+            _logger.Error("Unhandled Exception Application Error" + Environment.NewLine +
            "User : " + HttpContext.Current.User.Identity.GetUserId() + Environment.NewLine +
            "Page : " + HttpContext.Current.Request.Url.AbsoluteUri, exception);
 
             var httpException = exception as HttpException;
-
+            
             if (httpException != null)
             {
                 if (httpException.GetHttpCode() == 404)
@@ -58,10 +58,14 @@ namespace TruckCheckUp.WebUI
                 {
                     Response.RedirectToRoute("Default", new { controller = "ErrorHandler", action = "ServerError" });
                 }
-                else
-                {
-                    Response.RedirectToRoute("Default", new { controller = "ErrorHandler", action = "Error" });
-                }
+                //else
+                //{
+                //    Response.RedirectToRoute("Default", new { controller = "ErrorHandler", action = "Error" });
+                //}
+            }
+            else
+            {
+                Response.RedirectToRoute("Default", new { controller = "ErrorHandler", action = "Error" });
             }
         }
 
