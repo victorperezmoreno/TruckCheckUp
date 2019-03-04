@@ -14,8 +14,7 @@ namespace TruckCheckUp.Services
         private IRepository<TruckManufacturer> _truckManufacturerContext;
         private ILogger _logger;
         string tableNameUsedByLogger = "";
-        public TruckManufacturerService(IRepository<TruckManufacturer> truckManufacturerContext
-            ,ILogger logger)
+        public TruckManufacturerService(IRepository<TruckManufacturer> truckManufacturerContext,ILogger logger)
         {
             _truckManufacturerContext = truckManufacturerContext;
             _logger = logger;
