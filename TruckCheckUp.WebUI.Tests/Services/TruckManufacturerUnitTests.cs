@@ -53,16 +53,16 @@ namespace TruckCheckUp.WebUI.Tests.Services
             var _logger = new MockTruckCheckUpLogger();
             TruckManufacturerService truckManufacturerService = new TruckManufacturerService(_truckManufacturerContext, _logger);
             truckManufacturerService.AddTruckManufacturer(
-                new TruckManufacturerViewModel() { Id = "3", ManufacturerDescription = "GMC" });
+                new TruckManufacturerViewModel() { Id = "3", Description = "GMC" });
 
-            var manufacturerToInsert= new TruckManufacturerViewModel() { Id = "4", ManufacturerDescription = "Chevy" };
+            var manufacturerToInsert= new TruckManufacturerViewModel() { Id = "4", Description = "Chevy" };
 
 
-            if (!string.IsNullOrEmpty(manufacturerToInsert.ManufacturerDescription))
+            if (!string.IsNullOrEmpty(manufacturerToInsert.Description))
             {
-                if (truckManufacturerService.ValidateManufacturerString(manufacturerToInsert.ManufacturerDescription))
+                if (truckManufacturerService.ValidateManufacturerString(manufacturerToInsert.Description))
                     {
-                      if (!truckManufacturerService.RetrieveTruckManufacturerName(manufacturerToInsert.ManufacturerDescription))
+                      if (!truckManufacturerService.RetrieveTruckManufacturerName(manufacturerToInsert.Description))
                         {
                         truckManufacturerService.AddTruckManufacturer(manufacturerToInsert);
                         _logger.Info("Test-ManufacturerDescriptionIsNotEmptyOrNullAndContainsOnlyLettersOrNumbersAndDoesNotExistAlreadyInDB-RecordAdded");
@@ -85,12 +85,12 @@ namespace TruckCheckUp.WebUI.Tests.Services
             var _logger = new MockTruckCheckUpLogger();
             TruckManufacturerService truckManufacturerService = new TruckManufacturerService(_truckManufacturerContext, _logger);
             truckManufacturerService.AddTruckManufacturer(new TruckManufacturerViewModel()
-            { Id = "5", ManufacturerDescription = "Toyota" });
+            { Id = "5", Description = "Toyota" });
             //Add record with empty ManufacturerDescription
             var manufacturerToInsert = new TruckManufacturerViewModel()
-            { Id = "6", ManufacturerDescription = "" };
+            { Id = "6", Description = "" };
             //Act
-            if (!string.IsNullOrEmpty(manufacturerToInsert.ManufacturerDescription))
+            if (!string.IsNullOrEmpty(manufacturerToInsert.Description))
             {
                 truckManufacturerService.AddTruckManufacturer(manufacturerToInsert);
                 _logger.Info("Test-ManufacturerDescriptionFieldEmptyOrNull-NoRecordAdded");
@@ -108,13 +108,13 @@ namespace TruckCheckUp.WebUI.Tests.Services
             var _logger = new MockTruckCheckUpLogger();
             TruckManufacturerService truckManufacturerService = new TruckManufacturerService(_truckManufacturerContext, _logger);
             truckManufacturerService.AddTruckManufacturer(new TruckManufacturerViewModel()
-            { Id = "7", ManufacturerDescription = "Hyundai" });
+            { Id = "7", Description = "Hyundai" });
             //Add record with characters not allowed
             var newManufacturerToInsert = new TruckManufacturerViewModel()
-            { Id = "8", ManufacturerDescription = "Intern@tion@l" };
+            { Id = "8", Description = "Intern@tion@l" };
             
             //Act
-            if (truckManufacturerService.ValidateManufacturerString(newManufacturerToInsert.ManufacturerDescription))
+            if (truckManufacturerService.ValidateManufacturerString(newManufacturerToInsert.Description))
             {
                 truckManufacturerService.AddTruckManufacturer(newManufacturerToInsert);
                 _logger.Info("Test-ManufacturerDescriptionFieldContainsNotAllowedCharacters-ManufacturerNotAdded");
@@ -132,13 +132,13 @@ namespace TruckCheckUp.WebUI.Tests.Services
             var _logger = new MockTruckCheckUpLogger();
             TruckManufacturerService truckManufacturerService = new TruckManufacturerService(_truckManufacturerContext, _logger);
             truckManufacturerService.AddTruckManufacturer(new TruckManufacturerViewModel()
-            { Id = "7", ManufacturerDescription = "Hyundai" });
+            { Id = "7", Description = "Hyundai" });
             //Add manufacturer that already exist
             var manufacturerToInsert = new TruckManufacturerViewModel()
-            { Id = "8", ManufacturerDescription = "Hyundai" };
+            { Id = "8", Description = "Hyundai" };
 
             //Act
-            if (!truckManufacturerService.RetrieveTruckManufacturerName(manufacturerToInsert.ManufacturerDescription))
+            if (!truckManufacturerService.RetrieveTruckManufacturerName(manufacturerToInsert.Description))
             {
                 truckManufacturerService.AddTruckManufacturer(manufacturerToInsert);
                 _logger.Info("Test-ManufacturerDescriptionFieldAlreadyExistInDB-ManufacturerNotAdded");
@@ -151,25 +151,28 @@ namespace TruckCheckUp.WebUI.Tests.Services
         [TestMethod]
         public void Test_ManufacturerDescriptionIsNotEmptyOrNullAndContainsOnlyLettersOrNumbersAndDoesNotExistAlreadyInDB_RecordUpdated()
         {
-            //Arrange
+            //Arrange =
             IRepository<TruckManufacturer> _truckManufacturerContext = new Mocks.MockTruckCheckUpContext<TruckManufacturer>();
             var _logger = new MockTruckCheckUpLogger();
             TruckManufacturerService truckManufacturerService = new TruckManufacturerService(_truckManufacturerContext, _logger);
             truckManufacturerService.AddTruckManufacturer(
-                new TruckManufacturerViewModel() { ManufacturerDescription = "Chevrolet" });
+                new TruckManufacturerViewModel() { Description = "Chevrolet" });
 
-            var manufacturerSearchResult = truckManufacturerService.SearchTruckManufacturer("Chevrolet");
+            var manufacturer = new TruckManufacturerViewModel();
+            manufacturer.Description = "Chevrolet";
+
+            var manufacturerSearchResult = truckManufacturerService.SearchTruckManufacturer(manufacturer);
 
             var manufacturerToUpdate = new TruckManufacturerViewModel()
             {
-                Id = manufacturerSearchResult.Id, ManufacturerDescription = "Chevy"
+                Id = manufacturerSearchResult.Id, Description = "Chevy"
             };
             
-            if (!string.IsNullOrEmpty(manufacturerToUpdate.ManufacturerDescription))
+            if (!string.IsNullOrEmpty(manufacturerToUpdate.Description))
             {
-                if (truckManufacturerService.ValidateManufacturerString(manufacturerToUpdate.ManufacturerDescription))
+                if (truckManufacturerService.ValidateManufacturerString(manufacturerToUpdate.Description))
                 {
-                    if (!truckManufacturerService.RetrieveTruckManufacturerName(manufacturerToUpdate.ManufacturerDescription))
+                    if (!truckManufacturerService.RetrieveTruckManufacturerName(manufacturerToUpdate.Description))
                     {
                         truckManufacturerService.UpdateTruckManufacturerData(manufacturerToUpdate);
                         _logger.Info("Test-ManufacturerDescriptionIsNotEmptyOrNullAndContainsOnlyLettersOrNumbersAndDoesNotExistAlreadyInDB-RecordUpdated");
@@ -179,9 +182,11 @@ namespace TruckCheckUp.WebUI.Tests.Services
             }
 
             //Act
-            var result = truckManufacturerService.SearchTruckManufacturer("Chevy");
+            var manufacturerToSearchAfterUpdate = new TruckManufacturerViewModel();
+            manufacturerToSearchAfterUpdate.Description = "Chevy";
+            var result = truckManufacturerService.SearchTruckManufacturer(manufacturerToSearchAfterUpdate);
             //Assert
-            Assert.AreEqual("Chevy", result.ManufacturerDescription);
+            Assert.AreEqual("Chevy", result.Description);
         }
 
         [TestMethod]
@@ -192,20 +197,24 @@ namespace TruckCheckUp.WebUI.Tests.Services
             var _logger = new MockTruckCheckUpLogger();
             TruckManufacturerService truckManufacturerService = new TruckManufacturerService(_truckManufacturerContext, _logger);
             truckManufacturerService.AddTruckManufacturer(new TruckManufacturerViewModel()
-            { Id = "7", ManufacturerDescription = "Hyundai" });
+            { Id = "7", Description = "Hyundai" });
             //Add record with characters not allowed
             var manufacturerToUpdate = new TruckManufacturerViewModel()
-            { Id = "7", ManufacturerDescription = "Kenw@rth" };
+            { Id = "7", Description = "Kenw@rth" };
 
             //Act
-            if (truckManufacturerService.ValidateManufacturerString(manufacturerToUpdate.ManufacturerDescription))
+            if (truckManufacturerService.ValidateManufacturerString(manufacturerToUpdate.Description))
             {
                 truckManufacturerService.UpdateTruckManufacturerData(manufacturerToUpdate);
                 _logger.Info("Test-ManufacturerDescriptionFieldContainsNotAllowedCharacters-ManufacturerNotUpdated");
             }
-            var result = truckManufacturerService.SearchTruckManufacturer("Hyundai"); 
+
+            var manufacturerUpdated = new TruckManufacturerViewModel();
+            manufacturerUpdated.Description = "Hyundai";
+
+            var result = truckManufacturerService.SearchTruckManufacturer(manufacturerUpdated); 
             //Assert
-            Assert.AreEqual("Hyundai", result.ManufacturerDescription);
+            Assert.AreEqual("Hyundai", result.Description);
         }
 
         [TestMethod]
@@ -216,23 +225,27 @@ namespace TruckCheckUp.WebUI.Tests.Services
             var _logger = new MockTruckCheckUpLogger();
             TruckManufacturerService truckManufacturerService = new TruckManufacturerService(_truckManufacturerContext, _logger);
             truckManufacturerService.AddTruckManufacturer(new TruckManufacturerViewModel()
-            { ManufacturerDescription = "Toyota" });
-            var manufacturerSearchResult = truckManufacturerService.SearchTruckManufacturer("Toyota");
+            { Description = "Toyota" });
+
+            var manufacturer = new TruckManufacturerViewModel();
+            manufacturer.Description = "Toyota";
+            var manufacturerSearchResult = truckManufacturerService.SearchTruckManufacturer(manufacturer);
 
             var manufacturerToUpdate = new TruckManufacturerViewModel()
             {
                 Id = manufacturerSearchResult.Id,
-                ManufacturerDescription = ""
+                Description = ""
             };
             //Act
-            if (!string.IsNullOrEmpty(manufacturerToUpdate.ManufacturerDescription))
+            if (!string.IsNullOrEmpty(manufacturerToUpdate.Description))
             {
                 truckManufacturerService.UpdateTruckManufacturerData(manufacturerToUpdate);
                 _logger.Info("Test-ManufacturerDescriptionFieldEmptyOrNull-NoRecordUpdated");
             }
-            var result = truckManufacturerService.SearchTruckManufacturer("Toyota");
+
+            var result = truckManufacturerService.SearchTruckManufacturer(manufacturer);
             //Assert
-            Assert.AreEqual("Toyota", result.ManufacturerDescription);
+            Assert.AreEqual("Toyota", result.Description);
         }
 
         [TestMethod]
@@ -243,16 +256,19 @@ namespace TruckCheckUp.WebUI.Tests.Services
             var _logger = new MockTruckCheckUpLogger();
             TruckManufacturerService truckManufacturerService = new TruckManufacturerService(_truckManufacturerContext, _logger);
             truckManufacturerService.AddTruckManufacturer(
-                new TruckManufacturerViewModel() { ManufacturerDescription = "Chevrolet" });
+                new TruckManufacturerViewModel() { Description = "Chevrolet" });
 
             truckManufacturerService.AddTruckManufacturer(
-               new TruckManufacturerViewModel() { ManufacturerDescription = "Dodge" });
-       
+               new TruckManufacturerViewModel() { Description = "Dodge" });
+
             //Act
-            var result = truckManufacturerService.SearchTruckManufacturer("Toyota");
+            var manufacturer = new TruckManufacturerViewModel();
+            manufacturer.Description = "Toyota";
+
+            var result = truckManufacturerService.SearchTruckManufacturer(manufacturer);
             _logger.Info("Test-SearchForManufacturerInDB-ManufacturerDoesNotExist");
             //Assert
-            Assert.AreEqual(false, result.ManufacturerExistInDB);
+            Assert.AreEqual(false, result.ExistInDB);
         }
 
         [TestMethod]
@@ -263,19 +279,21 @@ namespace TruckCheckUp.WebUI.Tests.Services
             var _logger = new MockTruckCheckUpLogger();
             TruckManufacturerService truckManufacturerService = new TruckManufacturerService(_truckManufacturerContext, _logger);
             truckManufacturerService.AddTruckManufacturer(
-                new TruckManufacturerViewModel() { ManufacturerDescription = "Chevrolet" });
+                new TruckManufacturerViewModel() { Description = "Chevrolet" });
 
             truckManufacturerService.AddTruckManufacturer(
-               new TruckManufacturerViewModel() { ManufacturerDescription = "Dodge" });
+               new TruckManufacturerViewModel() { Description = "Dodge" });
 
-            var manufacturerToDelete = truckManufacturerService.SearchTruckManufacturer("Chevrolet");
+            var manufacturer = new TruckManufacturerViewModel();
+            manufacturer.Description = "Chevrolet";
 
+            var manufacturerToDelete = truckManufacturerService.SearchTruckManufacturer(manufacturer);
             //Act
             truckManufacturerService.DeleteTruckManufacturer(manufacturerToDelete.Id);
             _logger.Info("Test-DeleteManufacturerFromDB-ManufacturerDeleted");
-            var result = truckManufacturerService.SearchTruckManufacturer("Chevrolet");
+            var result = truckManufacturerService.SearchTruckManufacturer(manufacturer);
             //Assert
-            Assert.AreEqual(false, result.ManufacturerExistInDB);
+            Assert.AreEqual(false, result.ExistInDB);
         }
     }
 }

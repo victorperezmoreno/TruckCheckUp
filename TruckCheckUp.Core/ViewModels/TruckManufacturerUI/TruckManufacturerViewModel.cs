@@ -7,11 +7,11 @@ namespace TruckCheckUp.Core.ViewModels.TruckManufacturerUI
     {
         public string Id { get; set; }
 
-        public string ManufacturerDescription { get; set; }
+        public string Description { get; set; }
 
-        public bool ManufacturerExistInDB { get; set; } = true;
+        public bool ExistInDB { get; set; } = true;
 
-        public bool ManufacturerIsValid { get; set; } = true;
+        public bool IsValid { get; set; } = true;
 
         public TruckManufacturerViewModel()
         {

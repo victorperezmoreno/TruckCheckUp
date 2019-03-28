@@ -18,10 +18,13 @@ namespace TruckCheckUp.Core.Models
         //Link or connection to "join" table
         public virtual ICollection<Truck> Truck { get; set; }
 
+        public virtual ICollection<TruckModel> TruckModel { get; set; }
+
         //Initialize list of Trucks on class creation
         public TruckManufacturer()
         {
-            this.Truck = new List<Truck>();
+            Truck = new List<Truck>();
+            TruckModel = new List<TruckModel>();
         }
     }
 }

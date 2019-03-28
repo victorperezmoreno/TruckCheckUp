@@ -10,7 +10,7 @@ namespace TruckCheckUp.Core.Contracts.Services
         void PostNewTruckManufacturerToDB(TruckManufacturerViewModel truckManufacturer);
         List<TruckManufacturerViewModel> RetrieveAllTruckManufacturers();
         bool RetrieveTruckManufacturerName(string manufacturerName);
-        TruckManufacturerViewModel SearchTruckManufacturer(string manufacturerName);
+        TruckManufacturerViewModel SearchTruckManufacturer(TruckManufacturerViewModel manufacturer);
         TruckManufacturerViewModel UpdateTruckManufacturer(TruckManufacturerViewModel truckManufacturer);
         void UpdateTruckManufacturerData(TruckManufacturerViewModel truckManufacturer);
         bool ValidateManufacturerString(string manufacturer);

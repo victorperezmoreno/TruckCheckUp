@@ -1,7 +1,9 @@
 ﻿<script src="~/Scripts/Custom/truckmanufacturer-1.0.js"></script>
 <div class="container">
     <h2>Truck Manufacturer Records</h2>
-
+    <p>
+        @Html.ActionLink("Back to Administration Page", "Index", "Administration")
+    </p>
     <div class="form-group form-horizontal">
         <div class="col-md-4">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBoxes();">Add Manufacturer</button>
@@ -34,14 +36,13 @@
                 </th>
             </tr>
         </thead>
-        <tbody class="tbody"></tbody>
+        <tbody class="tbodyManufacturer"></tbody>
     </table>
 </div>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                @*<button type="button" class="close" data-dissmiss="modal"><span aria-hidden="true">×</span></button>*@
                 <button type="button" class="close" data-dismiss="modal">×</button>
                 <h4 class="modal-title" id="myModalLabel">Truck Manufacturer</h4>
             </div>

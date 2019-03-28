@@ -67,15 +67,21 @@ function clearManufacturerSearch() {
 
 function retrieveManufacturerRecord() {
     varUrl = "/TruckManufacturerManagement/SearchManufacturerName";
-    var manufacturerData = {
-        manufacturerName: $('#manufacturerSearch_textbox').val()};
-    varType = "GET";
+    var manufacturerObj = {
+        Id : "",
+        ManufacturerDescription: $('#manufacturerSearch_textbox').val(),
+        ManufacturerExistInDB : true,
+        ManufacturerIsValid: true
+        //Country: $('#Country').val()
+    };   
+    varType = "POST";
     varContentType = "application/json;charset=utf-8";
     varDataType = "json";
     $.ajax({
         url: varUrl,
-        data: manufacturerData,
+        data: JSON.stringify(manufacturerObj),
         type: varType,
+        traditional : true,
         contentType: varContentType,
         dataType: varDataType,
         success: successRetrievingManufacturerRecord,
@@ -104,16 +110,16 @@ function successRetrievingManufacturerRecord(manufacturerRecord)
                 html += '<td><a href="#" onclick="return getManufacturerbyId(\'' + item.Id + '\')">Edit</a> | <a href="#" onclick="deleteManufacturer(\'' + item.Id + '\')">Delete</a></td>';
                 html += '</tr>';
             });
-            $('.tbody').html(html);
+            $('.tbodyManufacturer').html(html);
         }
         else {
-            $('.tbody').html('');
+            $('.tbodyManufacturer').html('');
             html += '<tr>';
             html += '<td>' + 'No records match search criterion' + '</td>';
             html += '<td>' + '' + '</td>';
             html += '<td>' + '' + '</td>';
             html += '</tr>';
-            $('.tbody').html(html);
+            $('.tbodyManufacturer').html(html);
         }
         resetManufacturerSearchTextBoxt();
     }  
@@ -150,7 +156,7 @@ function successRetrievingAllManufacturers(allManufacturers)
         html += '<td><a href="#" onclick="return getManufacturerbyId(\'' + item.Id + '\')">Edit</a> | <a href="#" onclick="deleteManufacturer(\'' + item.Id + '\')">Delete</a></td>';
         html += '</tr>';
     });
-    $('.tbody').html(html);
+    $('.tbodyManufacturer').html(html);
 }
 
 //Add Data Function

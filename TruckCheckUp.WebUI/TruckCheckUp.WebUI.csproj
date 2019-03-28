@@ -206,6 +206,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TruckManagementController.cs" />
     <Compile Include="Controllers\TruckManufacturerManagementController.cs" />
+    <Compile Include="Controllers\TruckModelManagementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -279,6 +280,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Custom\truckmanufacturer-1.0.js" />
+    <Content Include="Scripts\Custom\truckmodel-1.0.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -343,6 +345,7 @@
     <Content Include="Views\TruckManagement\Edit.cshtml" />
     <Content Include="Views\TruckManagement\Delete.cshtml" />
     <Content Include="Views\TruckManufacturerManagement\Index.cshtml" />
+    <Content Include="Views\TruckModelManagement\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

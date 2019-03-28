@@ -1,5 +1,6 @@
 using System;
 using TruckCheckUp.Core.Contracts.DataAccess;
+using TruckCheckUp.Core.Contracts.InputValidation;
 using TruckCheckUp.Core.Contracts.Logger;
 using TruckCheckUp.Core.Contracts.Services;
 using TruckCheckUp.Core.Models;
@@ -57,11 +58,16 @@ namespace TruckCheckUp.WebUI
             container.RegisterType<IRepository<Situation>, SQLRepository<Situation>>();
             container.RegisterType<IRepository<Truck>, SQLRepository<Truck>>();
             container.RegisterType<IRepository<TruckManufacturer>, SQLRepository<TruckManufacturer>>();
+            container.RegisterType<IRepository<TruckModel>, SQLRepository<TruckModel>>();
+            
             //IdentityType Container /**Once Identity configured un-comment the below command
             //container.RegisterType<AccountController>(new InjectionConstructor());
 
             //LoggerType Container
             container.RegisterType<ILogger, Log4NetLogger>();
+
+            //ValidationType Container
+            container.RegisterType<IValidateUserInput, ValidateUserInput>();
 
             //ServicesType Container
             container.RegisterType<IDriverService, DriverService>();

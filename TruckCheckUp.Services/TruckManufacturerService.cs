@@ -24,33 +24,33 @@ namespace TruckCheckUp.Services
         public List<TruckManufacturerViewModel> RetrieveAllTruckManufacturers()
         {
             //Get a list of Trucks
-            var trucksRetrieved = _truckManufacturerContext.Collection().OrderBy(m => m.ManufacturerDescription).ToList();
+            var manufacturersRetrieved = _truckManufacturerContext.Collection().OrderBy(m => m.ManufacturerDescription).ToList();
 
-            var trucksViewModel = trucksRetrieved.Select(truck => new TruckManufacturerViewModel
+            var manufacturersViewModel = manufacturersRetrieved.Select(manufacturer => new TruckManufacturerViewModel
             {
-                Id                      =truck.Id,
-                ManufacturerDescription = truck.ManufacturerDescription
+                Id                      = manufacturer.Id,
+                Description = manufacturer.ManufacturerDescription
 
             }).ToList();
 
-            return trucksViewModel;
+            return manufacturersViewModel;
         }
 
         public TruckManufacturerViewModel AddTruckManufacturer(TruckManufacturerViewModel truckManufacturer)
         {
-            if (!string.IsNullOrEmpty(truckManufacturer.ManufacturerDescription))
+            if (!string.IsNullOrEmpty(truckManufacturer.Description))
             {
 
                 //Verify that only letters and numbers in string manufacturer entered by user
-                if (!ValidateManufacturerString(truckManufacturer.ManufacturerDescription))
+                if (!ValidateManufacturerString(truckManufacturer.Description))
                 {
-                    truckManufacturer.ManufacturerIsValid = false;
+                    truckManufacturer.IsValid = false;
                 }
                 else
                 {
                     //Verify whether the manufacturer is already in DB
-                    truckManufacturer.ManufacturerExistInDB = RetrieveTruckManufacturerName(truckManufacturer.ManufacturerDescription);
-                    if (!truckManufacturer.ManufacturerExistInDB)
+                    truckManufacturer.ExistInDB = RetrieveTruckManufacturerName(truckManufacturer.Description);
+                    if (!truckManufacturer.ExistInDB)
                     {
                         PostNewTruckManufacturerToDB(truckManufacturer);
                     }
@@ -61,22 +61,21 @@ namespace TruckCheckUp.Services
 
         public TruckManufacturerViewModel UpdateTruckManufacturer(TruckManufacturerViewModel truckManufacturer)
         {
-            if (!string.IsNullOrEmpty(truckManufacturer.ManufacturerDescription))
+            if (!string.IsNullOrEmpty(truckManufacturer.Description))
             {
 
                 //Verify that only letters and numbers in string manufacturer entered by user
-                if (!ValidateManufacturerString(truckManufacturer.ManufacturerDescription))
+                if (!ValidateManufacturerString(truckManufacturer.Description))
                 {
-                    truckManufacturer.ManufacturerIsValid = false;
-                    //return Json(truckManufacturer, JsonRequestBehavior.AllowGet);
+                    truckManufacturer.IsValid = false;
                 }
                 else
                 {
                     //Verify whether the manufacturer is already in DB and save value 
                     //in object to return to View for validation purposes 
-                    truckManufacturer.ManufacturerExistInDB = RetrieveTruckManufacturerName(truckManufacturer.ManufacturerDescription);
+                    truckManufacturer.ExistInDB = RetrieveTruckManufacturerName(truckManufacturer.Description);
                     
-                    if (!truckManufacturer.ManufacturerExistInDB)
+                    if (!truckManufacturer.ExistInDB)
                     {
                         UpdateTruckManufacturerData(truckManufacturer);
                     }
@@ -85,32 +84,31 @@ namespace TruckCheckUp.Services
             return truckManufacturer;
         }
 
-        public TruckManufacturerViewModel SearchTruckManufacturer(string manufacturerName)
+        public TruckManufacturerViewModel SearchTruckManufacturer(TruckManufacturerViewModel manufacturer)
         {
             var truckSearchResult = new TruckManufacturer();
-            var truckObjectToReturn = new TruckManufacturerViewModel();
-            if (!string.IsNullOrEmpty(manufacturerName))
+            if (!string.IsNullOrEmpty(manufacturer.Description))
             {                
                 //Search for manufacturer in DB only if numbers and letters in manufacturer name
-                if (!ValidateManufacturerString(manufacturerName))
+                if (!ValidateManufacturerString(manufacturer.Description))
                 {
-                    truckObjectToReturn.ManufacturerIsValid = false;                    
+                    manufacturer.IsValid = false;                
                 }
                 else
                 {
-                    truckSearchResult = _truckManufacturerContext.Collection().Where(manufacturer => manufacturer.ManufacturerDescription == manufacturerName).FirstOrDefault();
+                    truckSearchResult = _truckManufacturerContext.Collection().Where(m => m.ManufacturerDescription == manufacturer.Description).FirstOrDefault();
                     if (truckSearchResult == null)
                     {
-                        truckObjectToReturn.ManufacturerExistInDB = false;
+                        manufacturer.ExistInDB = false;
                     }
                     else
                     {
-                        truckObjectToReturn.Id = truckSearchResult.Id;
-                        truckObjectToReturn.ManufacturerDescription = truckSearchResult.ManufacturerDescription;
+                        manufacturer.Id = truckSearchResult.Id;
+                        manufacturer.Description = truckSearchResult.ManufacturerDescription;
                     }
                 }
-            }  
-            return truckObjectToReturn;
+            }
+            return manufacturer;
         }
 
         public bool RetrieveTruckManufacturerName(string manufacturerName)
@@ -129,7 +127,7 @@ namespace TruckCheckUp.Services
         public void PostNewTruckManufacturerToDB(TruckManufacturerViewModel truckManufacturer)
         {
             var truckManufacturerToInsert = new TruckManufacturer();
-            truckManufacturerToInsert.ManufacturerDescription = truckManufacturer.ManufacturerDescription;
+            truckManufacturerToInsert.ManufacturerDescription = truckManufacturer.Description;
 
             _truckManufacturerContext.Insert(truckManufacturerToInsert);
             _truckManufacturerContext.Commit();  
@@ -143,7 +141,7 @@ namespace TruckCheckUp.Services
             if (truckManufacturerToUpdate != null)
             {
                 _logger.Info("Found record Id " + truckManufacturerToUpdate.Id + " in Table " + tableNameUsedByLogger);
-                truckManufacturerToUpdate.ManufacturerDescription = truckManufacturer.ManufacturerDescription;
+                truckManufacturerToUpdate.ManufacturerDescription = truckManufacturer.Description;
                 _truckManufacturerContext.Commit();
                 _logger.Info("Updated record Id " + truckManufacturerToUpdate.Id + " in Table " + tableNameUsedByLogger);
 

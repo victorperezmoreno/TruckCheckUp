@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
 using TruckCheckUp.Core.Contracts.Logger;
-using TruckCheckUp.Core.Models;
 using TruckCheckUp.Core.ViewModels.TruckManufacturerUI;
 using TruckCheckUp.Services;
 
@@ -14,12 +10,12 @@ namespace TruckCheckUp.WebUI.Controllers
     public class TruckManufacturerManagementController : Controller
     {
         private TruckManufacturerService _truckManufacturerService;
-        private ILogger _logger;
+        //, ILogger logger
 
-        public TruckManufacturerManagementController(TruckManufacturerService truckManufacturerService, ILogger logger)
+        public TruckManufacturerManagementController(TruckManufacturerService truckManufacturerService)
         {
             this._truckManufacturerService = truckManufacturerService;
-            this._logger = logger;
+           // this._logger = logger;
         }
 
         // GET: TruckManufacturerManagement
@@ -57,11 +53,12 @@ namespace TruckCheckUp.WebUI.Controllers
         }
 
         // GET: TruckManufacturerManagement/SearchManufacturerName
-        public JsonResult SearchManufacturerName(string manufacturerName)
+        [HttpPost]
+        public JsonResult SearchManufacturerName(TruckManufacturerViewModel truckManufacturer)
         {
             try
-            {
-                var truckManufacturerSearchResult = _truckManufacturerService.SearchTruckManufacturer(manufacturerName);
+            { 
+                var truckManufacturerSearchResult = _truckManufacturerService.SearchTruckManufacturer(truckManufacturer);
                 return Json(truckManufacturerSearchResult, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
