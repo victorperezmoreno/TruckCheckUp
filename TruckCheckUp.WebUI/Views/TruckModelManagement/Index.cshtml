@@ -6,7 +6,7 @@
     </p>
     <div class="form-group form-horizontal">
         <div class="col-md-4">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBoxes();">Add Model</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modelModal" onclick="clearTextBoxes();">Add Model</button>
         </div>
         <label class="control-label col-md-2">Find by Model:</label>
         <div class="col-md-3">
@@ -42,12 +42,12 @@
         <tbody class="tbodyModel"></tbody>
     </table>
 </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modelModal" tabindex="-1" role="dialog" aria-labelledby="modelModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">×</button>
-                <h4 class="modal-title" id="myModalLabel">Truck Model</h4>
+                <h4 class="modal-title" id="modelModalLabel">Truck Model</h4>
             </div>
             <div class="modal-body">
                 <form>
@@ -72,9 +72,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="Add_button" onclick="return addModel();">Add</button>
-                <button type="button" class="btn btn-primary" id="Update_button" style="display:none;" onclick="updateModel();">Update</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="clearTextBoxes();">Close</button>
+                <button type="button" class="btn btn-primary" id="modelAdd_button" onclick="return addModel();">Add</button>
+                <button type="button" class="btn btn-primary" id="modelUpdate_button" style="display:none;" onclick="updateModel();">Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="clearModelTextBoxes();">Close</button>
             </div>
         </div>
     </div>

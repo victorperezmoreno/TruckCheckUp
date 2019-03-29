@@ -6,7 +6,7 @@
     </p>
     <div class="form-group form-horizontal">
         <div class="col-md-4">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBoxes();">Add Manufacturer</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#manufacturerModal" onclick="clearManufacturerTextBoxes();">Add Manufacturer</button>
         </div>
         <label class="control-label col-md-2">Find by Manufacturer:</label>
         <div class="col-md-3">
@@ -39,12 +39,12 @@
         <tbody class="tbodyManufacturer"></tbody>
     </table>
 </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="manufacturerModal" tabindex="-1" role="dialog" aria-labelledby="manufacturerModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">×</button>
-                <h4 class="modal-title" id="myModalLabel">Truck Manufacturer</h4>
+                <h4 class="modal-title" id="manufacturerModalLabel">Truck Manufacturer</h4>
             </div>
             <div class="modal-body">
                 <form>
@@ -62,7 +62,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="manufacturerAdd_button" onclick="return addManufacturer();">Add</button>
                 <button type="button" class="btn btn-primary" id="manufacturerUpdate_button" style="display:none;" onclick="updateManufacturer();">Update</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="clearTextBoxes();">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="clearManufacturerTextBoxes();">Close</button>
             </div>
         </div>
     </div>

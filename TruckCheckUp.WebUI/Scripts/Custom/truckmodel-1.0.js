@@ -4,7 +4,7 @@
 	//Disable autocomplete for textboxes
 	$("input:text,form").attr("autocomplete", "off");
 	//Load Data in Table when documents is ready
-	loadData();
+	loadModelData();
 });
 
 function validateSearchTextBox() {
@@ -32,15 +32,15 @@ function validateModelTextbox() {
 			// there is a mismatch, hence show the error message
 			$('#modelDescription_textbox').css('border-color', 'Red');
 			$('#modelDescription_error').text("Please only letters or numbers");
-			$("#Add_button").prop('disabled', true);
-			$("#Update_button").prop('disabled', true);
+			$("#modelAdd_button").prop('disabled', true);
+			$("#modelUpdate_button").prop('disabled', true);
 		}
 		else {
 			// else, do not display message
 			$('#modelDescription_textbox').css('border-color', 'lightgrey');
 			$('#modelDescription_error').text("");
-			$("#Add_button").prop('disabled', false);
-			$("#Update_button").prop('disabled', false);
+			$("#modelAdd_button").prop('disabled', false);
+			$("#modelUpdate_button").prop('disabled', false);
 		}
 	});
 }
@@ -50,16 +50,16 @@ function validateManufacturerDropDownList(manufacturerDDL)
 	if (manufacturerDDL.value == "") {
 		$('#manufacturer').css('border-color', 'Red');
 		$('#manufacturerDescription_error').text("Manufacturer is required");
-		$("#Add_button").prop('disabled', true);
-		$("#Update_button").prop('disabled', true);
+		$("#modelAdd_button").prop('disabled', true);
+		$("#modelUpdate_button").prop('disabled', true);
 
 		isValid = false;
 	}
 	else {
 		$('#manufacturer').css('border-color', 'lightgrey');
 		$('#manufacturerDescription_error').text("");
-		$("#Add_button").prop('disabled', false);
-		$("#Update_button").prop('disabled', false);
+		$("#modelAdd_button").prop('disabled', false);
+		$("#modelUpdate_button").prop('disabled', false);
 	}
 }
 
@@ -76,7 +76,7 @@ function searchModel() {
 
 function clearModelSearch() {
 	resetModelSearchTextBox();
-	loadData();
+	loadModelData();
 }
 
 function retrieveModelRecord() {
@@ -141,7 +141,7 @@ function noRecordsFoundInDatabaseMessage()
 }
 
 //Load Data function
-function loadData() {
+function loadModelData() {
 	varUrl = "/TruckModelManagement/ListOfModels";
 	varType = "GET";
 	varContentType = "application/json;charset=utf-8";
@@ -180,7 +180,7 @@ function dataFromDatabaseRetrieved(allModels) {
 
 //Add Data Function
 function addModel() {
-	var res = validate();
+	var res = validateModelWhenUserPostToServer();
 	if (res == false) {
 		return false;
 	}
@@ -218,8 +218,8 @@ function truckModelAdded(truckModel) {
 			validateModel("Model is already in Database");
 		}
 		else {
-			loadData();
-			$('#myModal').modal('hide');
+			loadModelData();
+			$('#modelModal').modal('hide');
 		}
 }
 
@@ -249,14 +249,14 @@ function modelByIdReturned(model) {
 	$('#modelDescription_textbox').val(model.Description);
 	populateManufacturersDropDownList(model);
 	$('#manufacturer').val(model.ManufacturerId);
-	$('#myModal').modal('show');
+	$('#modelModal').modal('show');
 	$('#Update_button').show();
 	$('#Add_button').hide();
 }
 
 //function for updating manufacturer's record
 function updateModel() {
-	var res = validate();
+	var res = validateModelWhenUserPostToServer();
 	if (res == false) {
 		return false;
 	}
@@ -294,8 +294,8 @@ function truckModelUpdated(truckModel) {
 			validateModel("Model is already in Database");
 		}
 		else {
-			loadData();
-			$('#myModal').modal('hide');
+			loadModelData();
+			$('#modelModal').modal('hide');
 			$('#Id').val("");
 			$('#modelDescription_textbox').val("");
 		}
@@ -315,7 +315,7 @@ function deleteModel(Id) {
 			type: varType,
 			contentType: varContentType,
 			dataType: varDataType,
-			success: loadData,
+			success: loadModelData,
 			error: function (errormessage) {
 				alert(errormessage.responseText);
 			}
@@ -324,13 +324,13 @@ function deleteModel(Id) {
 }
 
 //Function for clearing the textboxes
-function clearTextBoxes() {
+function clearModelTextBoxes() {
 	$('#Id').val("");
 	retrieveAllManufacturers();
 	$('#modelDescription_textbox').val("");
 	$('#modelDescription_error').text("");
-	$('#Update_button').hide();
-	$('#Add_button').show();
+	$('#modelUpdate_button').hide();
+	$('#modelAdd_button').show();
 	$('#modelDescription_textbox').css('border-color', 'lightgrey');
 }
 
@@ -366,7 +366,7 @@ function populateManufacturersDropDownList(manufacturers)
 }
 
 //Validation using jquery
-function validate() {
+function validateModelWhenUserPostToServer() {
 	var isValid = true;
 	if ($('#modelDescription_textbox').val().trim() == "") {
 		modelValidationMessage("Model is required");

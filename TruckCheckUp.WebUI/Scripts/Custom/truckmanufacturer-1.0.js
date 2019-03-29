@@ -3,7 +3,7 @@ $(document).ready(function () {
     //validateSearchTextBox();
     validateManufacturerTextbox();
    
-    loadData();
+    loadManufacturerData();
 });
 
 function validateSearchTextBox()
@@ -62,16 +62,16 @@ function searchManufacturer()
 
 function clearManufacturerSearch() {
     resetManufacturerSearchTextBoxt();
-    loadData();
+    loadManufacturerData();
 }
 
 function retrieveManufacturerRecord() {
     varUrl = "/TruckManufacturerManagement/SearchManufacturerName";
     var manufacturerObj = {
         Id : "",
-        ManufacturerDescription: $('#manufacturerSearch_textbox').val(),
-        ManufacturerExistInDB : true,
-        ManufacturerIsValid: true
+        Description: $('#manufacturerSearch_textbox').val(),
+        ExistInDB : true,
+        IsValid: true
         //Country: $('#Country').val()
     };   
     varType = "POST";
@@ -93,20 +93,17 @@ function retrieveManufacturerRecord() {
 
 function successRetrievingManufacturerRecord(manufacturerRecord)
 {
-    if (manufacturerRecord.ManufacturerIsValid == false)
+    if (manufacturerRecord.IsValid == false)
     {
         invalidManufacturerNameSearchTextBox();
     }
     else {
-        if (manufacturerRecord.ManufacturerExistInDB == true) {
+        if (manufacturerRecord.ExistInDB == true) {
             var html = '';
             $.each([manufacturerRecord], function (key, item) {
                 html += '<tr>';
                 html += '<td>' + item.Id + '</td>';
-                html += '<td>' + item.ManufacturerDescription + '</td>';
-                //html += '<td>' + item.Age + '</td>';
-                //html += '<td>' + item.State + '</td>';
-                //html += '<td>' + item.Country + '</td>';
+                html += '<td>' + item.Description + '</td>';
                 html += '<td><a href="#" onclick="return getManufacturerbyId(\'' + item.Id + '\')">Edit</a> | <a href="#" onclick="deleteManufacturer(\'' + item.Id + '\')">Delete</a></td>';
                 html += '</tr>';
             });
@@ -126,7 +123,7 @@ function successRetrievingManufacturerRecord(manufacturerRecord)
 }
 
 //Load Data function
-function loadData() {
+function loadManufacturerData() {
     varUrl = "/TruckManufacturerManagement/ListOfManufacturers";
     varType = "GET";
     varContentType = "application/json;charset=utf-8";
@@ -149,10 +146,7 @@ function successRetrievingAllManufacturers(allManufacturers)
     $.each(allManufacturers, function (key, item) {
         html += '<tr>';
         html += '<td>' + item.Id + '</td>';
-        html += '<td>' + item.ManufacturerDescription + '</td>';
-        //html += '<td>' + item.Age + '</td>';
-        //html += '<td>' + item.State + '</td>';
-        //html += '<td>' + item.Country + '</td>';
+        html += '<td>' + item.Description + '</td>';
         html += '<td><a href="#" onclick="return getManufacturerbyId(\'' + item.Id + '\')">Edit</a> | <a href="#" onclick="deleteManufacturer(\'' + item.Id + '\')">Delete</a></td>';
         html += '</tr>';
     });
@@ -161,7 +155,7 @@ function successRetrievingAllManufacturers(allManufacturers)
 
 //Add Data Function
 function addManufacturer() {
-    var res = validate();
+    var res = validateManufacturerWhenUserPostToServer();
     if (res == false) {
         return false;
     }
@@ -169,10 +163,9 @@ function addManufacturer() {
     varUrl = "/TruckManufacturerManagement/Add";
     var manufacturerObj = {
         Id : "",
-        ManufacturerDescription: $('#manufacturerDescription_textbox').val(),
-        ManufacturerExistInDB : true,
-        ManufacturerIsValid: true
-        //Country: $('#Country').val()
+        Description: $('#manufacturerDescription_textbox').val(),
+        ExistInDB : true,
+        IsValid: true
         };
     varType = "POST";
     varContentType = "application/json;charset=utf-8";
@@ -183,34 +176,31 @@ function addManufacturer() {
         type: varType,
         contentType: varContentType,
         dataType: varDataType,
-        success: successAttemptToAddManufacturer,
+        success: truckManufacturerAdded,
         error: function (errormessage) {
             alert(errormessage.responseText);
         }
     });
 }
 
-function successAttemptToAddManufacturer(truckManufacturer)
+function truckManufacturerAdded(truckManufacturer)
 {
-    if (truckManufacturer.ManufacturerIsValid == false)
+    if (truckManufacturer.IsValid == false)
     {
-        invalidManufacturerName();
+        validateManufacturer("Invalid Manufacturer Name");
     }
     else
-        if (truckManufacturer.ManufacturerExistInDB) {
-            manufacturerAlreadyInDB();
+        if (truckManufacturer.ExistInDB) {
+            validateManufacturer("Manufacturer is already in Database");
         }
         else {
-            loadData();
-            $('#myModal').modal('hide');
+            loadManufacturerData();
+            $('#manufacturerModal').modal('hide');
         }
 }
 
 function getManufacturerbyId(Id) {
     $('#manufacturerDescription_textbox').css('border-color', 'lightgrey');
-    //$('#Age').css('border-color', 'lightgrey');
-    //$('#State').css('border-color', 'lightgrey');
-    //$('#Country').css('border-color', 'lightgrey');
     varUrl = "/TruckManufacturerManagement/GetManufacturerbyId/" + Id;
     varType = "GET";
     varContentType = "application/json;charset=utf-8";
@@ -220,7 +210,7 @@ function getManufacturerbyId(Id) {
         type: varType,
         contentType: varContentType,
         dataType: varDataType,
-        success: successReturningManufacturerById,
+        success: manufacturerByIdReturned,
         error: function (errormessage) {
             alert(errormessage.responseText);
         }
@@ -228,21 +218,18 @@ function getManufacturerbyId(Id) {
     return false;
 }
 
-function successReturningManufacturerById(manufacturer)
+function manufacturerByIdReturned(manufacturer)
 {
     $('#Id').val(manufacturer.Id);
-    $('#manufacturerDescription_textbox').val(manufacturer.ManufacturerDescription);
-    //$('#Age').val(result.Age);
-    //$('#State').val(result.State);
-    //$('#Country').val(result.Country);
-    $('#myModal').modal('show');
+    $('#manufacturerDescription_textbox').val(manufacturer.Description);
+    $('#manufacturerModal').modal('show');
     $('#manufacturerUpdate_button').show();
     $('#manufacturerAdd_button').hide();
 }
 
 //function for updating manufacturer's record
 function updateManufacturer() {
-    var res = validate();
+    var res = validateManufacturerWhenUserPostToServer();
     if (res == false) {
         return false;
     }
@@ -250,12 +237,9 @@ function updateManufacturer() {
     varUrl = "/TruckManufacturerManagement/Update";
     var manufacturerObj = {
         Id: $('#Id').val(),
-        ManufacturerDescription: $('#manufacturerDescription_textbox').val(),
-        ManufacturerExistInDB: true,
-        ManufacturerIsValid: true
-        //Age: $('#Age').val(),
-        //State: $('#State').val(),
-        //Country: $('#Country').val(),
+        Description: $('#manufacturerDescription_textbox').val(),
+        ExistInDB: true,
+        IsValid: true
     };
     varType = "POST";
     varContentType = "application/json;charset=utf-8";
@@ -266,30 +250,27 @@ function updateManufacturer() {
         type: varType,
         contentType: varContentType,
         dataType: varDataType,
-        success: successAttemptToUpdateManufacturer,
+        success: truckManufacturerUpdated,
         error: function (errormessage) {
             alert(errormessage.responseText);
         }
     });
 }
 
-function successAttemptToUpdateManufacturer(truckManufacturer)
+function truckManufacturerUpdated(truckManufacturer)
 {
-    if (truckManufacturer.ManufacturerIsValid == false) {
-        invalidManufacturerName();
+    if (truckManufacturer.IsValid == false) {
+        validateManufacturer("Invalid Manufacturer Name");
     }
     else
-        if (truckManufacturer.ManufacturerExistInDB) {
-            manufacturerAlreadyInDB();
+        if (truckManufacturer.ExistInDB) {
+            validateManufacturer("Manufacturer is already in Database");
         }
         else {
-            loadData();
-            $('#myModal').modal('hide');
+            loadManufacturerData();
+            $('#manufacturerModal').modal('hide');
             $('#Id').val("");
             $('#manufacturerDescription_textbox').val("");
-            //$('#Age').val("");
-            //$('#State').val("");
-            //$('#Country').val("");
         }
 }
 
@@ -307,9 +288,7 @@ function deleteManufacturer(Id) {
             type: varType,
             contentType: varContentType,
             dataType: varDataType,
-            success: function (result) {
-                loadData();
-            },
+            success: loadManufacturerData,
             error: function (errormessage) {
                 alert(errormessage.responseText);
             }
@@ -318,23 +297,17 @@ function deleteManufacturer(Id) {
 }
 
 //Function for clearing the textboxes
-function clearTextBoxes() {
+function clearManufacturerTextBoxes() {
     $('#Id').val("");
     $('#manufacturerDescription_textbox').val("");
-    //$('#Age').val("");
-    //$('#State').val("");
-    //$('#Country').val("");
     $('#manufacturerDescription_error').text("");
     $('#manufacturerUpdate_button').hide();
     $('#manufacturerAdd_button').show();
     $('#manufacturerDescription_textbox').css('border-color', 'lightgrey');
-    //$('#Age').css('border-color', 'lightgrey');
-    //$('#State').css('border-color', 'lightgrey');
-    //$('#Country').css('border-color', 'lightgrey');
 }
 
 //Validation using jquery
-function validate() {
+function validateManufacturerWhenUserPostToServer() {
     var isValid = true;
     if ($('#manufacturerDescription_textbox').val().trim() == "") {
         $('#manufacturerDescription_textbox').css('border-color', 'Red');
@@ -345,36 +318,21 @@ function validate() {
     else {
         $('#manufacturerDescription_textbox').css('border-color', 'lightgrey');
     }
-    //if ($('#Age').val().trim() == "") {
-    //    $('#Age').css('border-color', 'Red');
-    //    isValid = false;
-    //}
-    //else {
-    //    $('#Age').css('border-color', 'lightgrey');
-    //}
-    //if ($('#State').val().trim() == "") {
-    //    $('#State').css('border-color', 'Red');
-    //    isValid = false;
-    //}
-    //else {
-    //    $('#State').css('border-color', 'lightgrey');
-    //}
-    //if ($('#Country').val().trim() == "") {
-    //    $('#Country').css('border-color', 'Red');
-    //    isValid = false;
-    //}
-    //else {
-    //    $('#Country').css('border-color', 'lightgrey');
-    //}
     return isValid;
 }
 
-function invalidManufacturerName()
-{
+function validateManufacturer(message) {
     $('#manufacturerDescription_textbox').css('border-color', 'Red');
-    $('#manufacturerDescription_error').text("Invalid Manufacturer Name");
+    $('#manufacturerDescription_error').text(message);
     $('#manufacturerDescription_textbox').focus();
 }
+
+//function invalidManufacturerName()
+//{
+//    $('#manufacturerDescription_textbox').css('border-color', 'Red');
+//    $('#manufacturerDescription_error').text("Invalid Manufacturer Name");
+//    $('#manufacturerDescription_textbox').focus();
+//}
 
 function resetManufacturerSearchTextBoxt() {
     $('#manufacturerSearch_textbox').css('border-color', 'lightgrey');
@@ -388,8 +346,8 @@ function invalidManufacturerNameSearchTextBox() {
     $("#manufacturerSearch_textbox").focus();
 }
 
-function manufacturerAlreadyInDB() {
-    $('#manufacturerDescription_textbox').css('border-color', 'Red');
-    $('#manufacturerDescription_error').text("Manufacturer is already in Database");
-    $('#manufacturerDescription_textbox').focus();
-}
+//function manufacturerAlreadyInDB() {
+//    $('#manufacturerDescription_textbox').css('border-color', 'Red');
+//    $('#manufacturerDescription_error').text("Manufacturer is already in Database");
+//    $('#manufacturerDescription_textbox').focus();
+//}
