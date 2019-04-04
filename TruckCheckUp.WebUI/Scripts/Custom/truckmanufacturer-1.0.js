@@ -98,8 +98,8 @@ function successRetrievingManufacturerRecord(manufacturerRecord)
         invalidManufacturerNameSearchTextBox();
     }
     else {
+        var html = '';
         if (manufacturerRecord.ExistInDB == true) {
-            var html = '';
             $.each([manufacturerRecord], function (key, item) {
                 html += '<tr>';
                 html += '<td>' + item.Id + '</td>';
@@ -327,13 +327,6 @@ function validateManufacturer(message) {
     $('#manufacturerDescription_textbox').focus();
 }
 
-//function invalidManufacturerName()
-//{
-//    $('#manufacturerDescription_textbox').css('border-color', 'Red');
-//    $('#manufacturerDescription_error').text("Invalid Manufacturer Name");
-//    $('#manufacturerDescription_textbox').focus();
-//}
-
 function resetManufacturerSearchTextBoxt() {
     $('#manufacturerSearch_textbox').css('border-color', 'lightgrey');
     $('#manufacturerSearch_error').text("");
@@ -345,9 +338,3 @@ function invalidManufacturerNameSearchTextBox() {
     $('#manufacturerSearch_error').text("Invalid Manufacturer Name");
     $("#manufacturerSearch_textbox").focus();
 }
-
-//function manufacturerAlreadyInDB() {
-//    $('#manufacturerDescription_textbox').css('border-color', 'Red');
-//    $('#manufacturerDescription_error').text("Manufacturer is already in Database");
-//    $('#manufacturerDescription_textbox').focus();
-//}

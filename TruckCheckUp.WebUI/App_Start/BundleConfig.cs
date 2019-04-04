@@ -19,6 +19,14 @@ namespace TruckCheckUp.WebUI
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
                        "~/Scripts/Custom/truckmodel-1.0.js"));
 
+            //Custom Script for CRUD operations on table Truck
+            bundles.Add(new ScriptBundle("~/bundles/custom").Include(
+                       "~/Scripts/Custom/truck-1.0.js"));
+
+            //Common Script for all JS files
+            bundles.Add(new ScriptBundle("~/bundles/custom").Include(
+                       "~/Scripts/Custom/Common.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 

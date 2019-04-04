@@ -73,8 +73,12 @@
     <Compile Include="ViewModels\TruckModelUI\TruckManufacturerDropDownListViewModel.cs" />
     <Compile Include="ViewModels\TruckModelUI\TruckModelViewModel.cs" />
     <Compile Include="ViewModels\TruckModelUI\TruckModelSaveUpdateViewModel.cs" />
+    <Compile Include="ViewModels\TruckUI\ManufacturerDropDownListViewModel.cs" />
+    <Compile Include="ViewModels\TruckUI\ModelDropDownListViewModel.cs" />
     <Compile Include="ViewModels\TruckUI\TruckEditViewModel.cs" />
-    <Compile Include="ViewModels\TruckUI\TruckInsertViewModel.cs" />
+    <Compile Include="ViewModels\TruckUI\TruckSaveUpdateViewModel.cs" />
+    <Compile Include="ViewModels\TruckUI\TruckViewModel.cs" />
+    <Compile Include="ViewModels\TruckUI\YearDropDownListViewModel.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -1086,3 +1086,159 @@ INFO -2019-03-28 21:43:19,528--Application Started...
 INFO -2019-03-28 21:44:49,185--Application Started...
 INFO -2019-03-28 21:46:14,238--Application Started...
 INFO -2019-03-28 21:47:51,693--Application Started...
+INFO -2019-03-29 08:52:17,337--Application Started...
+INFO -2019-03-31 07:52:54,363--Application Started...
+ERROR-2019-03-31 07:52:55,190--Unhandled Exception Application Error
+User : 
+Page : http://localhost:49233/TruckManagement/Index
+System.InvalidOperationException: An error occurred when trying to create a controller of type 'TruckCheckUp.WebUI.Controllers.TruckManagementController'. Make sure that the controller has a parameterless public constructor. ---> Unity.ResolutionFailedException: For more information add Diagnostic extension: Container.AddExtension(new Diagnostic()) ---> System.InvalidOperationException: No public constructor is available for type TruckCheckUp.Core.Contracts.DataAccess.IRepository`1[TruckCheckUp.Core.Models.TruckYear]. ---> Unity.Exceptions.InvalidRegistrationException: Exception of type 'Unity.Exceptions.InvalidRegistrationException' was thrown.
+   --- End of inner exception stack trace ---
+   at Unity.Processors.ConstructorProcessor.<>c.<GetResolver>b__18_0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass96_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.<>c.<.ctor>b__60_2(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass5_0.<CreateParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorProcessor.<>c__DisplayClass19_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass96_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.<>c.<.ctor>b__60_2(BuilderStrategy[] chain, BuilderContext& context)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name, InternalRegistration registration)
+   at Unity.Builder.BuilderContext.Resolve(Type type, String name)
+   at Unity.Builder.BuilderContext.Resolve(ParameterInfo parameter, Object value)
+   at Unity.Processors.ParametersProcessor`1.<>c__DisplayClass5_0.<CreateParameterResolvers>b__0(BuilderContext& context)
+   at Unity.Processors.ConstructorProcessor.<>c__DisplayClass19_0.<GetResolverDelegate>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.Processors.MemberProcessor`2.<>c__DisplayClass8_0.<GetResolver>b__0(BuilderContext& c)
+   at Unity.UnityContainer.<>c__DisplayClass96_0.<OptimizingFactory>b__0(BuilderContext& c)
+   at Unity.Strategies.BuildPlanStrategy.PreBuildUp(BuilderContext& context)
+   at Unity.UnityContainer.<>c.<.ctor>b__60_1(BuilderContext& context)
+   --- End of inner exception stack trace ---
+   at Unity.UnityContainer.<>c.<.ctor>b__60_1(BuilderContext& context)
+   at Unity.UnityContainer.Unity.IUnityContainer.Resolve(Type type, String name, ResolverOverride[] overrides)
+   at Unity.UnityContainerExtensions.Resolve(IUnityContainer container, Type t, ResolverOverride[] overrides)
+   at Unity.AspNet.Mvc.UnityDependencyResolver.GetService(Type serviceType)
+   at System.Web.Mvc.DefaultControllerFactory.DefaultControllerActivator.Create(RequestContext requestContext, Type controllerType)
+   --- End of inner exception stack trace ---
+   at System.Web.Mvc.DefaultControllerFactory.DefaultControllerActivator.Create(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+INFO -2019-03-31 08:05:17,232--Application Started...
+INFO -2019-03-31 08:12:34,350--Application Started...
+INFO -2019-03-31 08:26:30,360--Application Started...
+INFO -2019-03-31 13:21:18,341--Application Started...
+INFO -2019-03-31 13:24:52,624--Application Started...
+INFO -2019-03-31 14:50:29,167--Application Started...
+INFO -2019-03-31 15:01:50,726--Application Started...
+INFO -2019-03-31 15:10:19,074--Application Started...
+INFO -2019-03-31 15:14:35,554--Application Started...
+INFO -2019-03-31 15:27:52,888--Application Started...
+INFO -2019-03-31 15:32:34,805--Application Started...
+INFO -2019-03-31 15:37:11,782--Application Started...
+INFO -2019-03-31 15:41:52,139--Application Started...
+INFO -2019-03-31 16:08:19,195--Application Started...
+INFO -2019-03-31 16:16:12,516--Application Started...
+INFO -2019-03-31 17:02:50,313--Application Started...
+INFO -2019-03-31 17:03:26,947--Application Started...
+INFO -2019-03-31 17:42:53,026--Application Started...
+INFO -2019-03-31 17:46:35,118--Application Started...
+INFO -2019-03-31 17:48:41,364--Application Started...
+INFO -2019-03-31 17:58:51,503--Application Started...
+INFO -2019-03-31 20:24:47,567--Application Started...
+INFO -2019-03-31 21:01:24,390--Application Started...
+INFO -2019-03-31 21:09:46,851--Application Started...
+INFO -2019-03-31 21:13:22,249--Application Started...
+INFO -2019-03-31 21:15:04,621--Application Started...
+INFO -2019-03-31 21:20:12,196--Application Started...
+INFO -2019-04-01 21:03:18,523--Application Started...
+INFO -2019-04-01 21:07:34,993--Application Started...
+INFO -2019-04-01 21:20:46,379--Application Started...
+INFO -2019-04-01 21:23:52,823--Application Started...
+INFO -2019-04-01 21:28:58,983--Application Started...
+INFO -2019-04-01 21:33:03,228--Application Started...
+INFO -2019-04-01 22:29:46,025--Application Started...
+INFO -2019-04-01 22:49:43,303--Application Started...
+INFO -2019-04-02 21:43:54,219--Application Started...
+INFO -2019-04-02 22:43:11,416--Application Started...
+INFO -2019-04-02 22:44:54,222--Inserted record Id 471d1196-148f-4ec6-a149-4118bd375c9a into Table TruckModel
+FATAL-2019-04-02 22:45:37,172--Application unable to Save record in Table Truck
+System.Data.Entity.Validation.DbEntityValidationException: Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at TruckCheckUp.DataAccess.SQL.SQLRepository`1.Commit() in C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\SQLRepository.cs:line 42
+INFO -2019-04-02 23:08:04,670--Application Started...
+FATAL-2019-04-02 23:08:42,292--Application unable to Save record in Table Truck
+System.Data.Entity.Validation.DbEntityValidationException: Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at TruckCheckUp.DataAccess.SQL.SQLRepository`1.Commit() in C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\SQLRepository.cs:line 42
+ERROR-2019-04-02 23:09:22,287--Unhandled Exception Application Error
+User : 
+Page : http://localhost:49233/TruckManagement/Add
+System.Data.Entity.Validation.DbEntityValidationException: Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+   at System.Data.Entity.Internal.InternalContext.SaveChanges()
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChanges()
+   at System.Data.Entity.DbContext.SaveChanges()
+   at TruckCheckUp.DataAccess.SQL.SQLRepository`1.Commit() in C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\SQLRepository.cs:line 47
+   at TruckCheckUp.Services.TruckService.PostNewTruckModelToDB(TruckSaveUpdateViewModel truck) in C:\Projects\TruckCheckUp\TruckCheckUp.Services\TruckService.cs:line 254
+   at TruckCheckUp.Services.TruckService.AddTruck(TruckSaveUpdateViewModel truck) in C:\Projects\TruckCheckUp\TruckCheckUp.Services\TruckService.cs:line 171
+   at TruckCheckUp.WebUI.Controllers.TruckManagementController.Add(TruckSaveUpdateViewModel truck) in C:\Projects\TruckCheckUp\TruckCheckUp.WebUI\Controllers\TruckManagementController.cs:line 110
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c.<BeginInvokeSynchronousActionMethod>b__9_0(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_0.<InvokeActionMethodFilterAsynchronouslyRecursive>b__0()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_2.<InvokeActionMethodFilterAsynchronouslyRecursive>b__2()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.<BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<>c.<BeginExecuteCore>b__152_1(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<>c.<BeginExecute>b__151_2(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<>c.<BeginProcessRequest>b__20_1(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+INFO -2019-04-02 23:13:21,816--Application Started...
+INFO -2019-04-03 22:10:09,454--Application Started...
+INFO -2019-04-03 22:43:32,015--Inserted record Id 428190cc-c56d-4aef-8fec-8d9f5d6a5ca7 into Table Truck
+INFO -2019-04-03 22:57:19,760--Application Started...
+INFO -2019-04-03 23:01:19,699--Application Started...

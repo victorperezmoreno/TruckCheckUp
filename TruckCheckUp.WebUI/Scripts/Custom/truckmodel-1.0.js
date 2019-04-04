@@ -122,14 +122,15 @@ function modelRecordRetrieved(modelRecord) {
 			$('.tbodyModel').html(html);
 		}
 		else {
-			noRecordsFoundInDatabaseMessage();
+			noRecordsFoundInModelDatabaseMessage();
 		}
 		resetModelSearchTextBox();
 	}
 }
 
-function noRecordsFoundInDatabaseMessage()
+function noRecordsFoundInModelDatabaseMessage()
 {
+	var html = '';
 	$('.tbodyModel').html('');
 	html += '<tr>';
 	html += '<td>' + 'No records found in Database' + '</td>';
@@ -161,7 +162,7 @@ function loadModelData() {
 function dataFromDatabaseRetrieved(allModels) {
 	if (Object.keys(allModels).length == 0)
 	{
-		noRecordsFoundInDatabaseMessage();
+		noRecordsFoundInModelDatabaseMessage();
 	}
 	else
 	{

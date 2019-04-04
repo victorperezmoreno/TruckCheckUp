@@ -3,5 +3,6 @@
     public interface IValidateUserInput
     {
         bool Alphanumeric(string inputToValidate);
+        bool Numeric(string inputToValidate);
     }
 }

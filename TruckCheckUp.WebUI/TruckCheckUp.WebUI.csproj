@@ -279,6 +279,8 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Custom\Common.js" />
+    <Content Include="Scripts\Custom\truck-1.0.js" />
     <Content Include="Scripts\Custom\truckmanufacturer-1.0.js" />
     <Content Include="Scripts\Custom\truckmodel-1.0.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />

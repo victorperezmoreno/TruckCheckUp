@@ -20,20 +20,6 @@ namespace TruckCheckUp.Core.Models
         [Required]
         public int TruckNumber { get; set; }
 
-        [StringLength(30)]
-        [DisplayName("Manufacturer")]
-        [Required]
-        public string Manufacturer { get; set; }
-
-        [StringLength(30)]
-        [DisplayName("Truck Model")]
-        [Required]
-        public string Model { get; set; }
-
-        [DisplayName("Model Year")]
-        [Required]
-        public int Year { get; set; }
-
         //Indicate whether a truck is active nor inactive
         [Required]
         public bool Status { get; set; }
