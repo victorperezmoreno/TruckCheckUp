@@ -106,7 +106,7 @@
                         <div id="truckNumberTextBox_error" class="text-danger"> </div>
                     </div>
                     <div class="form-group form-horizontal">
-                        <label for="TruckStatus">Status</label> <input type="checkbox" id="truckStatus" checked disabled/> <span class="text-success" id="statusText"><b>Active</b></span>
+                        <label for="TruckStatus">Status</label> <input type="checkbox" id="truckStatus" checked disabled onchange="changeTruckStatus(this)"/> <span class="text-success" id="statusText"><strong>Active</strong></span>
                         <div id="truckStatus_error" class="text-danger"> </div>
                     </div>
                 </form>

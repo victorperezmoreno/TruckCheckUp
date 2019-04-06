@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
 using TruckCheckUp.Core.ViewModels.TruckUI;
@@ -13,7 +10,6 @@ namespace TruckCheckUp.WebUI.Controllers
     {
         private TruckService _truckService;
         
-
         public TruckManagementController(TruckService truckService)
         {
             _truckService = truckService;
@@ -72,8 +68,8 @@ namespace TruckCheckUp.WebUI.Controllers
         {
             try
             {
-                var Model = _truckService.RetrieveTruckById(Id);
-                return Json(Model, JsonRequestBehavior.AllowGet);
+                var Truck = _truckService.RetrieveTruckById(Id);
+                return Json(Truck, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
             {
@@ -111,19 +107,19 @@ namespace TruckCheckUp.WebUI.Controllers
             }
         }
 
-        //[HttpPost]
-        //public JsonResult Update(TruckSaveUpdateViewModel truckModel)
-        //{
-        //    try
-        //    {
-        //        var truckModelUpdateResult = _truckService.UpdateTruckModel(truckModel);
-        //        return Json(truckModelUpdateResult, JsonRequestBehavior.AllowGet);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
+        [HttpPost]
+        public JsonResult Update(TruckSaveUpdateViewModel truck)
+        {
+            try
+            {
+                var truckUpdateResult = _truckService.UpdateTruck(truck);
+                return Json(truckUpdateResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         [HttpPost]
         [ActionName("Delete")]

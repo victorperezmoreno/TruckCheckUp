@@ -71,9 +71,9 @@ namespace TruckCheckUp.Services
             truckViewModel.Id = truckRetrievedFromDB.Id;
             truckViewModel.VIN = truckRetrievedFromDB.VIN;
             truckViewModel.TruckNumber = truckRetrievedFromDB.TruckNumber.ToString();
-            truckViewModel.Manufacturer = truckRetrievedFromDB.TruckManufacturer.ManufacturerDescription;
-            truckViewModel.Model = truckRetrievedFromDB.TruckModel.ModelDescription;
-            truckViewModel.Year = truckRetrievedFromDB.TruckYear.ModelYear.ToString();
+            truckViewModel.Manufacturer = truckRetrievedFromDB.TruckManufacturerId;
+            truckViewModel.Model = truckRetrievedFromDB.TruckModelId;
+            truckViewModel.Year = truckRetrievedFromDB.TruckYearId;
             truckViewModel.Status = truckRetrievedFromDB.Status;
             truckViewModel.StatusLabel = truckRetrievedFromDB.MessageBasedOnStatusSelection;
             truckViewModel.ManufacturerDropDownList = RetrieveManufacturersFromDatabase();
@@ -179,62 +179,27 @@ namespace TruckCheckUp.Services
             return truck;
         }
 
-    //public TruckSaveUpdateViewModel UpdateTruckModel(TruckSaveUpdateViewModel truckModel)
-    //{
-    //if (!string.IsNullOrEmpty(truckModel.Description))
-    //{
+        public TruckSaveUpdateViewModel UpdateTruck(TruckSaveUpdateViewModel truck)
+        {
+            //Validate truck number contains only digits and VIN only alphanumeric
+            if (!_validate.Numeric(truck.TruckNumber))
+            {
+                truck.TruckNumberIsValid = false;
+            }
+            else
+             if (!_validate.Alphanumeric(truck.VIN))
+            {
+                truck.VinNumberIsValid = false;
+            }
 
-    //    //Verify that only letters and numbers in string model entered by user
-    //    if (!_validate.Alphanumeric(truckModel.Description))
-    //    {
-    //        truckModel.IsValid = false;
-    //    }
-    //    else
-    //    {
-    //        //Verify whether the model is already in DB and save value 
-    //        //in object to return to View for validation purposes 
-    //        truckModel.ExistInDB = RetrieveTruckModelName(truckModel.Description);
+            if (truck.TruckNumberIsValid == true && truck.VinNumberIsValid == true)
+            {               
+                UpdateTruckData(truck);
+            }
+            return truck;
+        }
 
-    //        if (!truckModel.ExistInDB)
-    //        {
-    //            UpdateTruckModelData(truckModel);
-    //        }
-    //    }
-    //}
-    //return truckModel;
-    //}
-
-    //public TruckSaveUpdateViewModel SearchTruckModel(TruckSaveUpdateViewModel model)
-    //{
-    //var modelSearchResult = new TruckModel();
-    //if (!string.IsNullOrEmpty(model.Description))
-    //{
-    //    //Search for model in DB only if numbers and letters in model name
-    //    if (!_validate.Alphanumeric(model.Description))
-    //    {
-    //        model.IsValid = false;
-    //    }
-    //    else
-    //    {
-    //        modelSearchResult = _truckModelContext.Collection().Where(m => m.ModelDescription == model.Description).FirstOrDefault();
-    //        if (modelSearchResult == null)
-    //        {
-    //            model.ExistInDB = false;
-    //        }
-    //        else
-    //        {
-    //            model.Id = modelSearchResult.Id;
-    //            model.Description = modelSearchResult.ModelDescription;
-    //            model.ManufacturerId = modelSearchResult.TruckManufacturerId;
-    //            var manufacturer = _truckManufacturerContext.Collection().Where(m => m.Id == modelSearchResult.TruckManufacturerId).FirstOrDefault();
-    //            model.ManufacturerDescription = manufacturer.ManufacturerDescription;
-    //        }
-    //    }
-    //}
-    //return model;
-    //}
-
-    public bool RetrieveTruckNumber(int truckNumber)
+        public bool RetrieveTruckNumber(int truckNumber)
         {
             //Check whether truck number already in DB
             var truckRetrieved = _truckContext.Collection().Any(t => t.TruckNumber == truckNumber);
@@ -261,19 +226,56 @@ namespace TruckCheckUp.Services
 
     }
 
-        public void UpdateTruckModelData(TruckSaveUpdateViewModel truckModel)
+        public void UpdateTruckData(TruckSaveUpdateViewModel truck)
         {
-            //var truckModelToUpdate = _truckModelContext.Find(truckModel.Id);
-            //if (truckModelToUpdate != null)
-            //{
-            //    _logger.Info("Found record Id " + truckModelToUpdate.Id + " in Table " + tableNameUsedByLogger);
-            //    truckModelToUpdate.ModelDescription = truckModel.Description;
-            //    truckModelToUpdate.TruckManufacturerId = truckModel.ManufacturerId;
-            //    _truckModelContext.Commit();
-            //    _logger.Info("Updated record Id " + truckModelToUpdate.Id + " in Table " + tableNameUsedByLogger);
+            var truckToUpdate = _truckContext.Find(truck.Id);
+            if (truckToUpdate != null)
+            {
+                _logger.Info("Found record Id " + truckToUpdate.Id + " in Table " + tableNameUsedByLogger);
+                truckToUpdate.VIN = truck.VIN;
+                int truckNumberConvertedToInt = 0;
+                Int32.TryParse(truck.TruckNumber, out truckNumberConvertedToInt);
+                truckToUpdate.TruckNumber = truckNumberConvertedToInt;
+                truckToUpdate.Status = truck.Status;
+                truckToUpdate.TruckManufacturerId = truck.Manufacturer;
+                truckToUpdate.TruckModelId = truck.Model;
+                truckToUpdate.TruckYearId = truck.Year;
 
-            //}
+                _truckContext.Commit();
+                _logger.Info("Updated record Id " + truckToUpdate.Id + " in Table " + tableNameUsedByLogger);
+
+            }
         }
+
+        //public TruckSaveUpdateViewModel SearchTruckModel(TruckSaveUpdateViewModel model)
+        //{
+        //var modelSearchResult = new TruckModel();
+        //if (!string.IsNullOrEmpty(model.Description))
+        //{
+        //    //Search for model in DB only if numbers and letters in model name
+        //    if (!_validate.Alphanumeric(model.Description))
+        //    {
+        //        model.IsValid = false;
+        //    }
+        //    else
+        //    {
+        //        modelSearchResult = _truckModelContext.Collection().Where(m => m.ModelDescription == model.Description).FirstOrDefault();
+        //        if (modelSearchResult == null)
+        //        {
+        //            model.ExistInDB = false;
+        //        }
+        //        else
+        //        {
+        //            model.Id = modelSearchResult.Id;
+        //            model.Description = modelSearchResult.ModelDescription;
+        //            model.ManufacturerId = modelSearchResult.TruckManufacturerId;
+        //            var manufacturer = _truckManufacturerContext.Collection().Where(m => m.Id == modelSearchResult.TruckManufacturerId).FirstOrDefault();
+        //            model.ManufacturerDescription = manufacturer.ManufacturerDescription;
+        //        }
+        //    }
+        //}
+        //return model;
+        //}
 
         public void DeleteTruck(string truckId)
         {

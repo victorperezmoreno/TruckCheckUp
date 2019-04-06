@@ -184,8 +184,14 @@ function dataRetrievedFromDatabase(allTrucks) {
             html += '<td>' + item.Manufacturer + '</td>';
             html += '<td>' + item.Model + '</td>';
             html += '<td>' + item.Year + '</td>';
-            html += '<td>' + item.StatusLabel + '</td>';
-
+            if (item.Status == true)
+            {
+                html += '<td class="text-success"><strong>' + item.StatusLabel + '</strong></td>';
+            }
+            else
+            {
+                html += '<td class="text-danger"><strong>' + item.StatusLabel + '</strong></td>';
+            }
             html += '<td><a href="#" onclick="return getTruckById(\'' + item.Id + '\')">Edit</a> | <a href="#" onclick="deleteTruck(\'' + item.Id + '\')">Delete</a></td>';
             html += '</tr>';
         });
@@ -248,7 +254,6 @@ function truckAdded(truck) {
 }
 
 function getTruckById(Id) {
-    //$('#modelDescription_textbox').css('border-color', 'lightgrey');
 
     varUrl = "/TruckManagement/GetTruckById/" + Id;
     varType = "GET";
@@ -259,7 +264,7 @@ function getTruckById(Id) {
         type: varType,
         contentType: varContentType,
         dataType: varDataType,
-        success: modelByIdReturned,
+        success: truckByIdReturned,
         error: function (errormessage) {
             alert(errormessage.responseText);
         }
@@ -267,19 +272,21 @@ function getTruckById(Id) {
     return false;
 }
 
-function modelByIdReturned(truck) {
+function truckByIdReturned(truck) {
 
     $('#Id').val(truck.Id);
     populateManufacturersDropDownList(truck);
     $('#manufacturer').val(truck.Manufacturer);
-    populateModelDropDownList(truck);
+    populateModelsDropDownList(truck);
     $('#model').val(truck.Model);
-    populateYearDropDownList(truck);
+    populateYearsDropDownList(truck);
     $('#year').val(truck.Year);
     $('#vinNumber').val(truck.VIN);
-    $('truckNumber').val(truck.TruckNumber);
-    $('truckStatus').val(truck.Status);
-    $('statusText').val(truck.StatusLabel)
+    $('#truckNumber').val(truck.TruckNumber);
+    //Enable checkbox, so user can enable/disable truck
+    document.getElementById("truckStatus").disabled = false;
+    $('#truckStatus').val(truck.Status);
+    $('#statusText').val(truck.StatusLabel)
     $('#truckModal').modal('show');
     $('#truckUpdate_button').show();
     $('#truckAdd_button').hide();
@@ -292,20 +299,25 @@ function updateTruck() {
         return false;
     }
 
-    varUrl = "/TruckModelManagement/Update";
-    var truckObj = {
+    varUrl = "/TruckManagement/Update";
+    var truckObjToUpdate = {
         Id: $('#Id').val(),
-        Description: $('#modelDescription_textbox').val(),
-        ManufacturerId: $('#manufacturer').val(),
-        ExistInDB: true,
-        IsValid: true
+        Manufacturer: $('#manufacturer').val(),
+        Model: $('#model').val(),
+        Year: $('#year').val(),
+        VIN: $('#vinNumber').val(),
+        TruckNumber: $('#truckNumber').val(),
+        Status: $('#truckStatus').is(':checked'),
+        TruckNumberIsValid: true,
+        VinNumberIsValid: true,
+        ExistInDB: true
     };
     varType = "POST";
     varContentType = "application/json;charset=utf-8";
     varDataType = "json";
     $.ajax({
         url: varUrl,
-        data: JSON.stringify(truckObj),
+        data: JSON.stringify(truckObjToUpdate),
         type: varType,
         contentType: varContentType,
         dataType: varDataType,
@@ -317,19 +329,23 @@ function updateTruck() {
 }
 
 function truckUpdated(truck) {
-    if (truck.IsValid == false) {
-        validateTruck("Invalid Truck Name");
+    if (truck.TruckNumberIsValid == false) {
+        DisplayWarningMessageForTextBox("Invalid Truck Number", "truckNumber");
     }
-    else
-        if (truck.ExistInDB) {
-            validateTruck("Truck is already in Database");
-        }
-        else {
-            loadTruckData();
-            $('#truckModal').modal('hide');
-            $('#Id').val("");
-            $('#modelDescription_textbox').val("");
-        }
+
+    if (truck.VinNumberIsValid == false) {
+        DisplayWarningMessageForTextBox("Invalid VIN Number", "vinNumber");
+    }
+
+    //if (truck.ExistInDB) {
+    //    DisplayWarningMessageForTextBox("Truck number already in Database", "truckNumber");
+    //}
+    //else {
+        loadTruckData();
+        $('#truckModal').modal('hide');
+        $('#Id').val("");
+        //$('#modelDescription_textbox').val("");
+    //}   
 }
 
 //function for deleting manufacturer's record
@@ -356,12 +372,22 @@ function deleteTruck(Id) {
 
 //Function for clearing the textboxes
 function clearTruckTextBoxes() {
+    var element = document.getElementById('statusText');
+    var currentStatus = document.getElementById('truckStatus');
     $('#Id').val("");
     retrieveAllManufacturers();
     $('#vinNumber').val("");
     $('#vinNumberTextBox_error').text("");
     $('#vinNumber').css('border-color', 'lightgrey');
     
+    if (currentStatus.checked == false) {
+        currentStatus.checked = true;
+        element.classList.remove("text-danger");
+        element.classList.add("text-success");
+        element.innerHTML = "<strong>Active</strong>";
+    }
+    //Disable Status checkbox, so when user inserts new truck we saved as active by default
+    document.getElementById("truckStatus").disabled = true;
     $('#truckNumber').val("");
     $('#truckNumberTextBox_error').text("");
     $('#truckNumber').css('border-color', 'lightgrey');
@@ -453,6 +479,22 @@ function invalidModelNameSearchTextBox() {
     $('#truckSearch_textbox').css('border-color', 'Red');
     $('#truckSearch_error').text("Invalid Truck Number");
     $("#truckSearch_textbox").focus();
+}
+
+function changeTruckStatus(currentStatus)
+{
+    var element = document.getElementById('statusText');
+    var statusElement = document.getElementById(currentStatus);
+    //Inspect checkbox to determine whether is checked or not
+    if (currentStatus.checked == true) {
+        element.classList.remove("text-danger");
+        element.classList.add("text-success");
+        element.innerHTML = "<strong>Active</strong>";
+    } else {
+        element.classList.remove("text-success");
+        element.classList.add("text-danger");
+        element.innerHTML = "<strong>Inactive</strong>";
+    }
 }
 
 
