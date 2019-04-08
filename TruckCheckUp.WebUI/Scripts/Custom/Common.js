@@ -1,50 +1,59 @@
 ﻿function DisplayWarningMessageForTextBox(message, elementId)
 {
-    var elementFromUI = document.getElementById(elementId);
-
+    let elementFromUI = document.getElementById(elementId);
     $(elementFromUI).css('border-color', 'Red');
-    var errorElement = "#" + elementId + "TextBox_error";
+
+    let errorElement = "#" + elementId + "TextBox_error";
     $(errorElement).text(message);
 }
 
+function ResetWarningMessageForTextBox(resetMessage, resetElementId) {
+    let elementFromUI = document.getElementById(resetElementId);
+    $(elementFromUI).css('border-color', 'lightgrey');
+
+    let errorElement = "#" + resetElementId + "TextBox_error";
+    $(errorElement).text(resetMessage);
+}
+
 function ValidateUITextBoxIsNotEmpty(textBoxId) {
-    var textBoxElement = document.getElementById(textBoxId);
-    var textBoxValue = document.getElementById(textBoxId).value.trim();
-    var errorId = "#" + textBoxId + "TextBox_error";
+    let textBoxElement = document.getElementById(textBoxId);
+    let textBoxValue = document.getElementById(textBoxId).value.trim();
+    let errorId = "#" + textBoxId + "TextBox_error";
     if (textBoxValue == "") {
         $(textBoxElement).css('border-color', 'Red');
-        var textBoxIdWithFirstLetterCapitalized = capitalizeFirstLetter(textBoxId);
+        let textBoxIdWithFirstLetterCapitalized = capitalizeFirstLetter(textBoxId);
         $(errorId).text(textBoxIdWithFirstLetterCapitalized + " is required");
-        $("#truckAdd_button").prop('disabled', true);
-        $("#truckUpdate_button").prop('disabled', true);
+        //$("#truckAdd_button").prop('disabled', true);
+        //$("#truckUpdate_button").prop('disabled', true);
         return false;
     }
     else {
         $(textBoxElement).css('border-color', 'lightgrey');
         $(errorId).text("");
-        $("#truckAdd_button").prop('disabled', false);
-        $("#truckUpdate_button").prop('disabled', false);
+        //$("#truckAdd_button").prop('disabled', false);
+        //$("#truckUpdate_button").prop('disabled', false);
         return true;
     }
 }
 
 function ValidateUserSelectedAValueInDropDownList(dropDownListId) {
-    var dropDownListElement = document.getElementById(dropDownListId);
-    var selectedValueInDropDownList = dropDownListElement.options[dropDownListElement.selectedIndex].value;
-    var errorId = "#" + dropDownListId + "DropDownList_error";
-    if (selectedValueInDropDownList == "" || selectedValueInDropDownList == "- Please Select -") {
+    let dropDownListElement = document.getElementById(dropDownListId);
+    let selectedValueInDropDownList = dropDownListElement.options[dropDownListElement.selectedIndex].value;
+    let errorId = "#" + dropDownListId + "DropDownList_error";
+    if (selectedValueInDropDownList == "" || selectedValueInDropDownList == "- Please Select -")
+    {
         $(dropDownListElement).css('border-color', 'Red');
-        var dropDownListIdWithFirstLetterCapitalized = capitalizeFirstLetter(dropDownListId);
+        let dropDownListIdWithFirstLetterCapitalized = capitalizeFirstLetter(dropDownListId);
         $(errorId).text(dropDownListIdWithFirstLetterCapitalized + " is required");
-        $("#truckAdd_button").prop('disabled', true);
-        $("#truckUpdate_button").prop('disabled', true);
+        //$("#truckAdd_button").prop('disabled', true);
+        //$("#truckUpdate_button").prop('disabled', true);
         return false;
     }
     else {
         $(dropDownListElement).css('border-color', 'lightgrey');
         $(errorId).text("");
-        $("#truckAdd_button").prop('disabled', false);
-        $("#truckUpdate_button").prop('disabled', false);
+        //$("#truckAdd_button").prop('disabled', false);
+        //$("#truckUpdate_button").prop('disabled', false);
         return true;
     }
 }
@@ -53,47 +62,57 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function validateTextboxContainsOnlyNumericCharacters(txtBxId) {
-    var $regexname = /^([0-9]{1,5})$/;
-    var txtBxElement = document.getElementById(txtBxId);
-    var errorMessageId = "#" + txtBxId + "TextBox_error";
-    $(txtBxElement).on('keypress keydown keyup', function () {
-        if (!$(this).val().match($regexname)) {
+function validateTextboxContainsOnlyNumericCharacters(txtBxNumericId) {
+    var $regexNumericName = /^[0-9]{1,5}$/; 
+    var txtBxNumericElement = document.getElementById(txtBxNumericId);
+    var errorMessageIdForNumeric = "#" + txtBxNumericId + "TextBox_error";
+    $(txtBxNumericElement).on('keypress keydown keyup', function () {
+        if (!$(this).val().match($regexNumericName)) {
             // there is a mismatch, hence show the error message
-            $(txtBxElement).css('border-color', 'Red');
-            $(errorMessageId).text("Please only numbers");
-            $("#truckAdd_button").prop('disabled', true);
-            $("#truckUpdate_button").prop('disabled', true);
+            $(txtBxNumericElement).css('border-color', 'Red');
+            $(errorMessageIdForNumeric).text("Please only numbers");
+            //$("#truckAdd_button").prop('disabled', true);
+            //$("#truckUpdate_button").prop('disabled', true);
         }
         else {
             // else, do not display message
-            $(txtBxElement).css('border-color', 'lightgrey');
-            $(errorMessageId).text("");
-            $("#truckAdd_button").prop('disabled', false);
-            $("#truckUpdate_button").prop('disabled', false);
+            $(txtBxNumericElement).css('border-color', 'lightgrey');
+            $(errorMessageIdForNumeric).text("");
+            //$("#truckAdd_button").prop('disabled', false);
+            //$("#truckUpdate_button").prop('disabled', false);
         }
     });
 }
 
-function validateTextboxContainsOnlyAlphanumericCharacters(txtBxId) {
-    var $regexname = /^([0-9a-zA-Z]{2,30})$/;
-    var txtBxElement = document.getElementById(txtBxId);
-    var errorMessageId = "#" + txtBxId + "TextBox_error";
-    $(txtBxElement).on('keypress keydown keyup', function () {
-        if (!$(this).val().match($regexname)) {
+
+function validateTextboxContainsOnlyAlphanumericCharacters(txtBxAlphanumericId) {
+    let $regexAlphanumericName = /^([0-9a-zA-Z]{2,30})$/;
+    let txtBxAlphanumericElement = document.getElementById(txtBxAlphanumericId);
+    let errorMessageIdForAlphanumeric = "#" + txtBxAlphanumericId + "TextBox_error";
+    $(txtBxAlphanumericElement).on('keypress keydown keyup', function () {
+        if (!$(this).val().match($regexAlphanumericName)) {
             // there is a mismatch, hence show the error message
-            $(txtBxElement).css('border-color', 'Red');
-            $(errorMessageId).text("Please only letters or numbers");
-            $("#truckAdd_button").prop('disabled', true);
-            $("#truckUpdate_button").prop('disabled', true);
+            $(txtBxAlphanumericElement).css('border-color', 'Red');
+            $(errorMessageIdForAlphanumeric).text("Please only letters or numbers");
+            //$("#truckAdd_button").prop('disabled', true);
+            //$("#truckUpdate_button").prop('disabled', true);
         }
         else {
             // else, do not display message
-            $(txtBxElement).css('border-color', 'lightgrey');
-            $(errorMessageId).text("");
-            $("#truckAdd_button").prop('disabled', false);
-            $("#truckUpdate_button").prop('disabled', false);
+            $(txtBxAlphanumericElement).css('border-color', 'lightgrey');
+            $(errorMessageIdForAlphanumeric).text("");
+            //$("#truckAdd_button").prop('disabled', false);
+            //$("#truckUpdate_button").prop('disabled', false);
         }
     });
+}
+
+function initializeDropDownList(dropDownListIdentifier) {
+    let dDLIdWithFirstLetterCapitalized = capitalizeFirstLetter(dropDownListIdentifier);
+    let dDlDivId = "#" + dropDownListIdentifier + "_dropdownlist";
+    let initList = "<select id=" + dropDownListIdentifier + " class = 'form-control' onchange='validate" + dDLIdWithFirstLetterCapitalized + "DropDownList(this)'>";
+    initList = initList + '<option value="">- Please Select -</option>';
+    initList = initList + '</select>';
+    $(dDlDivId).html(initList)
 }
 

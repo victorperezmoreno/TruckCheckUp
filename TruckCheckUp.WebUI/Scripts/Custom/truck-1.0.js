@@ -1,35 +1,20 @@
 ﻿$(document).ready(function () {
+    
+    //Ensure that only numbers are entered in search truck textbox 
+    validateTextboxContainsOnlyNumericCharacters('truck');
+    //Ensure that only numbers are entered in truck number textbox 
+    validateTextboxContainsOnlyNumericCharacters('truckNumber');
     //Ensure that only letters and numbers are entered in VIN textbox
     validateTextboxContainsOnlyAlphanumericCharacters('vinNumber');
-    //Ensure that only numbers are entered in truck number textbox
-    validateTextboxContainsOnlyNumericCharacters('truckNumber');
     //Disable autocomplete for textboxes
     $("input:text,form").attr("autocomplete", "off");
     //Load Data in Table when documents is ready
     loadTruckData();
 });
 
-function validateSearchTextBox() {
-    var $regexname = /^([0-9a-zA-Z]{2,30})$/;
-    $('#truckSearch_textbox').on('keypress keydown keyup', function () {
-        if (!$(this).val().match($regexname)) {
-            // there is a mismatch, hence show the error message
-            $('#truckSearch_textbox').css('border-color', 'Red');
-            $('#truckSearch_error').text("Please only letters or numbers");
-            $("#truckSearch_button").prop('disabled', true);
-        }
-        else {
-            // else, do not display message
-            $('#truckSearch_textbox').css('border-color', 'lightgrey');
-            $('#truckSearch_error').text("");
-            $("#truckSearch_button").prop('disabled', false);
-        }
-    });
-}
-
 function validateManufacturerDropDownList(manufacturerSelected) {
     //Ensures a valid value is selected
-    var validValueSelectedByUser = ValidateUserSelectedAValueInDropDownList("manufacturer");
+    let validValueSelectedByUser = ValidateUserSelectedAValueInDropDownList("manufacturer");
 
     if (validValueSelectedByUser == true)
     {
@@ -73,58 +58,65 @@ function validateYearDropDownList(yearSelected) {
 
 function searchTruck() {
     //Search only if search textbox not empty
-    var txtModel = jQuery.trim($("#truckSearch_textbox").val());
-    if (txtModel.length != 0) {
-        retrieveModelRecord();
-    }
-    else {
-        resetTruckSearchTextBox()
+    if (ValidateUITextBoxIsNotEmpty("truck"))
+    {
+        retrieveTruckRecord();
     }
 }
 
 function clearTruckSearch() {
-    resetTruckSearchTextBox();
+    ResetWarningMessageForTextBox("", "truck");
+    document.getElementById("truck").value = "";
     loadTruckData();
 }
 
 function retrieveTruckRecord() {
-    varUrl = "/TruckModelManagement/SearchTruckNumber";
-    var modelObj = {
+    varUrl = "/TruckManagement/SearchTruckNumber";
+    let truckSearchObj = {
         Id: "",
-        Description: $('#truckSearch_textbox').val(),
+        TruckNumber: $('#truck').val(),
         ExistInDB: true,
-        IsValid: true
+        TruckNumberIsValid: true
     };
     varType = "POST";
     varContentType = "application/json;charset=utf-8";
     varDataType = "json";
     $.ajax({
         url: varUrl,
-        data: JSON.stringify(modelObj),
+        data: JSON.stringify(truckSearchObj),
         type: varType,
         traditional: true,
         contentType: varContentType,
         dataType: varDataType,
-        success: modelRecordRetrieved,
+        success: truckRecordRetrieved,
         error: function (errormessage) {
             alert(errormessage.responseText);
         }
     });
 }
 
-function modelRecordRetrieved(modelRecord) {
-    if (modelRecord.IsValid == false) {
-        invalidModelNameSearchTextBox();
+function truckRecordRetrieved(truckRecord) {
+    if (truckRecord.TruckNumberIsValid == false) {
+        DisplayWarningMessageForTextBox("Invalid Truck Number", "truck");;
     }
     else {
-        if (modelRecord.ExistInDB == true) {
-            var html = '';
-            $.each([modelRecord], function (key, item) {
+        if (truckRecord.ExistInDB == true) {
+            let html = '';
+            $.each([truckRecord], function (key, item) {
                 html += '<tr>';
                 html += '<td>' + item.Id + '</td>';
-                html += '<td>' + item.Description + '</td>';
-                html += '<td>' + item.ManufacturerDescription + '</td>';
-                html += '<td><a href="#" onclick="return getModelById(\'' + item.Id + '\')">Edit</a> | <a href="#" onclick="deleteTruck(\'' + item.Id + '\')">Delete</a></td>';
+                html += '<td>' + item.TruckNumber + '</td>';
+                html += '<td>' + item.VIN + '</td>';
+                html += '<td>' + item.Manufacturer + '</td>';
+                html += '<td>' + item.Model + '</td>';
+                html += '<td>' + item.Year + '</td>';
+                if (item.Status == true) {
+                    html += '<td class="text-success"><strong>' + item.StatusLabel + '</strong></td>';
+                }
+                else {
+                    html += '<td class="text-danger"><strong>' + item.StatusLabel + '</strong></td>';
+                }
+                html += '<td><a href="#" onclick="return getTruckById(\'' + item.Id + '\')">Edit</a> | <a href="#" onclick="deleteTruck(\'' + item.Id + '\')">Delete</a></td>';
                 html += '</tr>';
             });
             $('.tbodyTruck').html(html);
@@ -132,12 +124,12 @@ function modelRecordRetrieved(modelRecord) {
         else {
             noRecordsFoundInTruckDatabaseMessage();
         }
-        resetTruckSearchTextBox();
+        ResetWarningMessageForTextBox("", "truck");
     }
 }
 
 function noRecordsFoundInTruckDatabaseMessage() {
-    var html = '';
+    let html = '';
     $('.tbodyTruck').html('');
     html += '<tr>';
     html += '<td>' + 'No records found in Database' + '</td>';
@@ -175,7 +167,7 @@ function dataRetrievedFromDatabase(allTrucks) {
         noRecordsFoundInTruckDatabaseMessage();
     }
     else {
-        var html = '';
+        let html = '';
         $.each(allTrucks, function (key, item) {
             html += '<tr>';
             html += '<td>' + item.Id + '</td>';
@@ -201,13 +193,13 @@ function dataRetrievedFromDatabase(allTrucks) {
 
 //Add Data Function
 function addTruck() {
-    var res = validateTruckWhenUserPostToServer();
+    let res = validateTruckWhenUserPostToServer();
     if (res == false) {
         return false;
     }
 
     varUrl = "/TruckManagement/Add";
-    var truckObj = {
+    let truckObj = {
         Id: "",
         Manufacturer: $('#manufacturer').val(),
         Model: $('#model').val(),
@@ -217,7 +209,7 @@ function addTruck() {
         Status: $('#truckStatus').val(),
         TruckNumberIsValid: true,
         VinNumberIsValid: true,
-        ExistInDB: true                                    
+        ExistInDB: false                                    
     };
     varType = "POST";
     varContentType = "application/json;charset=utf-8";
@@ -236,20 +228,20 @@ function addTruck() {
 }
 
 function truckAdded(truck) {
-    if (truck.TruckNumberIsValid == false) {
-        DisplayWarningMessageForTextBox("Invalid Truck Number", "truckNumber");
-    }
-
     if (truck.VinNumberIsValid == false) {
         DisplayWarningMessageForTextBox("Invalid VIN Number", "vinNumber");
     }
-
-    if (truck.ExistInDB) {
-        DisplayWarningMessageForTextBox("Truck number already in Database", "truckNumber");
+    if (truck.TruckNumberIsValid == false) {
+        DisplayWarningMessageForTextBox("Invalid Truck Number", "truckNumber");
     }
     else {
-        loadTruckData();
-        $('#truckModal').modal('hide');
+        if (truck.ExistInDB) {
+            DisplayWarningMessageForTextBox("Truck number already in Database", "truckNumber");
+        }
+        else {
+            loadTruckData();
+            $('#truckModal').modal('hide');
+        }
     }
 }
 
@@ -294,13 +286,13 @@ function truckByIdReturned(truck) {
 
 //function for updating manufacturer's record
 function updateTruck() {
-    var res = validateTruckWhenUserPostToServer();
+    let res = validateTruckWhenUserPostToServer();
     if (res == false) {
         return false;
     }
 
     varUrl = "/TruckManagement/Update";
-    var truckObjToUpdate = {
+    let truckObjToUpdate = {
         Id: $('#Id').val(),
         Manufacturer: $('#manufacturer').val(),
         Model: $('#model').val(),
@@ -329,28 +321,24 @@ function updateTruck() {
 }
 
 function truckUpdated(truck) {
-    if (truck.TruckNumberIsValid == false) {
-        DisplayWarningMessageForTextBox("Invalid Truck Number", "truckNumber");
-    }
-
     if (truck.VinNumberIsValid == false) {
         DisplayWarningMessageForTextBox("Invalid VIN Number", "vinNumber");
     }
 
-    //if (truck.ExistInDB) {
-    //    DisplayWarningMessageForTextBox("Truck number already in Database", "truckNumber");
-    //}
-    //else {
+    if (truck.TruckNumberIsValid == false) {
+        DisplayWarningMessageForTextBox("Invalid Truck Number", "truckNumber");
+    }
+    else
+    {
         loadTruckData();
         $('#truckModal').modal('hide');
         $('#Id').val("");
-        //$('#modelDescription_textbox').val("");
-    //}   
+    }
 }
 
 //function for deleting manufacturer's record
 function deleteTruck(Id) {
-    var userResponse = confirm("Are you sure you want to delete this Record?");
+    let userResponse = confirm("Are you sure you want to delete this Record?");
     varUrl = "/TruckManagement/Delete/" + Id;
     varType = "POST";
     varContentType = "application/json;charset=utf-8";
@@ -372,14 +360,16 @@ function deleteTruck(Id) {
 
 //Function for clearing the textboxes
 function clearTruckTextBoxes() {
-    var element = document.getElementById('statusText');
-    var currentStatus = document.getElementById('truckStatus');
+    let element = document.getElementById('statusText');
+    let currentStatus = document.getElementById('truckStatus');
     $('#Id').val("");
     retrieveAllManufacturers();
+    initializeDropDownList("model");
+    initializeDropDownList("year");
     $('#vinNumber').val("");
     $('#vinNumberTextBox_error').text("");
     $('#vinNumber').css('border-color', 'lightgrey');
-    
+    //if status checkbox false from last operation then returned to true
     if (currentStatus.checked == false) {
         currentStatus.checked = true;
         element.classList.remove("text-danger");
@@ -415,9 +405,9 @@ function retrieveAllManufacturers() {
 
 function populateManufacturersDropDownList(truck) {
     //Load manufacturers into dropdownlist
-    var manufacturerList = "<select id='manufacturer' class = 'form-control' onchange='validateManufacturerDropDownList(this)'>";
+    let manufacturerList = "<select id='manufacturer' class = 'form-control' onchange='validateManufacturerDropDownList(this)'>";
     manufacturerList = manufacturerList + '<option value="">- Select Manufacturer -</option>';
-    for (var i = 0; i < truck.ManufacturerDropDownList.length; i++) {
+    for (let i = 0; i < truck.ManufacturerDropDownList.length; i++) {
         manufacturerList = manufacturerList + '<option value=' + truck.ManufacturerDropDownList[i].Id + '>' + truck.ManufacturerDropDownList[i].Manufacturer + '</option>';
     }
     manufacturerList = manufacturerList + '</select>';
@@ -426,9 +416,9 @@ function populateManufacturersDropDownList(truck) {
 
 function populateModelsDropDownList(truck) {
     //Load models into dropdownlist
-    var modelList = "<select id='model' class = 'form-control' onchange='validateModelDropDownList(this)'>";
+    let modelList = "<select id='model' class = 'form-control' onchange='validateModelDropDownList(this)'>";
     modelList = modelList + '<option value="">- Select Model -</option>';
-    for (var i = 0; i < truck.ModelDropDownList.length; i++) {
+    for (let i = 0; i < truck.ModelDropDownList.length; i++) {
         modelList = modelList + '<option value=' + truck.ModelDropDownList[i].Id + '>' + truck.ModelDropDownList[i].Model + '</option>';
     }
     modelList = modelList + '</select>';
@@ -437,9 +427,9 @@ function populateModelsDropDownList(truck) {
 
 function populateYearsDropDownList(truck) {
     //Load manufacturers into dropdownlist
-    var yearList = "<select id='year' class = 'form-control' onchange='validateYearDropDownList(this)'>";
+    let yearList = "<select id='year' class = 'form-control' onchange='validateYearDropDownList(this)'>";
     yearList = yearList + '<option value="">- Select Year -</option>';
-    for (var i = 0; i < truck.YearDropDownList.length; i++) {
+    for (let i = 0; i < truck.YearDropDownList.length; i++) {
         yearList = yearList + '<option value=' + truck.YearDropDownList[i].Id + '>' + truck.YearDropDownList[i].Year + '</option>';
     }
     yearList = yearList + '</select>';
@@ -448,43 +438,34 @@ function populateYearsDropDownList(truck) {
 
 //Validation using jquery
 function validateTruckWhenUserPostToServer() {
-    var isValid = true;
+    let truckIsValid;
     //Validate that user selected a manufacturer in DropDownList
-    isValid = ValidateUserSelectedAValueInDropDownList("manufacturer");
+    let manufacturerIsValid = ValidateUserSelectedAValueInDropDownList("manufacturer");
     //Validate that user selected a model in DropDownList
-    isValid = ValidateUserSelectedAValueInDropDownList("model");
+    let modelIsValid = ValidateUserSelectedAValueInDropDownList("model");
     //Validate that user selected a year in DropDownList
-    isValid = ValidateUserSelectedAValueInDropDownList("year");
+    let yearIsValid = ValidateUserSelectedAValueInDropDownList("year");
     //Validate that user entered a VIN number
-    isValid = ValidateUITextBoxIsNotEmpty("vinNumber");
+    let vinNumberIsValid = ValidateUITextBoxIsNotEmpty("vinNumber");
     //Validate that user entered a truck number
-    isValid = ValidateUITextBoxIsNotEmpty("truckNumber");
-    
-    return isValid;
-}
+    let truckNumberIsValid = ValidateUITextBoxIsNotEmpty("truckNumber");
+    /*Validates that all textboxes have values and a values is selected in DropDownLists*/
+    if (manufacturerIsValid && modelIsValid &&  yearIsValid && vinNumberIsValid && truckNumberIsValid)
+    {
+        truckIsValid = true;
+    }
+    else
+    {
+        truckIsValid = false;
+    }
 
-//function validateTruck(message) {
-//    $('#modelDescription_textbox').css('border-color', 'Red');
-//    $('#modelDescription_error').text(message);
-//    $('#modelDescription_textbox').focus();
-//}
-
-function resetTruckSearchTextBox() {
-    $('#truckSearch_textbox').css('border-color', 'lightgrey');
-    $('#truckSearch_error').text("");
-    $('#truckSearch_textbox').val("");
-}
-
-function invalidModelNameSearchTextBox() {
-    $('#truckSearch_textbox').css('border-color', 'Red');
-    $('#truckSearch_error').text("Invalid Truck Number");
-    $("#truckSearch_textbox").focus();
+    return truckIsValid;
 }
 
 function changeTruckStatus(currentStatus)
 {
-    var element = document.getElementById('statusText');
-    var statusElement = document.getElementById(currentStatus);
+    let element = document.getElementById('statusText');
+    let statusElement = document.getElementById(currentStatus);
     //Inspect checkbox to determine whether is checked or not
     if (currentStatus.checked == true) {
         element.classList.remove("text-danger");

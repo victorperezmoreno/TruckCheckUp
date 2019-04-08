@@ -11,8 +11,8 @@
         </div>
         <label class="control-label col-md-2">Find by Truck Number:</label>
         <div class="col-md-3">
-            <input type="text" id="truckSearch_textbox" class="form-control input-normal" />
-            <div id="truckSearch_error" class="text-danger"> </div>
+            <input type="text" id="truck" class="form-control input-normal"  placeholder="Only digits" />
+            <div id="truckTextBox_error" class="text-danger"> </div>
         </div>
         <div class="col-md-1">
             <button type="button" id="truckSearch_button" class="btn btn-default" onclick="searchTruck();">Search</button>
@@ -102,7 +102,7 @@
                     </div>
                     <div class="form-group">
                         <label for="TruckNumber">Truck #</label>
-                        <input type="text" class="form-control" id="truckNumber" placeholder="Only digits" />
+                        <input type="text" class="form-control" id="truckNumber" maxlength="5" placeholder="Only digits" />
                         <div id="truckNumberTextBox_error" class="text-danger"> </div>
                     </div>
                     <div class="form-group form-horizontal">

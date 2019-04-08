@@ -77,20 +77,20 @@ namespace TruckCheckUp.WebUI.Controllers
             }
         }
 
-        // GET: TruckModelManagement/SearchModelName
-        //[HttpPost]
-        //public JsonResult SearchModelName(TruckSaveUpdateViewModel truckModel)
-        //{
-        //    try
-        //    {
-        //        //var truckModelSearchResult = _truckService.SearchTruckModel(truckModel);
-        //        //return Json(truckModelSearchResult, JsonRequestBehavior.AllowGet);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
+        // GET: TruckManagement/SearchTruckNumber
+        [HttpPost]
+        public JsonResult SearchTruckNumber(TruckSaveUpdateViewModel truck)
+        {
+            try
+            {
+                var truckModelSearchResult = _truckService.SearchTruck(truck);
+                return Json(truckModelSearchResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         // GET: TruckManagement/Add
         [HttpPost]

@@ -38,6 +38,7 @@ namespace TruckCheckUp.Services
             var trucks = _truckContext.Collection().ToList();
 
             var trucksViewModel = from t in trucks
+                                  orderby t.TruckNumber
                                   select new TruckViewModel
                                   {
                                       Id = t.Id,
@@ -247,35 +248,40 @@ namespace TruckCheckUp.Services
             }
         }
 
-        //public TruckSaveUpdateViewModel SearchTruckModel(TruckSaveUpdateViewModel model)
-        //{
-        //var modelSearchResult = new TruckModel();
-        //if (!string.IsNullOrEmpty(model.Description))
-        //{
-        //    //Search for model in DB only if numbers and letters in model name
-        //    if (!_validate.Alphanumeric(model.Description))
-        //    {
-        //        model.IsValid = false;
-        //    }
-        //    else
-        //    {
-        //        modelSearchResult = _truckModelContext.Collection().Where(m => m.ModelDescription == model.Description).FirstOrDefault();
-        //        if (modelSearchResult == null)
-        //        {
-        //            model.ExistInDB = false;
-        //        }
-        //        else
-        //        {
-        //            model.Id = modelSearchResult.Id;
-        //            model.Description = modelSearchResult.ModelDescription;
-        //            model.ManufacturerId = modelSearchResult.TruckManufacturerId;
-        //            var manufacturer = _truckManufacturerContext.Collection().Where(m => m.Id == modelSearchResult.TruckManufacturerId).FirstOrDefault();
-        //            model.ManufacturerDescription = manufacturer.ManufacturerDescription;
-        //        }
-        //    }
-        //}
-        //return model;
-        //}
+        public TruckSaveUpdateViewModel SearchTruck(TruckSaveUpdateViewModel truck)
+        {
+            var truckSearchResult = new Truck();
+            var truckViewModel = new TruckViewModel();
+            if (!string.IsNullOrEmpty(truck.TruckNumber))
+            {
+                if (!_validate.Numeric(truck.TruckNumber))
+                {
+                    truck.TruckNumberIsValid = false;
+                }
+                else
+                {
+                    int truckNumberConvertedToInt = 0;
+                    Int32.TryParse(truck.TruckNumber, out truckNumberConvertedToInt);
+                    truckSearchResult = _truckContext.Collection().Where(t => t.TruckNumber == truckNumberConvertedToInt).FirstOrDefault();
+                    if (truckSearchResult == null)
+                    {
+                        truck.ExistInDB = false;
+                    }
+                    else
+                    {
+                        truck.Id = truckSearchResult.Id;
+                        truck.TruckNumber = truckSearchResult.TruckNumber.ToString();
+                        truck.VIN = truckSearchResult.VIN;
+                        truck.Manufacturer = truckSearchResult.TruckManufacturer.ManufacturerDescription;
+                        truck.Model = truckSearchResult.TruckModel.ModelDescription;
+                        truck.Year = truckSearchResult.TruckYear.ModelYear.ToString();
+                        truck.Status = truckSearchResult.Status;
+                        truck.StatusLabel = truckSearchResult.MessageBasedOnStatusSelection;
+                    }
+                }
+            }
+            return truck;
+        }
 
         public void DeleteTruck(string truckId)
         {
