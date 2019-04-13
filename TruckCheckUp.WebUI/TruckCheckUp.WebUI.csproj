@@ -204,6 +204,7 @@
     <Compile Include="Controllers\ErrorHandlerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PartCategoryManagementController.cs" />
     <Compile Include="Controllers\TruckManagementController.cs" />
     <Compile Include="Controllers\TruckManufacturerManagementController.cs" />
     <Compile Include="Controllers\TruckModelManagementController.cs" />
@@ -348,6 +349,10 @@
     <Content Include="Views\TruckManagement\Delete.cshtml" />
     <Content Include="Views\TruckManufacturerManagement\Index.cshtml" />
     <Content Include="Views\TruckModelManagement\Index.cshtml" />
+    <Content Include="Views\PartCategoryManagement\Index.cshtml" />
+    <Content Include="Views\PartCategoryManagement\Create.cshtml" />
+    <Content Include="Views\PartCategoryManagement\Edit.cshtml" />
+    <Content Include="Views\PartCategoryManagement\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

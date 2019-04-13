@@ -66,6 +66,8 @@
     <Compile Include="Models\TruckModel.cs" />
     <Compile Include="Models\TruckYear.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CategoryUI\CategoryInsertViewModel.cs" />
+    <Compile Include="ViewModels\CategoryUI\CategoryUpdateViewModel.cs" />
     <Compile Include="ViewModels\DriverUI\DriverUpdateViewModel.cs" />
     <Compile Include="ViewModels\DriverUI\DriverInsertViewModel.cs" />
     <Compile Include="ViewModels\TruckInspectionViewModel.cs" />
