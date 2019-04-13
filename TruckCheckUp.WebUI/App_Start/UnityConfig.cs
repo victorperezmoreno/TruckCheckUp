@@ -71,9 +71,8 @@ namespace TruckCheckUp.WebUI
 
             //ServicesType Container
             container.RegisterType<IDriverService, DriverService>();
-            //container.RegisterType<IDriverService, DriverService>();
             container.RegisterType<ITruckManufacturerService, TruckManufacturerService>();
-
+            container.RegisterType<IPartCategoryService, PartCategoryService>();
         }
     }
 }

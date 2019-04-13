@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TruckCheckUp.Core.Contracts.DataAccess;
+using TruckCheckUp.Core.Contracts.Services;
 using TruckCheckUp.Core.Models;
 using TruckCheckUp.Core.ViewModels.CategoryUI;
 
 namespace TruckCheckUp.Services
 {
-    public class PartCategoryService
+    public class PartCategoryService : IPartCategoryService
     {
         private IRepository<PartCategory> _partCategoryContext;
 

@@ -51,6 +51,7 @@
     <Compile Include="Contracts\Logger\ILogger.cs" />
     <Compile Include="Contracts\Logger\Log4NetLogger.cs" />
     <Compile Include="Contracts\Services\IDriverService.cs" />
+    <Compile Include="Contracts\Services\IPartCategoryService.cs" />
     <Compile Include="Contracts\Services\ITruckManufacturerService.cs" />
     <Compile Include="Contracts\Services\ITruckModelService.cs" />
     <Compile Include="Models\BaseEntity.cs" />
