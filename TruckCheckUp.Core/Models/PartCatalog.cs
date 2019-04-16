@@ -17,6 +17,7 @@ namespace TruckCheckUp.Core.Models
         public string PartName { get; set; }
 
         [ForeignKey("PartCategory")]
+        [Required(ErrorMessage = "Part Category is Required")] 
         public string PartCategoryId { get; set; }
 
         // Navigation properties
