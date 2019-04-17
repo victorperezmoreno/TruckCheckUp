@@ -54,8 +54,6 @@ namespace TruckCheckUp.Services
 
         public void PostNewPartToDB(PartCatalog part)
         {
-            //var partCategoryToInsert = new PartCategory();
-            //partCategoryToInsert.CategoryPart = part.CategoryPart;
             _partCatalogContext.Insert(part);
             _partCatalogContext.Commit();
             _logger.Info("Inserted record Id " + part.Id + " into Table " + tableNameUsedByLogger);

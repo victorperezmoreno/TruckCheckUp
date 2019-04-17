@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TruckCheckUp.Core.Contracts.DataAccess;
+using TruckCheckUp.Core.Contracts.Logger;
 using TruckCheckUp.Core.Contracts.Services;
 using TruckCheckUp.Core.Models;
 using TruckCheckUp.Core.ViewModels.CategoryUI;
@@ -13,10 +11,14 @@ namespace TruckCheckUp.Services
     public class PartCategoryService : IPartCategoryService
     {
         private IRepository<PartCategory> _partCategoryContext;
+        private ILogger _logger;
+        private string tableNameUsedByLogger;
 
-        public PartCategoryService(IRepository<PartCategory> partCategoryContext)
+        public PartCategoryService(IRepository<PartCategory> partCategoryContext, ILogger logger)
         {
             _partCategoryContext = partCategoryContext;
+            _logger = logger;
+            tableNameUsedByLogger = "PartCategory";
         }
 
         // GET: Driver
@@ -41,6 +43,7 @@ namespace TruckCheckUp.Services
             partCategoryToInsert.CategoryPart = partCategory.CategoryPart;
             _partCategoryContext.Insert(partCategoryToInsert);
             _partCategoryContext.Commit();
+            _logger.Info("Inserted record Id " + partCategoryToInsert.Id + " into Table " + tableNameUsedByLogger);
         }
 
         public CategoryUpdateViewModel RetrievePartCategoryDataToUpdate(string partCategoryId)
@@ -70,8 +73,10 @@ namespace TruckCheckUp.Services
             var partCategoryToUpdate = _partCategoryContext.Find(partCategoryId);
             if (partCategoryToUpdate != null)
             {
+                _logger.Info("Found record Id " + partCategoryToUpdate.Id + " in Table " + tableNameUsedByLogger);
                 partCategoryToUpdate.CategoryPart = partCategory.CategoryPart;
                 _partCategoryContext.Commit();
+                _logger.Info("Updated record Id " + partCategoryToUpdate.Id + " in Table " + tableNameUsedByLogger);
             }
         }
 
@@ -93,8 +98,10 @@ namespace TruckCheckUp.Services
             var partCategoryToDelete = _partCategoryContext.Find(partCategoryId);
             if (partCategoryToDelete != null)
             {
+                _logger.Info("Found record Id " + partCategoryToDelete.Id + " in Table " + tableNameUsedByLogger);
                 _partCategoryContext.Delete(partCategoryToDelete);
                 _partCategoryContext.Commit();
+                _logger.Info("Deleted record Id " + partCategoryToDelete.Id + " from Table " + tableNameUsedByLogger);
             }
         }
     }
