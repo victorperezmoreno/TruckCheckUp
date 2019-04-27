@@ -94,6 +94,10 @@
     <Compile Include="Migrations\201904150024521_Made required field for CategoryId FK Table PartCatalog.Designer.cs">
       <DependentUpon>201904150024521_Made required field for CategoryId FK Table PartCatalog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904271334020_Added TicketNumber field to PartsReported Table.cs" />
+    <Compile Include="Migrations\201904271334020_Added TicketNumber field to PartsReported Table.Designer.cs">
+      <DependentUpon>201904271334020_Added TicketNumber field to PartsReported Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLRepository.cs" />
@@ -141,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904150024521_Made required field for CategoryId FK Table PartCatalog.resx">
       <DependentUpon>201904150024521_Made required field for CategoryId FK Table PartCatalog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904271334020_Added TicketNumber field to PartsReported Table.resx">
+      <DependentUpon>201904271334020_Added TicketNumber field to PartsReported Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

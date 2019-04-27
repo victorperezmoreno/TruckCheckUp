@@ -1,0 +1,15 @@
+﻿<master version="5.3" minAllowVersion="5.3" ID="F37268E0-6765-45A6-8CD2-789D08001453">
+  <controls>
+    <control controlID="B6A83F27-B2B0-482F-8039-8C3A7A88ADDB" controlTypeID="Master" x="57" y="204" w="500" h="298" zOrder="1" masterID="F37268E0-6765-45A6-8CD2-789D08001453">
+      <groupChildrenDescriptors>
+        <control controlID="9B38D3BE-FFB7-40C1-AF1D-37784938E26B" controlTypeID="GroupBox" x="0" y="0" w="500" h="298" zOrder="0">
+          <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+          <text>Inspection+Details</text>
+          <textSize>14</textSize>
+          <textVAlign>VaTop</textVAlign>
+          <lineSpacing>0</lineSpacing>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+  </controls>
+</master>

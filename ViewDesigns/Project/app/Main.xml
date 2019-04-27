@@ -1,0 +1,20 @@
+﻿<project version="2.9" name="Project" ID="B2F33D00-17DA-49FB-B212-465164D137B1">
+  <params>
+    <pageParam version="5.3" minAllowVersion="5.3"/>
+    <projectParam version="2.9" minAllowVersion="2.9" platform="MtPad" orientation="MoPortrait" mobileScreenScale="0" mobileType="mmtTablet" pageSize="(800,1280)" backgroundColor="4294967295" fontSize="0" fontFamily="" projectType="ptPersonalProject" isShowTitleIndex="False"/>
+    <previewParam version="1.0"/>
+    <colorParam version="1.0"/>
+  </params>
+  <pages>
+    <page name="Home" ID="FC52A840-23EC-4501-A05F-FB8971715174" expanded="True" code="zR3IwDCzYf" thumbCode="vKyha42bbI" isLastOpen="True" status="psWhite" isfolder="False" isshownode="True"/>
+    <page name="Tab" ID="7D8F7EB6-C3BE-4264-BB53-3143C564A7CA" expanded="True" code="Wo5eH4wNsG" thumbCode="fCss7vs7a6" status="psWhite" isfolder="False" isshownode="True"/>
+  </pages>
+  <trash/>
+  <deletes/>
+  <masters>
+    <master name="Master" ID="F37268E0-6765-45A6-8CD2-789D08001453" code="uwJ2kZtF26" status="psWhite" createDate="2019-04-26 16:45:02">
+      <refPages/>
+    </master>
+  </masters>
+  <images/>
+</project>

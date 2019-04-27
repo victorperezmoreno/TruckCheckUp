@@ -1,0 +1,127 @@
+﻿<mockup version="5.3" minAllowVersion="5.3" ID="7D8F7EB6-C3BE-4264-BB53-3143C564A7CA" platform="MtPad" defaultW="800" defaultH="1280" measureW="800" measureH="1280" screenOrientation="MoPortrait" mobileScreenScale="0" clipArea="(0,0,0,0)">
+  <controls controlCount="14">
+    <control controlID="684A5C61-A239-46B9-98AE-FE0A5829FBAF" controlTypeID="GroupBox" x="237" y="144" w="350" h="298" zOrder="0">
+      <caption>Inspection+Details</caption>
+      <isCommentCom>True</isCommentCom>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>Inspection+Details</text>
+      <textSize>14</textSize>
+      <textVAlign>VaTop</textVAlign>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="D53F2990-0C1D-4E8B-A6A4-F73E2E088292" controlTypeID="GroupBox" x="237" y="452" w="350" h="102" zOrder="1">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>Comments</text>
+      <textSize>14</textSize>
+      <textVAlign>VaTop</textVAlign>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="BEF89B25-CD78-4602-B629-BF26DE0329C3" controlTypeID="GroupBox" x="236" y="29" w="351" h="102" zOrder="2">
+      <caption>Truck+Info</caption>
+      <isCommentCom>True</isCommentCom>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>Truck+Info</text>
+      <textSize>14</textSize>
+      <textVAlign>VaTop</textVAlign>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="4FAA0205-9E11-49A3-A718-C793BCB5FE3A" controlTypeID="CompositeComboBox" x="343" y="51" w="200" h="29" zOrder="3">
+      <caption>TruckNumber+DropDownList</caption>
+      <isCommentCom>True</isCommentCom>
+      <groupChildrenDescriptors>
+        <control controlID="E710F507-9A87-4E20-A1D6-208B6663853C" controlTypeID="TextInput" x="0" y="0" w="177" h="29" zOrder="0">
+          <locked>True</locked>
+          <canMove>False</canMove>
+          <alias>input</alias>
+          <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+          <text>30</text>
+          <lineSpacing>0</lineSpacing>
+          <selectedIndex>-1</selectedIndex>
+        </control>
+        <control controlID="82BFC6F1-7F61-4AAF-9734-736ABFBE9AC3" controlTypeID="Button" x="176" y="0" w="24" h="29" zOrder="1">
+          <locked>True</locked>
+          <canMove>False</canMove>
+          <alias>button</alias>
+          <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+          <lineSpacing>0</lineSpacing>
+          <selectedIndex>-1</selectedIndex>
+          <radius>0</radius>
+        </control>
+        <control controlID="FE13CB6A-056C-4683-80EF-4EADFE65773F" controlTypeID="List" x="0" y="29" w="200" h="158" zOrder="2">
+          <isShow>False</isShow>
+          <canMove>False</canMove>
+          <alias>dropDown</alias>
+          <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+          <text>30%0D%0A37%0D%0A38%0D%0A39</text>
+          <textSize>14</textSize>
+          <lineSpacing>0</lineSpacing>
+          <itemHeight>29</itemHeight>
+          <interlaceColor>4294967295</interlaceColor>
+        </control>
+      </groupChildrenDescriptors>
+      <baseHeight>29</baseHeight>
+      <font family="Segoe+UI"/>
+      <textSize>14</textSize>
+    </control>
+    <control controlID="B5A18BC2-C927-470F-8011-3A71B1DD370A" controlTypeID="TextInput" x="343" y="88" w="150" h="29" zOrder="4">
+      <isCommentCom>True</isCommentCom>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+      <placeHolder>Current+Truck+Mileage</placeHolder>
+      <inputModel>emNumber</inputModel>
+    </control>
+    <control controlID="3DDF1B22-7763-49E1-A63D-5C964B1ADAB3" controlTypeID="TextArea" x="244" y="480" w="333" h="66" zOrder="5">
+      <isCommentCom>True</isCommentCom>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>Nunc+a+sagittis+elit%2C+eget+vehicula+ligula.+Etiam+consequat+tristique+metus%2C+maximus+condimentum+tellus+varius+nec.+Nullam+eget+urna+eu+risus+condimentum+semper.+Donec+dictum+felis+ut+efficitur+aliquam.+Curabitur+sollicitudin+ligula+sit+amet+euismod+imperdiet.+Etiam+lobortis+vitae+turpis+euismod+gravida.+Integer+sit+amet+lectus+nec+mauris+ullamcorper+faucibus.+Cras+magna+turpis%2C+varius+vel+vestibulum+id%2C+aliquam+ac+felis.+Pellentesque+habitant+morbi+tristique+senectus+et+netus+et+malesuada+fames+ac+turpis+egestas.+Pellentesque+vel+finibus+odio.+Nulla+maximus+metus+accumsan+enim+auctor+consectetur.+Integer+a+magna+eget+ipsum+tincidunt+congue+a+vel+ex.+Pellentesque+vulputate%2C+mauris+fermentum+finibus+lobortis%2C+orci+dui+dignissim+elit%2C+consectetur+viverra+ligula+justo+non+est.+Nam+fringilla+dictum+nibh+eu+lacinia.%0D%0A</text>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="CA54A8AE-614C-4C86-80D6-7DC3B678F527" controlTypeID="Button" x="366" y="576" w="85" h="32" zOrder="6">
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>Report</text>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="0A639A18-719B-4834-B420-FA69B8134830" controlTypeID="Tab" x="249" y="169" w="328" h="263" zOrder="7">
+      <isCommentCom>True</isCommentCom>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>General%2C+Lights%2C+Fluids</text>
+      <textSize>14</textSize>
+      <lineSpacing>0</lineSpacing>
+    </control>
+    <control controlID="5C1796E5-E70C-42F6-B1A0-F0DEECC5DE9F" controlTypeID="CheckBoxGroup" x="259" y="198" w="150" h="128" zOrder="8">
+      <isCommentCom>True</isCommentCom>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>%5B%5DMirrors%0D%0A%5Bx%5DFront+Tires%0D%0A%5B%5DRear+Tires</text>
+      <lineSpacing>0</lineSpacing>
+      <size>15</size>
+      <itemHeight>36</itemHeight>
+      <itemRect>[{"left":0,"top":0,"right":150,"bottom":36},{"left":0,"top":46,"right":150,"bottom":82},{"left":0,"top":92,"right":150,"bottom":128}]</itemRect>
+    </control>
+    <control controlID="4D1ABBB2-25F9-4570-AB57-F3990F661B89" controlTypeID="Label" x="245" y="55" w="88" h="19" zOrder="9">
+      <caption>TruckNumber+Label</caption>
+      <isCommentCom>True</isCommentCom>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>Truck+Number</text>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+    <control controlID="ABD65897-4AD4-4D68-A73C-EE7DF8611472" controlTypeID="Label" x="245" y="93" w="49" h="19" zOrder="10">
+      <isCommentCom>True</isCommentCom>
+      <font family="Segoe+UI" displayName="Segoe+UI" postScript="" weightStyle="Regular" weight="400" isBold="False" isItalic="False"/>
+      <text>Mileage+</text>
+      <lineSpacing>0</lineSpacing>
+      <selectedIndex>-1</selectedIndex>
+    </control>
+  </controls>
+  <param>
+    <backgroundColor>4294967295</backgroundColor>
+    <fontSize>0</fontSize>
+    <fontFamily/>
+    <guideLines/>
+  </param>
+</mockup>

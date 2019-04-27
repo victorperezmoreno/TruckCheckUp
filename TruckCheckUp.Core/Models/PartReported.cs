@@ -17,7 +17,13 @@ namespace TruckCheckUp.Core.Models
         [Required]
         public int Mileage { get; set; }
 
-        public bool IsChecked { get; set; }
+        [Required]
+        [Display(Name = "Ticker Number")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int TicketNumber { get; set; }
+
+        [Required]
+        public bool IsOK { get; set; }
 
         [ForeignKey("Driver")]
         public string DriverId { get; set; }

@@ -24,3 +24,4 @@ C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.Data
 C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.AddedManufacturerFKtoModelTable.resources
 C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.DeletedManufacturerModelandYearfieldsfromTrucktable.resources
 C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.MaderequiredfieldforCategoryIdFKTablePartCatalog.resources
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.AddedTicketNumberfieldtoPartsReportedTable.resources

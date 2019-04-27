@@ -1941,3 +1941,27 @@ INFO -2019-04-16 19:39:22,051--Application Started...
 INFO -2019-04-16 19:58:32,318--Inserted record Id 18c74bbd-5445-4ca3-80c9-edc3d0b1b028 into Table PartCategory
 INFO -2019-04-16 20:02:27,472--Found record Id 18c74bbd-5445-4ca3-80c9-edc3d0b1b028 in Table PartCategory
 INFO -2019-04-16 20:02:28,402--Deleted record Id 18c74bbd-5445-4ca3-80c9-edc3d0b1b028 from Table PartCategory
+INFO -2019-04-17 19:20:32,691--Application Started...
+INFO -2019-04-17 19:22:04,672--Inserted record Id cbf44dbd-eb91-4202-898a-691f55b61362 into Table PartCatalog
+INFO -2019-04-17 19:23:22,800--Inserted record Id ea8d84c2-1a0a-4365-9d15-26ca7798099f into Table PartCatalog
+INFO -2019-04-17 19:23:45,859--Inserted record Id 7169ab0e-df45-42ed-95c4-c3a693d52bdb into Table PartCatalog
+INFO -2019-04-17 19:24:50,899--Inserted record Id 5a1a6e0d-d6ee-4f21-a6da-dd52baa139bb into Table PartCatalog
+INFO -2019-04-17 19:25:15,235--Inserted record Id 2bc86952-fe36-4240-8531-7663ebb130b9 into Table PartCatalog
+INFO -2019-04-17 19:25:28,276--Found record Id 5a1a6e0d-d6ee-4f21-a6da-dd52baa139bb in Table PartCatalog
+INFO -2019-04-17 19:25:28,292--Updated record Id 5a1a6e0d-d6ee-4f21-a6da-dd52baa139bb in Table PartCatalog
+INFO -2019-04-17 19:25:52,331--Inserted record Id 6b9d017b-981c-41f8-b40e-c890b4cdf015 into Table PartCatalog
+INFO -2019-04-17 19:26:09,897--Inserted record Id a59d72f8-92dc-4889-93da-a2183a6ca2c1 into Table PartCatalog
+INFO -2019-04-17 19:26:56,682--Inserted record Id 0f13f9e7-f1b1-4734-b3d4-344c9480436c into Table PartCatalog
+INFO -2019-04-17 19:27:14,856--Inserted record Id 9aff7e51-f7cc-43bf-8c49-0855a6564c91 into Table PartCatalog
+INFO -2019-04-17 19:27:37,055--Inserted record Id cd97f4e0-f040-4daa-b9c8-bb53cc50cd0f into Table PartCatalog
+INFO -2019-04-17 19:27:54,606--Inserted record Id 7759f25b-f257-4763-ade9-15a4fb0b7dd1 into Table PartCatalog
+INFO -2019-04-17 19:31:15,416--Inserted record Id 9d4c7911-dc6d-4609-b979-6d74cc3d9a19 into Table PartCatalog
+INFO -2019-04-17 19:31:44,463--Inserted record Id 70dd4b16-9c62-4c36-8cad-4b1da557fe12 into Table PartCatalog
+INFO -2019-04-17 19:32:42,264--Inserted record Id b3636ef1-1b10-4fef-8d64-a97aee43ddfb into Table PartCatalog
+INFO -2019-04-17 19:36:21,930--Inserted record Id 21e2fdfb-931c-41c1-8af8-d686e7e64ff5 into Table PartCatalog
+INFO -2019-04-17 19:36:56,374--Inserted record Id 63729660-3d14-49a6-9d3d-202bcd376f59 into Table PartCatalog
+INFO -2019-04-17 19:42:16,582--Inserted record Id 47297c9e-08df-4d94-b9d9-0b15d77deafd into Table PartCatalog
+INFO -2019-04-17 19:43:28,558--Found record Id 2bc86952-fe36-4240-8531-7663ebb130b9 in Table PartCatalog
+INFO -2019-04-17 19:43:28,568--Updated record Id 2bc86952-fe36-4240-8531-7663ebb130b9 in Table PartCatalog
+INFO -2019-04-17 19:43:46,785--Found record Id 5a1a6e0d-d6ee-4f21-a6da-dd52baa139bb in Table PartCatalog
+INFO -2019-04-17 19:43:46,788--Updated record Id 5a1a6e0d-d6ee-4f21-a6da-dd52baa139bb in Table PartCatalog
