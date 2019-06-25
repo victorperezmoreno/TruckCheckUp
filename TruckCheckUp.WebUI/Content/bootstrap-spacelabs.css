@@ -2516,9 +2516,10 @@ input[type="search"] {
 }
 input[type="radio"],
 input[type="checkbox"] {
-  margin: 4px 0 0;
-  margin-top: 1px \9;
-  line-height: normal;
+    margin: 4px 0 0;
+    margin-top: 1px \9;
+    line-height: 1;
+    /*line-height: normal;*/
 }
 input[type="radio"][disabled],
 input[type="checkbox"][disabled],
@@ -2634,8 +2635,10 @@ textarea.form-control {
 .checkbox {
   position: relative;
   display: block;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  /*margin-top: 10px;*/
+  margin-top: 0px;
+  /*margin-bottom: 10px;*/
+  margin-bottom: 0px;
 }
 .radio.disabled label,
 .checkbox.disabled label,

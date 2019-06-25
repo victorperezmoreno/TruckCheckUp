@@ -1,0 +1,119 @@
+﻿@model TruckCheckUp.Core.ViewModels.TruckInspection.TruckInspectionViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal col-md-8">
+        @{string dismissableClass = Model.Dismissable ? "alert-dismissable-block" : "hidden";
+            <div class="alert alert-@Model.AlertStyle  @dismissableClass text-center">
+                @if (Model.Dismissable)
+                { <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                }
+                @Html.Raw(Model.Message)
+            </div>
+        }
+        <br/>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DriverList, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(model => model.DriverId, new SelectList(Model.DriverList, "Id", "Text"), "- Please Select -", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DriverId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TruckList, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-6">
+                @Html.DropDownListFor(model => model.TruckId, new SelectList(Model.TruckList, "Id", "Text"), "- Please Select -", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TruckId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CurrentMileage, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.CurrentMileage, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CurrentMileage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="panel panel-primary form-group col-md-7">
+            <div class="panel-heading">
+                General
+            </div>
+            <div class="panel-body">
+                <div class="form-group col-md-8">
+                    @for (int i = 0; i < Model.GeneralCatalog.Count(); i++)
+                    {
+                        <label class="d-block">
+                            @Html.HiddenFor(model => model.GeneralCatalog[i].Id)
+                            @Html.CheckBoxFor(model => model.GeneralCatalog[i].IsChecked, new { @class = "control label col-md-3", data_toggle = "toggle", data_size = "mini" })
+                            @Html.DisplayFor(model => model.GeneralCatalog[i].Name)
+                        </label>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-primary form-group col-md-7">
+            <div class="panel-heading">
+                Lights
+            </div>
+            <div class="panel-body">
+                <div class="form-group col-md-8">
+                    @for (int i = 0; i < Model.LightsCatalog.Count(); i++)
+                    {
+                        <label class="d-block">
+                            @Html.HiddenFor(model => model.LightsCatalog[i].Id)
+                            @Html.CheckBoxFor(model => model.LightsCatalog[i].IsChecked, new { @class = "control label col-md-3", data_toggle = "toggle", data_size = "mini" })
+                            @Html.DisplayFor(model => model.LightsCatalog[i].Name)
+                        </label>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-primary form-group col-md-7">
+            <div class="panel-heading">
+                Fluids/Oil
+            </div>
+            <div class="panel-body">
+                <div class="form-group col-md-8">
+                    @for (int i = 0; i < Model.FluidsCatalog.Count(); i++)
+                    {
+                        <label class="d-block">
+                            @Html.HiddenFor(model => model.FluidsCatalog[i].Id)
+                            @Html.CheckBoxFor(model => model.FluidsCatalog[i].IsChecked, new { @class = "control label col-md-3", data_toggle = "toggle", data_size = "mini" })
+                            @Html.DisplayFor(model => model.FluidsCatalog[i].Name)
+                        </label>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-primary form-group col-md-7">
+            <div class="panel-heading">
+                Notes
+            </div>
+            <div class="panel-body">
+                @Html.TextAreaFor(model => model.Comments, 2, 50, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Report" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+            }
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@

@@ -92,6 +92,7 @@
     <Compile Include="Mocks\MockTruckCheckUpLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="Services\TruckInspectionUnitTests.cs" />
     <Compile Include="Services\TruckManufacturerUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>

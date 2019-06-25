@@ -1965,3 +1965,410 @@ INFO -2019-04-17 19:43:28,558--Found record Id 2bc86952-fe36-4240-8531-7663ebb13
 INFO -2019-04-17 19:43:28,568--Updated record Id 2bc86952-fe36-4240-8531-7663ebb130b9 in Table PartCatalog
 INFO -2019-04-17 19:43:46,785--Found record Id 5a1a6e0d-d6ee-4f21-a6da-dd52baa139bb in Table PartCatalog
 INFO -2019-04-17 19:43:46,788--Updated record Id 5a1a6e0d-d6ee-4f21-a6da-dd52baa139bb in Table PartCatalog
+INFO -2019-05-06 21:39:17,724--Application Started...
+ERROR-2019-05-06 21:39:51,814--Unhandled Exception Application Error
+User : 
+Page : http://localhost:49233/TruckInspection/Create
+System.InvalidOperationException: The model item passed into the dictionary is of type 'TruckCheckUp.Core.ViewModels.TruckInspectionViewModel', but this dictionary requires a model item of type 'TruckCheckUp.Core.Models.TruckInspection'.
+   at System.Web.Mvc.ViewDataDictionary`1.SetModel(Object value)
+   at System.Web.Mvc.ViewDataDictionary..ctor(ViewDataDictionary dictionary)
+   at System.Web.Mvc.WebViewPage`1.SetViewData(ViewDataDictionary viewData)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<>c.<BeginExecuteCore>b__152_1(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<>c.<BeginExecute>b__151_2(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<>c.<BeginProcessRequest>b__20_1(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+INFO -2019-05-10 09:54:37,471--Application Started...
+INFO -2019-05-10 09:56:40,877--Application Started...
+INFO -2019-05-10 13:31:01,548--Application Started...
+INFO -2019-05-10 13:36:40,700--Application Started...
+INFO -2019-05-10 19:26:49,374--Application Started...
+INFO -2019-05-10 19:33:25,269--Application Started...
+INFO -2019-05-10 19:38:42,864--Application Started...
+INFO -2019-05-10 19:43:01,391--Application Started...
+INFO -2019-05-10 20:40:41,442--Application Started...
+INFO -2019-05-10 20:46:10,734--Application Started...
+INFO -2019-05-10 21:09:16,290--Application Started...
+INFO -2019-05-10 21:10:16,899--Application Started...
+INFO -2019-05-10 23:09:04,171--Application Started...
+INFO -2019-05-10 23:39:17,361--Application Started...
+INFO -2019-05-10 23:41:37,453--Application Started...
+INFO -2019-05-11 00:22:38,246--Application Started...
+ERROR-2019-05-11 00:22:40,312--Unhandled Exception Application Error
+User : 
+Page : http://localhost:49233/__browserLink/requestData/c686751b15ea498898dc5b7a0b786869?version=2
+System.Web.HttpException (0x80004005): The controller for path '/__browserLink/requestData/c686751b15ea498898dc5b7a0b786869' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ERROR-2019-05-11 00:45:46,537--Unhandled Exception Application Error
+User : 
+Page : http://localhost:49233/TruckInspection/Create
+System.Web.HttpCompileException (0x80004005): C:\Projects\TruckCheckUp\TruckCheckUp.WebUI\Views\TruckInspection\Create.cshtml(51): error CS0746: Invalid anonymous type member declarator. Anonymous type members must be declared with a member assignment, simple name or member access.
+   at System.Web.Compilation.AssemblyBuilder.Compile()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.GetCompiledType(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetCompiledType(String virtualPath)
+   at System.Web.Mvc.BuildManagerWrapper.System.Web.Mvc.IBuildManager.GetCompiledType(String virtualPath)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<>c.<BeginExecuteCore>b__152_1(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<>c.<BeginExecute>b__151_2(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<>c.<BeginProcessRequest>b__20_1(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+INFO -2019-05-11 19:11:37,452--Application Started...
+INFO -2019-05-11 19:30:36,162--Application Started...
+INFO -2019-05-11 21:32:17,618--Application Started...
+ERROR-2019-05-11 21:32:22,694--Unhandled Exception Application Error
+User : 
+Page : http://localhost:49233/__browserLink/requestData/06f37353a5234d249f747d15a588cc1e?version=2
+System.Web.HttpException (0x80004005): The controller for path '/__browserLink/requestData/06f37353a5234d249f747d15a588cc1e' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+INFO -2019-05-11 21:42:44,618--Application Started...
+INFO -2019-05-11 22:14:36,314--Application Started...
+INFO -2019-05-11 22:29:08,695--Found record Id 47297c9e-08df-4d94-b9d9-0b15d77deafd in Table PartCatalog
+INFO -2019-05-11 22:29:09,180--Updated record Id 47297c9e-08df-4d94-b9d9-0b15d77deafd in Table PartCatalog
+INFO -2019-05-11 22:29:53,195--Application Started...
+INFO -2019-05-11 22:46:52,947--Application Started...
+INFO -2019-05-11 23:21:54,071--Application Started...
+INFO -2019-05-19 19:43:10,579--Application Started...
+INFO -2019-05-19 20:55:38,256--Application Started...
+INFO -2019-05-19 21:07:38,355--Application Started...
+INFO -2019-05-19 21:46:19,538--Application Started...
+ERROR-2019-05-19 21:46:22,187--Unhandled Exception Application Error
+User : 
+Page : http://localhost:49233/__browserLink/requestData/bdddccb3a5e14df49d76147583d38ff1?version=2
+System.Web.HttpException (0x80004005): The controller for path '/__browserLink/requestData/bdddccb3a5e14df49d76147583d38ff1' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+INFO -2019-05-19 22:35:25,916--Application Started...
+INFO -2019-05-21 14:09:58,752--Application Started...
+INFO -2019-05-21 14:37:11,561--Application Started...
+INFO -2019-05-30 12:02:45,546--Application Started...
+INFO -2019-06-07 13:26:57,081--Application Started...
+INFO -2019-06-07 13:30:01,683--Application Started...
+INFO -2019-06-07 13:32:43,880--Inserted record Id e631b92f-04d5-4dea-a729-079693a7144a into Table TruckManufacturer
+INFO -2019-06-07 13:33:58,540--Found record Id e631b92f-04d5-4dea-a729-079693a7144a in Table TruckManufacturer
+INFO -2019-06-07 13:33:58,787--Deleted record Id e631b92f-04d5-4dea-a729-079693a7144a from Table TruckManufacturer
+INFO -2019-06-10 14:43:57,321--Application Started...
+INFO -2019-06-10 16:25:27,179--Application Started...
+INFO -2019-06-10 16:55:44,658--Application Started...
+INFO -2019-06-10 16:57:34,192--Application Started...
+ERROR-2019-06-10 17:24:34,737--Unhandled Exception Application Error
+User : 
+Page : http://localhost:49233/TruckInspection/Create
+System.InvalidOperationException: The cast to value type 'System.Int32' failed because the materialized value is null. Either the result type's generic parameter or the query must use a nullable type.
+   at System.Data.Entity.Core.Common.Internal.Materialization.Shaper.ErrorHandlingValueReader`1.GetValue(DbDataReader reader, Int32 ordinal)
+   at lambda_method(Closure , Shaper )
+   at System.Data.Entity.Core.Common.Internal.Materialization.Coordinator`1.ReadNextElement(Shaper shaper)
+   at System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__3[TResult](IEnumerable`1 sequence)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.Max[TSource](IQueryable`1 source)
+   at TruckCheckUp.Services.TruckInspectionService.PostNewTruckInspectionToDB(TruckInspectionViewModel inspectionFromUser) in C:\Projects\TruckCheckUp\TruckCheckUp.Services\TruckInspectionService.cs:line 53
+   at TruckCheckUp.WebUI.Controllers.TruckInspectionController.Create(TruckInspectionViewModel truckInspection) in C:\Projects\TruckCheckUp\TruckCheckUp.WebUI\Controllers\TruckInspectionController.cs:line 43
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c.<BeginInvokeSynchronousActionMethod>b__9_0(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_0.<InvokeActionMethodFilterAsynchronouslyRecursive>b__0()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_2.<InvokeActionMethodFilterAsynchronouslyRecursive>b__2()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.<BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<>c.<BeginExecuteCore>b__152_1(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<>c.<BeginExecute>b__151_2(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<>c.<BeginProcessRequest>b__20_1(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+INFO -2019-06-10 17:37:14,649--Application Started...
+INFO -2019-06-10 17:58:38,713--Application Started...
+INFO -2019-06-10 18:21:36,747--Application Started...
+INFO -2019-06-10 21:27:36,312--Application Started...
+INFO -2019-06-10 21:30:34,179--Application Started...
+INFO -2019-06-10 21:34:09,863--Application Started...
+INFO -2019-06-10 21:52:32,588--Application Started...
+ERROR-2019-06-10 21:59:46,541--Unhandled Exception Application Error
+User : 
+Page : http://localhost:49233/TruckInspection/Create
+System.InvalidOperationException: The cast to value type 'System.Int32' failed because the materialized value is null. Either the result type's generic parameter or the query must use a nullable type.
+   at System.Data.Entity.Core.Common.Internal.Materialization.Shaper.ErrorHandlingValueReader`1.GetValue(DbDataReader reader, Int32 ordinal)
+   at lambda_method(Closure , Shaper )
+   at System.Data.Entity.Core.Common.Internal.Materialization.Coordinator`1.ReadNextElement(Shaper shaper)
+   at System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   at System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__3[TResult](IEnumerable`1 sequence)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   at System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   at System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.Max[TSource](IQueryable`1 source)
+   at TruckCheckUp.Services.TruckInspectionService.PostNewTruckInspectionToDB(TruckInspectionViewModel inspectionFromUser) in C:\Projects\TruckCheckUp\TruckCheckUp.Services\TruckInspectionService.cs:line 63
+   at TruckCheckUp.WebUI.Controllers.TruckInspectionController.Create(TruckInspectionViewModel truckInspection) in C:\Projects\TruckCheckUp\TruckCheckUp.WebUI\Controllers\TruckInspectionController.cs:line 44
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c.<BeginInvokeSynchronousActionMethod>b__9_0(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_0.<InvokeActionMethodFilterAsynchronouslyRecursive>b__0()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass11_2.<InvokeActionMethodFilterAsynchronouslyRecursive>b__2()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass7_0.<BeginInvokeActionMethodWithFilters>b__1(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<>c.<BeginExecuteCore>b__152_1(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<>c.<BeginExecute>b__151_2(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<>c.<BeginProcessRequest>b__20_1(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+INFO -2019-06-10 22:02:11,046--Application Started...
+INFO -2019-06-10 22:23:48,091--Application Started...
+INFO -2019-06-11 11:00:25,493--Application Started...
+INFO -2019-06-11 12:43:23,929--Inserted ticket number report 1 into Table TruckInspection
+INFO -2019-06-11 14:59:16,933--Application Started...
+INFO -2019-06-11 15:33:41,210--Application Started...
+INFO -2019-06-11 15:40:29,128--Inserted ticket number report 1 into Table TruckInspection
+INFO -2019-06-11 15:40:29,440--Inserted ticket number report 1 into Table DriverComment
+ERROR-2019-06-11 15:43:00,490--Unhandled Exception Application Error
+User : 
+Page : http://localhost:49233/TruckInspection/Create
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page_Views_TruckInspection_Create_cshtml.Execute() in C:\Projects\TruckCheckUp\TruckCheckUp.WebUI\Views\TruckInspection\Create.cshtml:line 20
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.StartPage.RunPage()
+   at System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_6.<BeginInvokeAction>b__4()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass3_1.<BeginInvokeAction>b__1(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<>c.<BeginExecuteCore>b__152_1(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<>c.<BeginExecute>b__151_2(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<>c.<BeginProcessRequest>b__20_1(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+INFO -2019-06-11 15:51:04,671--Application Started...
+INFO -2019-06-11 15:56:42,871--Inserted ticket number report 2 into Table TruckInspection
+INFO -2019-06-11 15:56:43,276--Inserted ticket number report 2 into Table DriverComment
+INFO -2019-06-11 16:01:58,987--Application Started...
+INFO -2019-06-11 16:04:01,247--Inserted ticket number report 3 into Table TruckInspection
+INFO -2019-06-11 16:04:01,434--Inserted ticket number report 3 into Table DriverComment
+INFO -2019-06-11 16:54:01,362--Application Started...
+INFO -2019-06-11 17:17:00,754--Application Started...
+INFO -2019-06-11 17:26:35,342--Inserted ticket number report 4 into Table TruckInspection
+INFO -2019-06-11 17:26:36,490--Inserted ticket number report 4 into Table DriverComment
+INFO -2019-06-11 17:46:58,182--Application Started...
+INFO -2019-06-11 18:02:04,195--Inserted ticket number report 5 into Table TruckInspection
+INFO -2019-06-11 18:02:05,777--Inserted ticket number report 5 into Table DriverComment
+INFO -2019-06-12 14:54:02,141--Application Started...
+INFO -2019-06-12 17:32:39,611--Application Started...
+INFO -2019-06-12 18:13:09,836--Application Started...
+INFO -2019-06-13 12:39:31,681--Application Started...
+INFO -2019-06-13 12:51:33,166--Application Started...
+INFO -2019-06-13 12:55:01,122--Inserted ticket number report 6 into Table TruckInspection
+INFO -2019-06-13 12:55:01,567--Inserted ticket number report 6 into Table DriverComment
+INFO -2019-06-13 13:47:07,446--Application Started...
+INFO -2019-06-13 16:27:53,699--Application Started...
+INFO -2019-06-13 16:29:34,457--Application Started...
+INFO -2019-06-13 16:49:22,436--Inserted ticket number report 7 into Table TruckInspection
+INFO -2019-06-13 16:49:23,746--Inserted ticket number report 7 into Table DriverComment
+INFO -2019-06-13 17:32:03,414--Application Started...
+INFO -2019-06-13 17:39:43,373--Inserted ticket number report 8 into Table TruckInspection
+INFO -2019-06-13 17:39:43,958--Inserted ticket number report 8 into Table DriverComment
+INFO -2019-06-17 13:02:02,443--Application Started...
+INFO -2019-06-17 13:21:39,961--Application Started...
+INFO -2019-06-17 13:23:05,238--Inserted ticket number report 9 into Table TruckInspection
+INFO -2019-06-17 13:23:05,975--Inserted ticket number report 9 into Table DriverComment
+INFO -2019-06-17 14:17:40,248--Application Started...
+INFO -2019-06-17 14:36:26,798--Inserted ticket number report 10 into Table TruckInspection
+INFO -2019-06-17 14:36:27,402--Inserted ticket number report 10 into Table DriverComment
+INFO -2019-06-17 14:38:10,328--Application Started...
+INFO -2019-06-17 15:14:39,041--Inserted ticket number report 11 into Table TruckInspection
+INFO -2019-06-17 15:14:39,583--Inserted ticket number report 11 into Table DriverComment
+INFO -2019-06-17 16:06:05,922--Application Started...
+INFO -2019-06-17 16:09:48,360--Inserted ticket number report 12 into Table TruckInspection
+INFO -2019-06-17 16:09:48,889--Inserted ticket number report 12 into Table DriverComment
+INFO -2019-06-17 16:13:20,330--Application Started...
+INFO -2019-06-17 16:15:11,623--Inserted ticket number report 13 into Table TruckInspection
+INFO -2019-06-17 16:15:11,865--Inserted ticket number report 13 into Table DriverComment
+INFO -2019-06-17 16:20:38,361--Application Started...
+INFO -2019-06-18 20:37:15,932--Application Started...
+INFO -2019-06-18 20:44:30,569--Inserted ticket number report 14 into Table TruckInspection
+INFO -2019-06-18 20:44:31,724--Inserted ticket number report 14 into Table DriverComment
+INFO -2019-06-18 21:19:42,703--Application Started...
+INFO -2019-06-18 21:21:39,627--Inserted ticket number report 15 into Table TruckInspection
+INFO -2019-06-18 21:21:40,807--Inserted ticket number report 15 into Table DriverComment
+INFO -2019-06-18 21:46:13,753--Application Started...
+INFO -2019-06-18 21:47:54,791--Inserted ticket number report 16 into Table TruckInspection
+INFO -2019-06-18 21:47:55,214--Inserted ticket number report 16 into Table DriverComment
+INFO -2019-06-21 19:50:21,625--Application Started...
+INFO -2019-06-21 20:01:32,877--Application Started...
+INFO -2019-06-21 20:25:29,069--Application Started...
+INFO -2019-06-21 20:40:27,932--Application Started...
+INFO -2019-06-21 20:47:54,547--Application Started...
+INFO -2019-06-23 14:17:45,304--Application Started...
+INFO -2019-06-23 14:20:36,432--Inserted ticket number report 17 into Table TruckInspection
+INFO -2019-06-23 14:20:37,559--Inserted ticket number report 17 into Table DriverComments
+INFO -2019-06-23 18:01:29,687--Application Started...
+INFO -2019-06-23 18:10:05,339--Application Started...
+INFO -2019-06-23 18:11:30,877--Application Started...
+INFO -2019-06-23 18:19:54,293--Application Started...
+INFO -2019-06-23 18:21:39,387--Inserted ticket number report 18 into Table TruckInspection
+INFO -2019-06-23 18:21:39,939--Inserted ticket number report 18 into Table DriverComments
+INFO -2019-06-23 18:27:45,917--Application Started...
+INFO -2019-06-23 22:48:45,570--Application Started...
+INFO -2019-06-23 23:35:07,235--Application Started...
+INFO -2019-06-23 23:38:28,386--Application Started...
+INFO -2019-06-23 23:45:25,300--Application Started...
+INFO -2019-06-23 23:47:34,389--Inserted ticket number report 19 into Table TruckInspection
+INFO -2019-06-23 23:47:35,008--Inserted ticket number report 19 into Table DriverComments
+INFO -2019-06-23 23:50:58,979--Inserted ticket number report 20 into Table TruckInspection
+INFO -2019-06-23 23:50:59,023--Inserted ticket number report 20 into Table DriverComments
+INFO -2019-06-24 01:29:31,274--Application Started...
+INFO -2019-06-24 01:35:34,553--Inserted ticket number report 21 into Table TruckInspection
+INFO -2019-06-24 01:35:47,272--Inserted ticket number report 21 into Table DriverComments
+INFO -2019-06-24 01:45:01,630--Application Started...
+INFO -2019-06-24 01:48:53,363--Inserted ticket number report 22 into Table TruckInspection
+INFO -2019-06-24 01:48:54,169--Inserted ticket number report 22 into Table DriverComments
+INFO -2019-06-24 01:54:46,637--Application Started...
+INFO -2019-06-24 02:02:24,139--Application Started...
+INFO -2019-06-24 02:09:04,030--Application Started...
+INFO -2019-06-24 02:24:20,710--Application Started...

@@ -12,12 +12,12 @@ namespace TruckCheckUp.Services
     public class TruckManufacturerService : ITruckManufacturerService
     {
         private IRepository<TruckManufacturer> _truckManufacturerContext;
-        private ILogger _logger;
+        //private ILogger _logger;
         string tableNameUsedByLogger = "";
         public TruckManufacturerService(IRepository<TruckManufacturer> truckManufacturerContext,ILogger logger)
         {
             _truckManufacturerContext = truckManufacturerContext;
-            _logger = logger;
+           // _logger = logger;
             tableNameUsedByLogger = "TruckManufacturer";
         }
 
@@ -36,8 +36,9 @@ namespace TruckCheckUp.Services
             return manufacturersViewModel;
         }
 
-        public TruckManufacturerViewModel AddTruckManufacturer(TruckManufacturerViewModel truckManufacturer)
+        public TruckManufacturerViewModel ValidateTruckManufacturerToAdd(TruckManufacturerViewModel truckManufacturer)
         {
+
             if (!string.IsNullOrEmpty(truckManufacturer.Description))
             {
 
@@ -52,14 +53,14 @@ namespace TruckCheckUp.Services
                     truckManufacturer.ExistInDB = RetrieveTruckManufacturerName(truckManufacturer.Description);
                     if (!truckManufacturer.ExistInDB)
                     {
-                        PostNewTruckManufacturerToDB(truckManufacturer);
+                        SaveNewTruckManufacturerData(truckManufacturer, new Log4NetLogger());
                     }
                 }
             }
             return truckManufacturer;
         }
 
-        public TruckManufacturerViewModel UpdateTruckManufacturer(TruckManufacturerViewModel truckManufacturer)
+        public TruckManufacturerViewModel ValidateTruckManufacturerToUpdate(TruckManufacturerViewModel truckManufacturer)
         {
             if (!string.IsNullOrEmpty(truckManufacturer.Description))
             {
@@ -77,7 +78,7 @@ namespace TruckCheckUp.Services
                     
                     if (!truckManufacturer.ExistInDB)
                     {
-                        UpdateTruckManufacturerData(truckManufacturer);
+                        UpdateTruckManufacturerData(truckManufacturer, new Log4NetLogger());
                     }
                 }
             }
@@ -124,40 +125,46 @@ namespace TruckCheckUp.Services
             return (regexManufacturer.IsMatch(manufacturer));
         }
 
-        public void PostNewTruckManufacturerToDB(TruckManufacturerViewModel truckManufacturer)
+        public void SaveNewTruckManufacturerData(TruckManufacturerViewModel truckManufacturer, ILogger logger)
         {
             var truckManufacturerToInsert = new TruckManufacturer();
             truckManufacturerToInsert.ManufacturerDescription = truckManufacturer.Description;
 
             _truckManufacturerContext.Insert(truckManufacturerToInsert);
             _truckManufacturerContext.Commit();  
-            _logger.Info("Inserted record Id " + truckManufacturerToInsert.Id + " into Table " + tableNameUsedByLogger);
+            logger.Info("Inserted record Id " + truckManufacturerToInsert.Id + " into Table " + tableNameUsedByLogger);
 
         }
 
-        public void UpdateTruckManufacturerData(TruckManufacturerViewModel truckManufacturer)
+        public void UpdateTruckManufacturerData(TruckManufacturerViewModel truckManufacturer, ILogger logger)
         {
             var truckManufacturerToUpdate = _truckManufacturerContext.Find(truckManufacturer.Id);
             if (truckManufacturerToUpdate != null)
             {
-                _logger.Info("Found record Id " + truckManufacturerToUpdate.Id + " in Table " + tableNameUsedByLogger);
+                logger.Info("Found record Id " + truckManufacturerToUpdate.Id + " in Table " + tableNameUsedByLogger);
                 truckManufacturerToUpdate.ManufacturerDescription = truckManufacturer.Description;
                 _truckManufacturerContext.Commit();
-                _logger.Info("Updated record Id " + truckManufacturerToUpdate.Id + " in Table " + tableNameUsedByLogger);
+                logger.Info("Updated record Id " + truckManufacturerToUpdate.Id + " in Table " + tableNameUsedByLogger);
 
             }
         }
 
-        public void DeleteTruckManufacturer(string truckManufacturerId)
+        public void ValidateTruckManufacturerToDelete(string truckManufacturerId)
         {
-            var truckManufacturerToDelete = _truckManufacturerContext.Find(truckManufacturerId);
-            if (truckManufacturerToDelete != null)
+            var truckManufacturerFound = _truckManufacturerContext.Find(truckManufacturerId);
+            if (truckManufacturerFound != null)
             {
-                _logger.Info("Found record Id " + truckManufacturerToDelete.Id + " in Table " + tableNameUsedByLogger);
-                _truckManufacturerContext.Delete(truckManufacturerToDelete);
-                _truckManufacturerContext.Commit();
-                _logger.Info("Deleted record Id " + truckManufacturerToDelete.Id + " from Table " + tableNameUsedByLogger);
+                DeleteTruckManufacturerData(truckManufacturerFound, new Log4NetLogger());
             }            
+        }
+
+        public void DeleteTruckManufacturerData(TruckManufacturer truckManufacturerToDelete, ILogger logger)
+        {
+            logger.Info("Found record Id " + truckManufacturerToDelete.Id + " in Table " + tableNameUsedByLogger);
+            _truckManufacturerContext.Delete(truckManufacturerToDelete);
+            _truckManufacturerContext.Commit();
+            logger.Info("Deleted record Id " + truckManufacturerToDelete.Id + " from Table " + tableNameUsedByLogger);
+
         }
 
     }

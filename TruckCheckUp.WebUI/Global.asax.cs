@@ -35,13 +35,11 @@ namespace TruckCheckUp.WebUI
 
         protected void Application_Error()
         {
-            //private static readonly ILog _logger = LogManager.GetLogger(typeof(MvcApplication));
             var exception = Server.GetLastError();
             Response.Clear();
             //Do not display error in browser
             Server.ClearError();
             //Log error
-
             _logger.Error("Unhandled Exception Application Error" + Environment.NewLine +
            "User : " + HttpContext.Current.User.Identity.GetUserId() + Environment.NewLine +
            "Page : " + HttpContext.Current.Request.Url.AbsoluteUri, exception);
@@ -58,10 +56,6 @@ namespace TruckCheckUp.WebUI
                 {
                     Response.RedirectToRoute("Default", new { controller = "ErrorHandler", action = "ServerError" });
                 }
-                //else
-                //{
-                //    Response.RedirectToRoute("Default", new { controller = "ErrorHandler", action = "Error" });
-                //}
             }
             else
             {

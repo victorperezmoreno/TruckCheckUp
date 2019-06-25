@@ -25,3 +25,14 @@ C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.Data
 C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.DeletedManufacturerModelandYearfieldsfromTrucktable.resources
 C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.MaderequiredfieldforCategoryIdFKTablePartCatalog.resources
 C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.AddedTicketNumberfieldtoPartsReportedTable.resources
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.ChangedtablenamePartsReportedtoTruckInspection.resources
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.RemovedIdentityforTicketNumberfieldinTableTruckInspection.resources
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.RemovedTicketNumbercolumntogetridofidentityfieldinTableTruckInspection.resources
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.AddedTicketNumbercolumnwithnoidentityinTableTruckInspection.resources
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.UpdatedjointablelinknameinDrivertablefromPartsReportedtoTruckInspection.resources
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.DroppedPartReportedIdFKintableDriverComment.resources
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.DroppedTruckInspectionFKintableDriverCommentandaddedTicketNumberfieldtochainbothtables.resources
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.DeletedCommentsintableDriverComments.resources
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.DroppedDriverCommentreferenceintableTruckInspection.resources
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.UpdatedFKforalltablesfromPartReportedtoTruckInspection.resources
+C:\Projects\TruckCheckUp\TruckCheckUp.DataAccess.SQL\obj\Debug\TruckCheckUp.DataAccess.SQL.Migrations.DeletedReportedDateinTruckInspectionTable.resources

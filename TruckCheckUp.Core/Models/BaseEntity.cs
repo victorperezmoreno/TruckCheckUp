@@ -15,7 +15,7 @@ namespace TruckCheckUp.Core.Models
         {
             //Generate Guid for new records
             this.Id = Guid.NewGuid().ToString();
-            //Register date of table creation
+            //Register date of row creation
             this.CreationDate = DateTime.Now;
         }
     }

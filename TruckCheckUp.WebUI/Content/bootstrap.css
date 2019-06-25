@@ -2746,6 +2746,8 @@ textarea.form-control {
   display: block;
   margin-top: 10px;
   margin-bottom: 10px;
+  padding-bottom: 10px; 
+  
 }
 .radio.disabled label,
 .checkbox.disabled label,

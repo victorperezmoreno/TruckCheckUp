@@ -73,7 +73,7 @@ namespace TruckCheckUp.WebUI.Controllers
         {
             try
             {
-                var truckManufacturerAddResult = _truckManufacturerService.AddTruckManufacturer(truckManufacturer);
+                var truckManufacturerAddResult = _truckManufacturerService.ValidateTruckManufacturerToAdd(truckManufacturer);
                 return Json(truckManufacturerAddResult, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
@@ -87,7 +87,7 @@ namespace TruckCheckUp.WebUI.Controllers
         {
             try
             {
-                var truckManufacturerUpdateResult = _truckManufacturerService.UpdateTruckManufacturer(truckManufacturer);
+                var truckManufacturerUpdateResult = _truckManufacturerService.ValidateTruckManufacturerToUpdate(truckManufacturer);
                 return Json(truckManufacturerUpdateResult, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
@@ -102,7 +102,7 @@ namespace TruckCheckUp.WebUI.Controllers
         {
             try
             {
-              _truckManufacturerService.DeleteTruckManufacturer(Id);
+              _truckManufacturerService.ValidateTruckManufacturerToDelete(Id);
               return Json(Id, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)

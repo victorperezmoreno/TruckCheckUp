@@ -1,4 +1,5 @@
 using System;
+using TruckCheckUp.Contracts.Services;
 using TruckCheckUp.Core.Contracts.DataAccess;
 using TruckCheckUp.Core.Contracts.InputValidation;
 using TruckCheckUp.Core.Contracts.Logger;
@@ -54,10 +55,10 @@ namespace TruckCheckUp.WebUI
             container.RegisterType<IRepository<MechanicComment>, SQLRepository<MechanicComment>>();
             container.RegisterType<IRepository<PartCatalog>, SQLRepository<PartCatalog>>();
             container.RegisterType<IRepository<PartCategory>, SQLRepository<PartCategory>>();
-            container.RegisterType<IRepository<PartReported>, SQLRepository<PartReported>>();
+            container.RegisterType<IRepository<TruckInspection>, SQLRepository<TruckInspection>>();
             container.RegisterType<IRepository<Situation>, SQLRepository<Situation>>();
             container.RegisterType<IRepository<Truck>, SQLRepository<Truck>>();
-            container.RegisterType<IRepository<TruckManufacturer>, SQLRepository<TruckManufacturer>>();
+            container.RegisterType<IRepository<TruckInspection>, SQLRepository<TruckInspection>>();
             container.RegisterType<IRepository<TruckModel>, SQLRepository<TruckModel>>();
             container.RegisterType<IRepository<TruckYear>, SQLRepository<TruckYear>>();
            
@@ -75,6 +76,8 @@ namespace TruckCheckUp.WebUI
             container.RegisterType<ITruckManufacturerService, TruckManufacturerService>();
             container.RegisterType<IPartCategoryService, PartCategoryService>();
             container.RegisterType<IPartCatalogService, PartCatalogService>();
+            container.RegisterType<ITruckInspectionService, TruckInspectionService>();
+            container.RegisterType<ITruckInspectionServiceExtensionMethods, TruckInspectionServiceExtensionMethods>();
         }
     }
 }

@@ -16,10 +16,10 @@ namespace TruckCheckUp.Core.Models
 
         public DateTime StatusDate { get; set; }
 
-        [ForeignKey("PartReported")]
+        [ForeignKey("TruckInspection")]
         public string PartReportedId { get; set; }
 
         // Navigation properties
-        public virtual PartReported PartReported { get; set; }
+        public virtual TruckInspection TruckInspection { get; set; }
     }
 }

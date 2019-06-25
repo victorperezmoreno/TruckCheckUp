@@ -10,11 +10,9 @@ namespace TruckCheckUp.Core.Models
         [DisplayName("Details")]
         public string CommentDriver { get; set; }
 
-        [ForeignKey("PartReported")]
-        public string PartReportedId { get; set; }
-
-        // Navigation properties
-        public virtual PartReported PartReported { get; set; }
+        [Required]
+        [Display(Name = "Ticker Number")]
+        public int TicketNumber { get; set; }
 
     }
 }

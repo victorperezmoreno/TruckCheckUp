@@ -206,6 +206,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PartCatalogManagementController.cs" />
     <Compile Include="Controllers\PartCategoryManagementController.cs" />
+    <Compile Include="Controllers\TruckInspectionController.cs" />
     <Compile Include="Controllers\TruckManagementController.cs" />
     <Compile Include="Controllers\TruckManufacturerManagementController.cs" />
     <Compile Include="Controllers\TruckModelManagementController.cs" />
@@ -222,8 +223,12 @@
     <Content Include="Content\bootstrap-spacelabs.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-toggle.css" />
+    <Content Include="Content\bootstrap-toggle.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap2-toggle.css" />
+    <Content Include="Content\bootstrap2-toggle.min.css" />
     <Content Include="Content\Images\404-Error.jpg" />
     <Content Include="Content\Images\500-Error.png" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -279,12 +284,18 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Scripts\bootstrap-toggle.js" />
+    <Content Include="Scripts\bootstrap-toggle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap2-toggle.js" />
+    <Content Include="Scripts\bootstrap2-toggle.min.js" />
     <Content Include="Scripts\Custom\Common.js" />
     <Content Include="Scripts\Custom\truck-1.0.js" />
     <Content Include="Scripts\Custom\truckmanufacturer-1.0.js" />
     <Content Include="Scripts\Custom\truckmodel-1.0.js" />
+    <Content Include="Scripts\bootstrap2-toggle.min.js.map" />
+    <Content Include="Scripts\bootstrap-toggle.min.js.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -358,6 +369,8 @@
     <Content Include="Views\PartCatalogManagement\Create.cshtml" />
     <Content Include="Views\PartCatalogManagement\Edit.cshtml" />
     <Content Include="Views\PartCatalogManagement\Delete.cshtml" />
+    <Content Include="Views\TruckInspection\Create.cshtml" />
+    <Content Include="Views\Shared\_Alerts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

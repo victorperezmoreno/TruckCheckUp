@@ -8,18 +8,14 @@ using System.Threading.Tasks;
 
 namespace TruckCheckUp.Core.Models
 {
-    public class PartReported :BaseEntity
+    public class TruckInspection :BaseEntity
     {
         // Additional fields needed
-        [DataType(DataType.Date)]
-        public DateTime ReportedDate { get; set; }
-
         [Required]
         public int Mileage { get; set; }
 
         [Required]
         [Display(Name = "Ticker Number")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TicketNumber { get; set; }
 
         [Required]
@@ -43,15 +39,12 @@ namespace TruckCheckUp.Core.Models
 
         public virtual ICollection<Situation> Situation { get; set; }
 
-        public virtual ICollection<DriverComment> DriverComment { get; set; }
-
         public virtual ICollection<MechanicComment> MechanicComment { get; set; }
 
-        //Initialize lists for each 1:N relationship with PartReported
-        public PartReported()
+        //Initialize lists for each 1:N relationship
+        public TruckInspection()
         {
             this.Situation = new List<Situation>();
-            this.DriverComment = new List<DriverComment>();
             this.MechanicComment = new List<MechanicComment>();
         }
     }

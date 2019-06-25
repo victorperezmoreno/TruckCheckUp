@@ -17,10 +17,10 @@ namespace TruckCheckUp.Core.Models
         [DisplayName("Comments")]
         public string CommentMechanic { get; set; }
 
-        [ForeignKey("PartReported")]
-        public string PartReportedId { get; set; }
+        [ForeignKey("TruckInspection")]
+        public string TruckInspectionId { get; set; }
 
         // Navigation properties
-        public virtual PartReported PartReported { get; set; }
+        public virtual TruckInspection TruckInspection { get; set; }
     }
 }

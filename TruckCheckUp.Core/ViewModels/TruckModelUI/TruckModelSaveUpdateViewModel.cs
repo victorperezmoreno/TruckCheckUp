@@ -21,7 +21,7 @@ namespace TruckCheckUp.Core.ViewModels.TruckModelUI
 
         public TruckModelSaveUpdateViewModel()
         {
-
+            ManufacturerDropDownList = new List<TruckManufacturerDropDownListViewModel>();
         }
     }
 }

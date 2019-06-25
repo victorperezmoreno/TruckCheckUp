@@ -24,12 +24,12 @@ namespace TruckCheckUp.Core.Models
         public virtual PartCategory PartCategory { get; set; }
 
         //Link or connection to "join" table
-        public virtual ICollection<PartReported> PartReported { get; set; }
+        public virtual ICollection<TruckInspection> TruckInspection { get; set; }
 
         //Initialize list of part reported on class creation
         public PartCatalog()
         {
-            this.PartReported = new List<PartReported>();
+            this.TruckInspection = new List<TruckInspection>();
         }
 
     }
