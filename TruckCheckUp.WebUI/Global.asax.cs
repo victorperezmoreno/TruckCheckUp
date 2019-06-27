@@ -45,7 +45,7 @@ namespace TruckCheckUp.WebUI
            "Page : " + HttpContext.Current.Request.Url.AbsoluteUri, exception);
 
             var httpException = exception as HttpException;
-            
+
             if (httpException != null)
             {
                 if (httpException.GetHttpCode() == 404)
@@ -56,12 +56,11 @@ namespace TruckCheckUp.WebUI
                 {
                     Response.RedirectToRoute("Default", new { controller = "ErrorHandler", action = "ServerError" });
                 }
-            }
-            else
-            {
-                Response.RedirectToRoute("Default", new { controller = "ErrorHandler", action = "Error" });
+                else
+                {
+                    Response.RedirectToRoute("Default", new { controller = "ErrorHandler", action = "Error" });
+                }
             }
         }
-
     }
 }

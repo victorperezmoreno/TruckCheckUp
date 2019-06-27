@@ -15,11 +15,12 @@ namespace TruckCheckUp.Core.ViewModels.TruckInspection
         [Required]
         public string TruckId { get; set; }
         //To save truck mileage from textbox
+        //[ValidTruckMileage] 
         [Required]
-        [ValidTruckMileage] 
-        [RegularExpression("(^[0-9]+$)", ErrorMessage = "Only numbers are allowed")]
+        //[Range(0, int.MaxValue, ErrorMessage = "Please enter a value bigger than {1}")]
+        [RegularExpression("(^[0-9]+$)", ErrorMessage = "Only positive numbers allowed")]
         [Display(Name = "Mileage")]
-        public int CurrentMileage { get; set; }
+        public string CurrentMileage { get; set; }
 
         public int LastMileageReported { get; set; }
         
@@ -45,6 +46,7 @@ namespace TruckCheckUp.Core.ViewModels.TruckInspection
         public List<CheckBoxListViewModel> FluidsCatalog { get; set; }
 
         //To save comments on parts reported
+        [RegularExpression("^[a-zA-Z0-9_ .&'-]", ErrorMessage = "Only letters and numbers allowed")]
         public string Comments { get; set; }
 
         public TruckInspectionViewModel()

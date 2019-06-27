@@ -43,9 +43,13 @@ namespace TruckCheckUp.WebUI.Controllers
                 }
                 else
                 {
-                    if (truckInspectionReturnedFromServiceLayer.CurrentMileage < truckInspectionReturnedFromServiceLayer.LastMileageReported)
+                    int currentMileageConvertedToInt;
+                    if (int.TryParse(truckInspectionReturnedFromServiceLayer.CurrentMileage, out currentMileageConvertedToInt))
                     {
-                        ModelState.AddModelError("CurrentMileage", "Mileage entered must be greater than " + truckInspection.LastMileageReported.ToString());
+                        if (currentMileageConvertedToInt < truckInspectionReturnedFromServiceLayer.LastMileageReported)
+                        {
+                            ModelState.AddModelError("CurrentMileage", "Mileage entered must be greater than " + truckInspection.LastMileageReported.ToString());
+                        }
                     }
                     _truckInspectionService.PopulateDriversTrucksAndPartsCatalog(truckInspectionReturnedFromServiceLayer);
                     return View(truckInspectionReturnedFromServiceLayer);

@@ -63,7 +63,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             {
                 DriverId = "1",
                 TruckId = "10",
-                CurrentMileage = 2000,
+                CurrentMileage = "2000",
                 LastMileageReported = 0,
                 TicketNumber = 0,
                 LastTimeAReportWasSubmitted = DateTime.Now.Date,
@@ -127,7 +127,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             {
                 DriverId = "1",
                 TruckId = "10",
-                CurrentMileage = 2000,
+                CurrentMileage = "2000",
                 LastMileageReported = 0,
                 TicketNumber = 0,
                 LastTimeAReportWasSubmitted = DateTime.Now.Date,
@@ -191,7 +191,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             {
                 DriverId = "1",
                 TruckId = "10",
-                CurrentMileage = 900,
+                CurrentMileage = "900",
                 LastMileageReported = 0,
                 TicketNumber = 0,
                 LastTimeAReportWasSubmitted = DateTime.Now.Date,
@@ -255,7 +255,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             {
                 DriverId = "1",
                 TruckId = "10",
-                CurrentMileage = 900,
+                CurrentMileage = "900",
                 LastMileageReported = 0,
                 TicketNumber = 0,
                 LastTimeAReportWasSubmitted = DateTime.Now.Date,
@@ -319,7 +319,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             {
                 DriverId = "1",
                 TruckId = "10",
-                CurrentMileage = 2000,
+                CurrentMileage = "2000",
                 LastMileageReported = 0,
                 TicketNumber = 0,
                 LastTimeAReportWasSubmitted = DateTime.Now.Date,
@@ -383,7 +383,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             {
                 DriverId = "1",
                 TruckId = "10",
-                CurrentMileage = 2000,
+                CurrentMileage = "2000",
                 LastMileageReported = 0,
                 TicketNumber = 0,
                 LastTimeAReportWasSubmitted = DateTime.Now.Date,
@@ -447,7 +447,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             {
                 DriverId = "1",
                 TruckId = "10",
-                CurrentMileage = 2000,
+                CurrentMileage = "2000",
                 LastMileageReported = 0,
                 TicketNumber = 0,
                 LastTimeAReportWasSubmitted = DateTime.Now.Date,
@@ -511,7 +511,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             {
                 DriverId = "1",
                 TruckId = "10",
-                CurrentMileage = 2000,
+                CurrentMileage = "2000",
                 LastMileageReported = 0,
                 TicketNumber = 0,
                 LastTimeAReportWasSubmitted = DateTime.Now.Date,
@@ -575,7 +575,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             {
                 DriverId = "1",
                 TruckId = "10",
-                CurrentMileage = 900,
+                CurrentMileage = "900",
                 LastMileageReported = 0,
                 TicketNumber = 0,
                 LastTimeAReportWasSubmitted = DateTime.Now.Date,
@@ -639,7 +639,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             {
                 DriverId = "1",
                 TruckId = "10",
-                CurrentMileage = 900,
+                CurrentMileage = "900",
                 LastMileageReported = 0,
                 TicketNumber = 0,
                 LastTimeAReportWasSubmitted = DateTime.Now.Date,

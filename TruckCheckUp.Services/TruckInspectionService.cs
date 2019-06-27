@@ -125,7 +125,8 @@ namespace TruckCheckUp.Services
 
         private bool MileageReportedIsNotGreaterThanPreviousOne(TruckInspectionViewModel mileageToValidate)
         {
-            if (mileageToValidate.CurrentMileage < mileageToValidate.LastMileageReported)
+            var intCurrentMileage = Convert.ToInt32(mileageToValidate.CurrentMileage);
+            if (intCurrentMileage < mileageToValidate.LastMileageReported)
             {
                 return true;
             }
@@ -171,7 +172,7 @@ namespace TruckCheckUp.Services
                 var truckInspectionToInsert = new TruckInspection();
                 truckInspectionToInsert.DriverId = inspectionObject.DriverId;
                 truckInspectionToInsert.TruckId = inspectionObject.TruckId;
-                truckInspectionToInsert.Mileage = inspectionObject.CurrentMileage;
+                truckInspectionToInsert.Mileage = Convert.ToInt32(inspectionObject.CurrentMileage);
                 truckInspectionToInsert.IsOK = part.IsChecked;
                 truckInspectionToInsert.TicketNumber = inspectionObject.TicketNumber;
                 truckInspectionToInsert.PartCatalogId = part.Id;
