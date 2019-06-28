@@ -18,7 +18,6 @@ namespace TruckCheckUp.Services
         private IRepository<Truck> _truckContext;
         private IRepository<DriverComment> _driverCommentContext;
         private ILogger _logger;
-        //private ITruckInspectionServiceExtensionMethods _extensionMethods;
         private string truckInspectionTableNameUsedByLogger;
         private string driverCommentsTableNameUsedByLogger;
 
@@ -32,7 +31,6 @@ namespace TruckCheckUp.Services
             _truckContext = truckContext;
             _driverCommentContext = driverCommentContext;
             _logger = logger;
-            //_extensionMethods = extensionMethods;
             truckInspectionTableNameUsedByLogger = "TruckInspection";
             driverCommentsTableNameUsedByLogger = "DriverComments";
         }
@@ -63,7 +61,10 @@ namespace TruckCheckUp.Services
             }
             else
             {
-                AddDangerMessage(inspectionToValidate, "Report already submitted for this truck", true);
+                if (InspectionReportHasNOTBeenSubmittedForThisTruckToday(inspectionToValidate) == false)
+                {
+                    AddDangerMessage(inspectionToValidate, "Report already submitted for this truck", true);
+                }
             }
             return inspectionToValidate;
         }
@@ -96,16 +97,12 @@ namespace TruckCheckUp.Services
 
         private bool ValidateTruckInspectionData(TruckInspectionViewModel inspectionToValidate)
         {
-            if (InspectionReportHasBeenSubmittedForThisTruckToday(inspectionToValidate))
+            if (InspectionReportHasNOTBeenSubmittedForThisTruckToday(inspectionToValidate) && MileageReportedIsGreaterThanPreviousOne(inspectionToValidate))
             {               
-                return false;
+                return true;
             }
-            else if (MileageReportedIsNotGreaterThanPreviousOne(inspectionToValidate))
-            {
-                return false;
-            }
-
-            return true;
+            
+            return false;
         }
 
         private void AddSuccessMessage(TruckInspectionViewModel inspectionToCreate, string message, bool dismissable)
@@ -122,19 +119,19 @@ namespace TruckCheckUp.Services
             inspectionCreated.Dismissable = dismissable;
         }
 
-        private bool MileageReportedIsNotGreaterThanPreviousOne(TruckInspectionViewModel mileageToValidate)
+        private bool MileageReportedIsGreaterThanPreviousOne(TruckInspectionViewModel mileageToValidate)
         {
             var intCurrentMileage = Convert.ToInt32(mileageToValidate.CurrentMileage);
-            if (intCurrentMileage < mileageToValidate.LastMileageReported)
+            if (intCurrentMileage > mileageToValidate.LastMileageReported)
             {
                 return true;
             }
             return false;
         }
 
-        private bool InspectionReportHasBeenSubmittedForThisTruckToday(TruckInspectionViewModel InspectionObject)
+        private bool InspectionReportHasNOTBeenSubmittedForThisTruckToday(TruckInspectionViewModel InspectionObject)
         {
-            if (InspectionObject.LastTimeAReportWasSubmitted == DateTime.Today.Date)
+            if (DateTime.Today.Date > InspectionObject.LastTimeAReportWasSubmitted)
             {
                 return true;
             }

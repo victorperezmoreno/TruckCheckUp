@@ -18,7 +18,7 @@
                 @Html.Raw(Model.Message)
             </div>
         }
-        <br/>
+        <br />
         <div class="form-group">
             @Html.LabelFor(model => model.DriverList, htmlAttributes: new { @class = "control-label col-md-1" })
             <div class="col-md-6">
@@ -103,6 +103,7 @@
             </div>
             <div class="panel-body">
                 @Html.TextAreaFor(model => model.Comments, 2, 50, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Comments, "", new { @class = "text-danger" })
             </div>
         </div>
 

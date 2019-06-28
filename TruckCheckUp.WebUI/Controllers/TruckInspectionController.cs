@@ -46,7 +46,7 @@ namespace TruckCheckUp.WebUI.Controllers
                     int currentMileageConvertedToInt;
                     if (int.TryParse(truckInspectionReturnedFromServiceLayer.CurrentMileage, out currentMileageConvertedToInt))
                     {
-                        if (currentMileageConvertedToInt < truckInspectionReturnedFromServiceLayer.LastMileageReported)
+                        if (currentMileageConvertedToInt <= truckInspectionReturnedFromServiceLayer.LastMileageReported)
                         {
                             ModelState.AddModelError("CurrentMileage", "Mileage entered must be greater than " + truckInspection.LastMileageReported.ToString());
                         }
