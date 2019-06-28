@@ -46,7 +46,7 @@ namespace TruckCheckUp.Core.ViewModels.TruckInspection
         public List<CheckBoxListViewModel> FluidsCatalog { get; set; }
 
         //To save comments on parts reported
-        [RegularExpression(@"^[\w\-\s]+$", ErrorMessage = "Only letters and numbers allowed")]
+        [RegularExpression("^[\\w. ,'#&$~@!&quot;-]*$", ErrorMessage = "Only letters and numbers allowed")]
         public string Comments { get; set; }
 
         public TruckInspectionViewModel()
