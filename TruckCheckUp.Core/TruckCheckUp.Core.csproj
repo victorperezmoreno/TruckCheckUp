@@ -55,7 +55,6 @@
     <Compile Include="Contracts\Services\IPartCatalogService.cs" />
     <Compile Include="Contracts\Services\IPartCategoryService.cs" />
     <Compile Include="Contracts\Services\ITruckInspectionService.cs" />
-    <Compile Include="Contracts\Services\ITruckInspectionServiceExtensionMethods.cs" />
     <Compile Include="Contracts\Services\ITruckManufacturerService.cs" />
     <Compile Include="Contracts\Services\ITruckModelService.cs" />
     <Compile Include="Models\Response.cs" />
@@ -72,7 +71,6 @@
     <Compile Include="Models\TruckManufacturer.cs" />
     <Compile Include="Models\TruckModel.cs" />
     <Compile Include="Models\TruckYear.cs" />
-    <Compile Include="ViewModels\TruckInspection\TruckInspectionDTO.cs" />
     <Compile Include="ViewModels\TruckInspection\ValidTruckMileage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CatalogUI\PartViewModel.cs" />
