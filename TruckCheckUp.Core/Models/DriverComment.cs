@@ -11,8 +11,8 @@ namespace TruckCheckUp.Core.Models
         public string CommentDriver { get; set; }
 
         [Required]
-        [Display(Name = "Ticker Number")]
-        public int TicketNumber { get; set; }
+        [Display(Name = "Report Number")]
+        public int ReportId { get; set; }
 
     }
 }

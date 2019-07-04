@@ -74,7 +74,7 @@ namespace TruckCheckUp.Services
             inspectionObjectFromView.LastMileageReported = RetrieveLastMileageReportedPerTruckAndDriver(inspectionObjectFromView);
             inspectionObjectFromView.LastTimeAReportWasSubmitted = RetrieveDateLatestReportWasSubmittedForThisTruck(inspectionObjectFromView);
             //Read maximum ticket number in TruckInspection Table and add 1 to generate new one
-            inspectionObjectFromView.TicketNumber = RetrieveLastTicketNumber(inspectionObjectFromView);
+            //inspectionObjectFromView.ReportId = RetrieveLastReportId(inspectionObjectFromView);
 
             var NewTruckInspectionObject = new TruckInspectionViewModel()
             {
@@ -82,7 +82,7 @@ namespace TruckCheckUp.Services
                 TruckId = inspectionObjectFromView.TruckId,
                 CurrentMileage = inspectionObjectFromView.CurrentMileage,
                 LastMileageReported = inspectionObjectFromView.LastMileageReported,
-                TicketNumber = inspectionObjectFromView.TicketNumber,
+                ReportId = inspectionObjectFromView.ReportId,
                 LastTimeAReportWasSubmitted = inspectionObjectFromView.LastTimeAReportWasSubmitted,
                 DriverList = inspectionObjectFromView.DriverList,
                 TruckList = inspectionObjectFromView.TruckList,
@@ -150,14 +150,14 @@ namespace TruckCheckUp.Services
             AddCatalogItemsIntoTruckInspectionTable(inspectionFromUser, inspectionFromUser.FluidsCatalog);
 
             //Log TruckInspection insertion notification and save the data into DB
-            _logger.Info("Inserted ticket number report " + inspectionFromUser.TicketNumber.ToString() + " into Table " + truckInspectionTableNameUsedByLogger);
+            _logger.Info("Inserted report number " + inspectionFromUser.ReportId.ToString() + " into Table " + truckInspectionTableNameUsedByLogger);
             _truckInspectionContext.Commit();
 
             //Insert comments from Driver into DriverComment table
             AddTruckInspectionCommentsToDriverCommentsTable(inspectionFromUser);
 
             //Log Comments insertion notification and save the data into DB
-            _logger.Info("Inserted ticket number report " + inspectionFromUser.TicketNumber.ToString() + " into Table " + driverCommentsTableNameUsedByLogger);
+            _logger.Info("Inserted report number " + inspectionFromUser.ReportId.ToString() + " into Table " + driverCommentsTableNameUsedByLogger);
             _driverCommentContext.Commit();
         }
 
@@ -169,9 +169,9 @@ namespace TruckCheckUp.Services
                 truckInspectionToInsert.DriverId = inspectionObject.DriverId;
                 truckInspectionToInsert.TruckId = inspectionObject.TruckId;
                 truckInspectionToInsert.Mileage = Convert.ToInt32(inspectionObject.CurrentMileage);
-                truckInspectionToInsert.IsOK = part.IsChecked;
-                truckInspectionToInsert.TicketNumber = inspectionObject.TicketNumber;
-                truckInspectionToInsert.PartCatalogId = part.Id;
+                //truckInspectionToInsert.IsOK = part.IsChecked;
+                //truckInspectionToInsert.ReportId = inspectionObject.ReportId;
+                //truckInspectionToInsert.PartCatalogId = part.Id;
                 _truckInspectionContext.Insert(truckInspectionToInsert);
             }
         }
@@ -180,7 +180,7 @@ namespace TruckCheckUp.Services
         {
             var driverComments = new DriverComment();
             driverComments.CommentDriver = truckInspection.Comments;
-            driverComments.TicketNumber = truckInspection.TicketNumber;
+            driverComments.ReportId = truckInspection.ReportId;
             _driverCommentContext.Insert(driverComments);
         }
 
@@ -262,9 +262,9 @@ namespace TruckCheckUp.Services
             return _truckInspectionContext.Collection().Where(d => d.TruckId == inspectionFromUser.TruckId).DefaultIfEmpty().Max(d => d == null ? DateTime.Now : d.CreationDate).Date;
         }
 
-        private int RetrieveLastTicketNumber(TruckInspectionViewModel inspectionFromUser)
-        {
-            return (_truckInspectionContext.Collection().DefaultIfEmpty().Max(t => t == null ? 0 : t.TicketNumber)) +1;
-        }
+        //private int RetrieveLastReportId(TruckInspectionViewModel inspectionFromUser)
+        //{
+        //    return (_truckInspectionContext.Collection().DefaultIfEmpty().Max(t => t == null ? 0 : t.ReportId)) +1;
+        //}
     }
 }

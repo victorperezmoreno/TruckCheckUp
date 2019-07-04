@@ -30,9 +30,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
             
             /****Create a Mock TruckInspection object that represents current data in DB ****/
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId ="10", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false});
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId ="10", Mileage = 1000});
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11", Mileage = 1000});
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12",  Mileage = 1000});
 
             /****Create a Mock Driver object that represents current data in DB****/
             _driverContext.Insert(new Driver() {FirstName = "Juan", LastName = "Gonzalez" });
@@ -106,9 +106,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
 
             /****Create a Mock TruckInspection object that represents current data in DB ****/
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now, DriverId = "1", TruckId = "10", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now, DriverId = "1", TruckId = "10", Mileage = 1000,});
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11",Mileage = 1000,});
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12", Mileage = 1000});
 
             /****Create a Mock Driver object that represents current data in DB****/
             _driverContext.Insert(new Driver() { FirstName = "Juan", LastName = "Gonzalez" });
@@ -180,9 +180,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
 
             /****Create a Mock TruckInspection object that represents current data in DB ****/
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "10", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "10",Mileage = 1000});
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11",Mileage = 1000});
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12",Mileage = 1000});
 
             /****Create a Mock Driver object that represents current data in DB****/
             _driverContext.Insert(new Driver() { FirstName = "Juan", LastName = "Gonzalez" });
@@ -254,9 +254,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
 
             /****Create a Mock TruckInspection object that represents current data in DB ****/
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now, DriverId = "1", TruckId = "10", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now, DriverId = "1", TruckId = "10", Mileage = 1000});
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11", Mileage = 1000});
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12", Mileage = 1000});
 
             /****Create a Mock Driver object that represents current data in DB****/
             _driverContext.Insert(new Driver() { FirstName = "Juan", LastName = "Gonzalez" });
@@ -328,9 +328,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
 
             /****Create a Mock TruckInspection object that represents current data in DB ****/
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "10", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "10", Mileage = 1000});
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11", Mileage = 1000});
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12", Mileage = 1000});
 
             /****Create a Mock Driver object that represents current data in DB****/
             _driverContext.Insert(new Driver() { FirstName = "Juan", LastName = "Gonzalez" });
@@ -402,9 +402,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
 
             /****Create a Mock TruckInspection object that represents current data in DB ****/
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now, DriverId = "1", TruckId = "10", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now, DriverId = "1", TruckId = "10", Mileage = 1000});
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11", Mileage = 1000});
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12", Mileage = 1000});
 
             /****Create a Mock Driver object that represents current data in DB****/
             _driverContext.Insert(new Driver() { FirstName = "Juan", LastName = "Gonzalez" });
@@ -476,9 +476,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
 
             /****Create a Mock TruckInspection object that represents current data in DB ****/
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "10", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "10", Mileage = 1000});
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11", Mileage = 1000});
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12", Mileage = 1000});
 
             /****Create a Mock Driver object that represents current data in DB****/
             _driverContext.Insert(new Driver() { FirstName = "Juan", LastName = "Gonzalez" });
@@ -550,9 +550,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
 
             /****Create a Mock TruckInspection object that represents current data in DB ****/
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now, DriverId = "1", TruckId = "10", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now, DriverId = "1", TruckId = "10", Mileage = 1000});
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11", Mileage = 1000});
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12", Mileage = 1000});
 
             /****Create a Mock Driver object that represents current data in DB****/
             _driverContext.Insert(new Driver() { FirstName = "Juan", LastName = "Gonzalez" });
@@ -624,9 +624,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
 
             /****Create a Mock TruckInspection object that represents current data in DB ****/
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "10", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "10", Mileage = 1000});
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11", Mileage = 1000});
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12", Mileage = 1000});
 
             /****Create a Mock Driver object that represents current data in DB****/
             _driverContext.Insert(new Driver() { FirstName = "Juan", LastName = "Gonzalez" });
@@ -698,9 +698,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
 
             /****Create a Mock TruckInspection object that represents current data in DB ****/
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now, DriverId = "1", TruckId = "10", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12", TicketNumber = 1, Mileage = 1000, PartCatalogId = "1", IsOK = false });
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now, DriverId = "1", TruckId = "10", Mileage = 1000});
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11", Mileage = 1000});
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12", Mileage = 1000});
 
             /****Create a Mock Driver object that represents current data in DB****/
             _driverContext.Insert(new Driver() { FirstName = "Juan", LastName = "Gonzalez" });

@@ -57,6 +57,7 @@
     <Compile Include="Contracts\Services\ITruckInspectionService.cs" />
     <Compile Include="Contracts\Services\ITruckManufacturerService.cs" />
     <Compile Include="Contracts\Services\ITruckModelService.cs" />
+    <Compile Include="Models\PartsInspected.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="ViewModels\AlertStyle.cs" />
     <Compile Include="Models\BaseEntity.cs" />

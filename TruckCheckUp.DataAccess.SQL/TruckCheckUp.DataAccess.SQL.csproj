@@ -142,6 +142,62 @@
     <Compile Include="Migrations\201906181624130_Deleted ReportedDate in TruckInspection Table.Designer.cs">
       <DependentUpon>201906181624130_Deleted ReportedDate in TruckInspection Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907021716239_Added ReportId to TruckInspection Table.cs" />
+    <Compile Include="Migrations\201907021716239_Added ReportId to TruckInspection Table.Designer.cs">
+      <DependentUpon>201907021716239_Added ReportId to TruckInspection Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907021940092_Broke relationship between MechanicComment and TruckInspection.cs" />
+    <Compile Include="Migrations\201907021940092_Broke relationship between MechanicComment and TruckInspection.Designer.cs">
+      <DependentUpon>201907021940092_Broke relationship between MechanicComment and TruckInspection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907022022343_Dropped CommentDate in Table MechanicComment.cs" />
+    <Compile Include="Migrations\201907022022343_Dropped CommentDate in Table MechanicComment.Designer.cs">
+      <DependentUpon>201907022022343_Dropped CommentDate in Table MechanicComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907022046442_Dropped StatusDate column from table Situation.cs" />
+    <Compile Include="Migrations\201907022046442_Dropped StatusDate column from table Situation.Designer.cs">
+      <DependentUpon>201907022046442_Dropped StatusDate column from table Situation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907022110133_Dropped Status column from table Situation.cs" />
+    <Compile Include="Migrations\201907022110133_Dropped Status column from table Situation.Designer.cs">
+      <DependentUpon>201907022110133_Dropped Status column from table Situation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907032112243_Dropped PartCatalog FK in TruckInspection table.cs" />
+    <Compile Include="Migrations\201907032112243_Dropped PartCatalog FK in TruckInspection table.Designer.cs">
+      <DependentUpon>201907032112243_Dropped PartCatalog FK in TruckInspection table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907032130599_Dropped ReportId field in TruckInspection table.cs" />
+    <Compile Include="Migrations\201907032130599_Dropped ReportId field in TruckInspection table.Designer.cs">
+      <DependentUpon>201907032130599_Dropped ReportId field in TruckInspection table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907032134301_Dropped TicketNumber field in TruckInspection table.cs" />
+    <Compile Include="Migrations\201907032134301_Dropped TicketNumber field in TruckInspection table.Designer.cs">
+      <DependentUpon>201907032134301_Dropped TicketNumber field in TruckInspection table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907032144148_Dropped IsOK field in TruckInspection table.cs" />
+    <Compile Include="Migrations\201907032144148_Dropped IsOK field in TruckInspection table.Designer.cs">
+      <DependentUpon>201907032144148_Dropped IsOK field in TruckInspection table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907032147278_Added Comments field to TruckInspection table.cs" />
+    <Compile Include="Migrations\201907032147278_Added Comments field to TruckInspection table.Designer.cs">
+      <DependentUpon>201907032147278_Added Comments field to TruckInspection table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907032237381_Added PartsInspected table and mapped to PartCatalog and TruckInspection.cs" />
+    <Compile Include="Migrations\201907032237381_Added PartsInspected table and mapped to PartCatalog and TruckInspection.Designer.cs">
+      <DependentUpon>201907032237381_Added PartsInspected table and mapped to PartCatalog and TruckInspection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907040220087_Added StatusCode and Description fields to Situation table.cs" />
+    <Compile Include="Migrations\201907040220087_Added StatusCode and Description fields to Situation table.Designer.cs">
+      <DependentUpon>201907040220087_Added StatusCode and Description fields to Situation table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907040232196_Added Situation FK to MechanicComments table.cs" />
+    <Compile Include="Migrations\201907040232196_Added Situation FK to MechanicComments table.Designer.cs">
+      <DependentUpon>201907040232196_Added Situation FK to MechanicComments table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907040238459_Added PartsInspected FK to MechanicComments table.cs" />
+    <Compile Include="Migrations\201907040238459_Added PartsInspected FK to MechanicComments table.Designer.cs">
+      <DependentUpon>201907040238459_Added PartsInspected FK to MechanicComments table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLRepository.cs" />
@@ -225,6 +281,48 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906181624130_Deleted ReportedDate in TruckInspection Table.resx">
       <DependentUpon>201906181624130_Deleted ReportedDate in TruckInspection Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907021716239_Added ReportId to TruckInspection Table.resx">
+      <DependentUpon>201907021716239_Added ReportId to TruckInspection Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907021940092_Broke relationship between MechanicComment and TruckInspection.resx">
+      <DependentUpon>201907021940092_Broke relationship between MechanicComment and TruckInspection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907022022343_Dropped CommentDate in Table MechanicComment.resx">
+      <DependentUpon>201907022022343_Dropped CommentDate in Table MechanicComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907022046442_Dropped StatusDate column from table Situation.resx">
+      <DependentUpon>201907022046442_Dropped StatusDate column from table Situation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907022110133_Dropped Status column from table Situation.resx">
+      <DependentUpon>201907022110133_Dropped Status column from table Situation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907032112243_Dropped PartCatalog FK in TruckInspection table.resx">
+      <DependentUpon>201907032112243_Dropped PartCatalog FK in TruckInspection table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907032130599_Dropped ReportId field in TruckInspection table.resx">
+      <DependentUpon>201907032130599_Dropped ReportId field in TruckInspection table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907032134301_Dropped TicketNumber field in TruckInspection table.resx">
+      <DependentUpon>201907032134301_Dropped TicketNumber field in TruckInspection table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907032144148_Dropped IsOK field in TruckInspection table.resx">
+      <DependentUpon>201907032144148_Dropped IsOK field in TruckInspection table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907032147278_Added Comments field to TruckInspection table.resx">
+      <DependentUpon>201907032147278_Added Comments field to TruckInspection table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907032237381_Added PartsInspected table and mapped to PartCatalog and TruckInspection.resx">
+      <DependentUpon>201907032237381_Added PartsInspected table and mapped to PartCatalog and TruckInspection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907040220087_Added StatusCode and Description fields to Situation table.resx">
+      <DependentUpon>201907040220087_Added StatusCode and Description fields to Situation table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907040232196_Added Situation FK to MechanicComments table.resx">
+      <DependentUpon>201907040232196_Added Situation FK to MechanicComments table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907040238459_Added PartsInspected FK to MechanicComments table.resx">
+      <DependentUpon>201907040238459_Added PartsInspected FK to MechanicComments table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

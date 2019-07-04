@@ -10,16 +10,23 @@ using System.Threading.Tasks;
 namespace TruckCheckUp.Core.Models
 {
     public class Situation : BaseEntity
-    {  
+    {
         [Required]
-        public bool Status { get; set; }
+        public int StatusCode { get; set; }
+        [Required]
+        public string Description { get; set; }
 
-        public DateTime StatusDate { get; set; }
-
-        [ForeignKey("TruckInspection")]
-        public string PartReportedId { get; set; }
+        //[ForeignKey("TruckInspection")]
+        //public string PartReportedId { get; set; }
 
         // Navigation properties
-        public virtual TruckInspection TruckInspection { get; set; }
+        //public virtual TruckInspection TruckInspection { get; set; }
+
+        public virtual ICollection<MechanicComment> MechanicComment { get; set; }
+
+        public Situation()
+        {
+            MechanicComment = new List<MechanicComment>();
+        }
     }
 }

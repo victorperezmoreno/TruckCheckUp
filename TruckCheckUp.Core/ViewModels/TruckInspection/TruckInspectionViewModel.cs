@@ -23,8 +23,10 @@ namespace TruckCheckUp.Core.ViewModels.TruckInspection
         public string CurrentMileage { get; set; }
 
         public int LastMileageReported { get; set; }
-        
+
         public int TicketNumber { get; set; }
+
+        public int ReportId { get; set; }
 
         public DateTimeOffset LastTimeAReportWasSubmitted { get; set; }
 
