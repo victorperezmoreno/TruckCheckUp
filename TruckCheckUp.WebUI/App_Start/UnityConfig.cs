@@ -51,7 +51,7 @@ namespace TruckCheckUp.WebUI
             // container.RegisterType<IProductRepository, ProductRepository>();
             //TableType Container
             container.RegisterType<IRepository<Driver>, SQLRepository<Driver>>();
-            container.RegisterType<IRepository<DriverComment>, SQLRepository<DriverComment>>();
+            container.RegisterType<IRepository<PartsInspected>, SQLRepository<PartsInspected>>();
             container.RegisterType<IRepository<MechanicComment>, SQLRepository<MechanicComment>>();
             container.RegisterType<IRepository<PartCatalog>, SQLRepository<PartCatalog>>();
             container.RegisterType<IRepository<PartCategory>, SQLRepository<PartCategory>>();

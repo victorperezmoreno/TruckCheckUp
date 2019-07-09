@@ -18,16 +18,16 @@ namespace TruckCheckUp.WebUI.Tests.Services
     public class TruckInspectionUnitTests
     {
         [TestMethod]
-        public void Test_CurrentMileageReportedIsGreaterThanPreviousSubmittedAndInspectionHasNOTBeenSubmittedForThisTruckToday_InspectionReportAdded()
+        public void Test_CurrentMileageReportedIsGreaterThanPreviousSubmittedAndInspectionHasNOTBeenSubmittedForThisTruckToday_InspectionReportAddedToTruckInspectionTable()
         {
             //Arrange
             IRepository<PartCatalog> _partCatalogContext = new MockTruckCheckUpContext<PartCatalog>();
             IRepository<TruckInspection> _truckInspectionContext = new MockTruckCheckUpContext<TruckInspection>();
             IRepository<Driver> _driverContext = new MockTruckCheckUpContext<Driver>();
             IRepository<Truck> _truckContext = new MockTruckCheckUpContext<Truck>();
-            IRepository<DriverComment> _driverCommentContext = new MockTruckCheckUpContext<DriverComment>();
+            IRepository<PartsInspected> _partsInspectedContext = new MockTruckCheckUpContext<PartsInspected>();
             ILogger _logger = new MockTruckCheckUpLogger();
-            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
+            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _partsInspectedContext, _logger);
             
             /****Create a Mock TruckInspection object that represents current data in DB ****/
             _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId ="10", Mileage = 1000});
@@ -64,33 +64,77 @@ namespace TruckCheckUp.WebUI.Tests.Services
                 TruckId = "10",
                 CurrentMileage = "2000",
                 LastMileageReported = 0,
-                TicketNumber = 0,
+                PartsReportedForeignKeyId = "1234",
                 LastTimeAReportWasSubmitted = DateTime.Now.Date,
                 //Populate of DropDownLists and Checkboxlists is done by the PopulateDriversTrucksAndPartsCatalog method
                 Comments = "Few issues on this truck"
             });
             
-
-            //var truckInspectionObjectFromView = new TruckInspectionViewModel()
-            //{
-            //    DriverId = "1",
-            //    TruckId = "10",
-            //    CurrentMileage = "2000",
-            //    LastMileageReported = 0,
-            //    TicketNumber = 0,
-            //    LastTimeAReportWasSubmitted = DateTime.Now.Date,
-            //    DriverList = _truckInspectionService.ConvertDriverNamesToDropDownListView(_driverContext.Collection().OrderBy(n => n.FirstName).ToList()),
-            //    TruckList = ConvertTruckNumbersToDropDownListView(_truckContext.Collection().OrderBy(t => t.TruckNumber).ToList()),
-            //    GeneralCatalog = ConvertGeneralCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(g => g.PartCategoryId == "607412fa-729b-4dfd-94ee-9a8d84d1eed8").OrderBy(p => p.PartName).ToList()),
-            //    LightsCatalog = ConvertLightsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(l => l.PartCategoryId == "43d29546-83c4-4a92-bafe-262aa58d6496").OrderBy(c => c.PartName).ToList()),
-            //    FluidsCatalog = ConvertFluidsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(f => f.PartCategoryId == "3897c106-7357-4ab8-b594-02020a7ce9c6").OrderBy(c => c.PartName).ToList()),
-            //    Comments = "Few issues on this truck"
-            //};
             //Act
             _truckInspectionService.CreateTruckInspection(truckInspectionObjectFromViewWithDropDownAndCheckBoxListPopulated);
-            var result = _truckInspectionContext.Collection().ToList();
+            var inspectionTableResult = _truckInspectionContext.Collection().ToList();
+           
             //Assert
-            Assert.AreEqual(12, result.Count);
+            Assert.AreEqual(4, inspectionTableResult.Count);  
+        }
+
+        [TestMethod]
+        public void Test_CurrentMileageReportedIsGreaterThanPreviousSubmittedAndInspectionHasNOTBeenSubmittedForThisTruckToday_InspectedItemsAddedToPartsInspectedTable()
+        {
+            //Arrange
+            IRepository<PartCatalog> _partCatalogContext = new MockTruckCheckUpContext<PartCatalog>();
+            IRepository<TruckInspection> _truckInspectionContext = new MockTruckCheckUpContext<TruckInspection>();
+            IRepository<Driver> _driverContext = new MockTruckCheckUpContext<Driver>();
+            IRepository<Truck> _truckContext = new MockTruckCheckUpContext<Truck>();
+            IRepository<PartsInspected> _partsInspectedContext = new MockTruckCheckUpContext<PartsInspected>();
+            ILogger _logger = new MockTruckCheckUpLogger();
+            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _partsInspectedContext, _logger);
+
+            /****Create a Mock TruckInspection object that represents current data in DB ****/
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "10", Mileage = 1000 });
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11", Mileage = 1000 });
+            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12", Mileage = 1000 });
+
+            /****Create a Mock Driver object that represents current data in DB****/
+            _driverContext.Insert(new Driver() { FirstName = "Juan", LastName = "Gonzalez" });
+            _driverContext.Insert(new Driver() { FirstName = "Jose", LastName = "Morales" });
+            _driverContext.Insert(new Driver() { FirstName = "Jesus", LastName = "Ramos" });
+
+            /****Create a Mock Truck object that represents current data in DB ****/
+            _truckContext.Insert(new Truck() { TruckNumber = 10 });
+            _truckContext.Insert(new Truck() { TruckNumber = 11 });
+            _truckContext.Insert(new Truck() { TruckNumber = 12 });
+
+            /*****Create PartCatalog mock class that represents data in DB and add 3 general parts*****/
+            _partCatalogContext.Insert(new PartCatalog() { PartName = "Driver-Front Tire", PartCategoryId = "607412fa-729b-4dfd-94ee-9a8d84d1eed8" });
+            _partCatalogContext.Insert(new PartCatalog() { PartName = "Passenger-Rear Tire", PartCategoryId = "607412fa-729b-4dfd-94ee-9a8d84d1eed8" });
+            _partCatalogContext.Insert(new PartCatalog() { PartName = "Check Engine Light", PartCategoryId = "607412fa-729b-4dfd-94ee-9a8d84d1eed8" });
+            //Add 3 light parts
+            _partCatalogContext.Insert(new PartCatalog() { PartName = "Driver-Brake Light", PartCategoryId = "43d29546-83c4-4a92-bafe-262aa58d6496" });
+            _partCatalogContext.Insert(new PartCatalog() { PartName = "Passenger-Parking Light", PartCategoryId = "43d29546-83c4-4a92-bafe-262aa58d6496" });
+            _partCatalogContext.Insert(new PartCatalog() { PartName = "Driver-Headlamp", PartCategoryId = "43d29546-83c4-4a92-bafe-262aa58d6496" });
+            //add 3 fluid parts
+            _partCatalogContext.Insert(new PartCatalog() { PartName = "Engine Oil", PartCategoryId = "3897c106-7357-4ab8-b594-02020a7ce9c6" });
+            _partCatalogContext.Insert(new PartCatalog() { PartName = "Transmission Oil", PartCategoryId = "3897c106-7357-4ab8-b594-02020a7ce9c6" });
+            _partCatalogContext.Insert(new PartCatalog() { PartName = "Brake fluid", PartCategoryId = "3897c106-7357-4ab8-b594-02020a7ce9c6" });
+
+            //Create ViewModel Mock that represents data coming from View
+            var truckInspectionObjectFromViewWithDropDownAndCheckBoxListPopulated = _truckInspectionService.PopulateDriversTrucksAndPartsCatalog(new TruckInspectionViewModel()
+            {
+                DriverId = "1",
+                TruckId = "10",
+                CurrentMileage = "2000",
+                LastMileageReported = 0,
+                PartsReportedForeignKeyId = "1234",
+                LastTimeAReportWasSubmitted = DateTime.Now.Date,
+                Comments = "Few issues on this truck"
+            });
+
+            //Act
+            _truckInspectionService.CreateTruckInspection(truckInspectionObjectFromViewWithDropDownAndCheckBoxListPopulated);
+            var result = _partsInspectedContext.Collection().ToList();
+            //Assert
+            Assert.AreEqual(9, result.Count);
         }
 
         [TestMethod]
@@ -101,9 +145,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             IRepository<TruckInspection> _truckInspectionContext = new MockTruckCheckUpContext<TruckInspection>();
             IRepository<Driver> _driverContext = new MockTruckCheckUpContext<Driver>();
             IRepository<Truck> _truckContext = new MockTruckCheckUpContext<Truck>();
-            IRepository<DriverComment> _driverCommentContext = new MockTruckCheckUpContext<DriverComment>();
+            IRepository<PartsInspected> _partsInspectedContext = new MockTruckCheckUpContext<PartsInspected>();
             ILogger _logger = new MockTruckCheckUpLogger();
-            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
+            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _partsInspectedContext, _logger);
 
             /****Create a Mock TruckInspection object that represents current data in DB ****/
             _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now, DriverId = "1", TruckId = "10", Mileage = 1000,});
@@ -140,26 +184,12 @@ namespace TruckCheckUp.WebUI.Tests.Services
                 TruckId = "10",
                 CurrentMileage = "2000",
                 LastMileageReported = 0,
-                TicketNumber = 0,
+                PartsReportedForeignKeyId = "1234",
                 LastTimeAReportWasSubmitted = DateTime.Now.Date,
                 //Populate of DropDownLists and Checkboxlists is done by the PopulateDriversTrucksAndPartsCatalog method
                 Comments = "Few issues on this truck"
             });
-            //var truckInspectionObjectFromView = new TruckInspectionViewModel()
-            //{
-            //    DriverId = "1",
-            //    TruckId = "10",
-            //    CurrentMileage = "2000",
-            //    LastMileageReported = 0,
-            //    TicketNumber = 0,
-            //    LastTimeAReportWasSubmitted = DateTime.Now.Date,
-            //    DriverList = _extensionMethods.ConvertDriverNamesToDropDownListView(_driverContext.Collection().OrderBy(n => n.FirstName).ToList()),
-            //    TruckList = _extensionMethods.ConvertTruckNumbersToDropDownListView(_truckContext.Collection().OrderBy(t => t.TruckNumber).ToList()),
-            //    GeneralCatalog = _extensionMethods.ConvertGeneralCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(g => g.PartCategoryId == "607412fa-729b-4dfd-94ee-9a8d84d1eed8").OrderBy(p => p.PartName).ToList()),
-            //    LightsCatalog = _extensionMethods.ConvertLightsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(l => l.PartCategoryId == "43d29546-83c4-4a92-bafe-262aa58d6496").OrderBy(c => c.PartName).ToList()),
-            //    FluidsCatalog = _extensionMethods.ConvertFluidsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(f => f.PartCategoryId == "3897c106-7357-4ab8-b594-02020a7ce9c6").OrderBy(c => c.PartName).ToList()),
-            //    Comments = "Few issues on this truck"
-            //};
+            
             //Act
             _truckInspectionService.CreateTruckInspection(truckInspectionObjectFromViewWithDropDownAndCheckBoxListPopulated);
             var result = _truckInspectionContext.Collection().ToList();
@@ -175,9 +205,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             IRepository<TruckInspection> _truckInspectionContext = new MockTruckCheckUpContext<TruckInspection>();
             IRepository<Driver> _driverContext = new MockTruckCheckUpContext<Driver>();
             IRepository<Truck> _truckContext = new MockTruckCheckUpContext<Truck>();
-            IRepository<DriverComment> _driverCommentContext = new MockTruckCheckUpContext<DriverComment>();
+            IRepository<PartsInspected> _partsInspectedContext = new MockTruckCheckUpContext<PartsInspected>();
             ILogger _logger = new MockTruckCheckUpLogger();
-            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
+            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _partsInspectedContext, _logger);
 
             /****Create a Mock TruckInspection object that represents current data in DB ****/
             _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "10",Mileage = 1000});
@@ -214,26 +244,12 @@ namespace TruckCheckUp.WebUI.Tests.Services
                 TruckId = "10",
                 CurrentMileage = "900",
                 LastMileageReported = 0,
-                TicketNumber = 0,
+                PartsReportedForeignKeyId = "1234",
                 LastTimeAReportWasSubmitted = DateTime.Now.Date,
                 //Populate of DropDownLists and Checkboxlists is done by the PopulateDriversTrucksAndPartsCatalog method
                 Comments = "Few issues on this truck"
             });
-            //var truckInspectionObjectFromView = new TruckInspectionViewModel()
-            //{
-            //    DriverId = "1",
-            //    TruckId = "10",
-            //    CurrentMileage = "900",
-            //    LastMileageReported = 0,
-            //    TicketNumber = 0,
-            //    LastTimeAReportWasSubmitted = DateTime.Now.Date,
-            //    DriverList = _extensionMethods.ConvertDriverNamesToDropDownListView(_driverContext.Collection().OrderBy(n => n.FirstName).ToList()),
-            //    TruckList = _extensionMethods.ConvertTruckNumbersToDropDownListView(_truckContext.Collection().OrderBy(t => t.TruckNumber).ToList()),
-            //    GeneralCatalog = _extensionMethods.ConvertGeneralCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(g => g.PartCategoryId == "607412fa-729b-4dfd-94ee-9a8d84d1eed8").OrderBy(p => p.PartName).ToList()),
-            //    LightsCatalog = _extensionMethods.ConvertLightsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(l => l.PartCategoryId == "43d29546-83c4-4a92-bafe-262aa58d6496").OrderBy(c => c.PartName).ToList()),
-            //    FluidsCatalog = _extensionMethods.ConvertFluidsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(f => f.PartCategoryId == "3897c106-7357-4ab8-b594-02020a7ce9c6").OrderBy(c => c.PartName).ToList()),
-            //    Comments = "Few issues on this truck"
-            //};
+            
             //Act
             _truckInspectionService.CreateTruckInspection(truckInspectionObjectFromViewWithDropDownAndCheckBoxListPopulated);
             var result = _truckInspectionContext.Collection().ToList();
@@ -249,9 +265,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             IRepository<TruckInspection> _truckInspectionContext = new MockTruckCheckUpContext<TruckInspection>();
             IRepository<Driver> _driverContext = new MockTruckCheckUpContext<Driver>();
             IRepository<Truck> _truckContext = new MockTruckCheckUpContext<Truck>();
-            IRepository<DriverComment> _driverCommentContext = new MockTruckCheckUpContext<DriverComment>();
+            IRepository<PartsInspected> _partsInspectedContext = new MockTruckCheckUpContext<PartsInspected>();
             ILogger _logger = new MockTruckCheckUpLogger();
-            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
+            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _partsInspectedContext, _logger);
 
             /****Create a Mock TruckInspection object that represents current data in DB ****/
             _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now, DriverId = "1", TruckId = "10", Mileage = 1000});
@@ -288,26 +304,12 @@ namespace TruckCheckUp.WebUI.Tests.Services
                 TruckId = "10",
                 CurrentMileage = "900",
                 LastMileageReported = 0,
-                TicketNumber = 0,
+                PartsReportedForeignKeyId = "1234",
                 LastTimeAReportWasSubmitted = DateTime.Now.Date,
                 //Populate of DropDownLists and Checkboxlists is done by the PopulateDriversTrucksAndPartsCatalog method
                 Comments = "Few issues on this truck"
             });
-            //var truckInspectionObjectFromView = new TruckInspectionViewModel()
-            //{
-            //    DriverId = "1",
-            //    TruckId = "10",
-            //    CurrentMileage = "900",
-            //    LastMileageReported = 0,
-            //    TicketNumber = 0,
-            //    LastTimeAReportWasSubmitted = DateTime.Now.Date,
-            //    DriverList = _extensionMethods.ConvertDriverNamesToDropDownListView(_driverContext.Collection().OrderBy(n => n.FirstName).ToList()),
-            //    TruckList = _extensionMethods.ConvertTruckNumbersToDropDownListView(_truckContext.Collection().OrderBy(t => t.TruckNumber).ToList()),
-            //    GeneralCatalog = _extensionMethods.ConvertGeneralCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(g => g.PartCategoryId == "607412fa-729b-4dfd-94ee-9a8d84d1eed8").OrderBy(p => p.PartName).ToList()),
-            //    LightsCatalog = _extensionMethods.ConvertLightsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(l => l.PartCategoryId == "43d29546-83c4-4a92-bafe-262aa58d6496").OrderBy(c => c.PartName).ToList()),
-            //    FluidsCatalog = _extensionMethods.ConvertFluidsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(f => f.PartCategoryId == "3897c106-7357-4ab8-b594-02020a7ce9c6").OrderBy(c => c.PartName).ToList()),
-            //    Comments = "Few issues on this truck"
-            //};
+            
             //Act
             _truckInspectionService.CreateTruckInspection(truckInspectionObjectFromViewWithDropDownAndCheckBoxListPopulated);
             var result = _truckInspectionContext.Collection().ToList();
@@ -323,9 +325,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             IRepository<TruckInspection> _truckInspectionContext = new MockTruckCheckUpContext<TruckInspection>();
             IRepository<Driver> _driverContext = new MockTruckCheckUpContext<Driver>();
             IRepository<Truck> _truckContext = new MockTruckCheckUpContext<Truck>();
-            IRepository<DriverComment> _driverCommentContext = new MockTruckCheckUpContext<DriverComment>();
+            IRepository<PartsInspected> _partsInspectedContext = new MockTruckCheckUpContext<PartsInspected>();
             ILogger _logger = new MockTruckCheckUpLogger();
-            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
+            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _partsInspectedContext, _logger);
 
             /****Create a Mock TruckInspection object that represents current data in DB ****/
             _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "10", Mileage = 1000});
@@ -362,26 +364,12 @@ namespace TruckCheckUp.WebUI.Tests.Services
                 TruckId = "10",
                 CurrentMileage = "2000",
                 LastMileageReported = 0,
-                TicketNumber = 0,
+                PartsReportedForeignKeyId = "1234",
                 LastTimeAReportWasSubmitted = DateTime.Now.Date,
                 //Populate of DropDownLists and Checkboxlists is done by the PopulateDriversTrucksAndPartsCatalog method
                 Comments = "Few issues on this truck"
             });
-            //var truckInspectionObjectFromView = new TruckInspectionViewModel()
-            //{
-            //    DriverId = "1",
-            //    TruckId = "10",
-            //    CurrentMileage = "2000",
-            //    LastMileageReported = 0,
-            //    TicketNumber = 0,
-            //    LastTimeAReportWasSubmitted = DateTime.Now.Date,
-            //    DriverList = _extensionMethods.ConvertDriverNamesToDropDownListView(_driverContext.Collection().OrderBy(n => n.FirstName).ToList()),
-            //    TruckList = _extensionMethods.ConvertTruckNumbersToDropDownListView(_truckContext.Collection().OrderBy(t => t.TruckNumber).ToList()),
-            //    GeneralCatalog = _extensionMethods.ConvertGeneralCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(g => g.PartCategoryId == "607412fa-729b-4dfd-94ee-9a8d84d1eed8").OrderBy(p => p.PartName).ToList()),
-            //    LightsCatalog = _extensionMethods.ConvertLightsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(l => l.PartCategoryId == "43d29546-83c4-4a92-bafe-262aa58d6496").OrderBy(c => c.PartName).ToList()),
-            //    FluidsCatalog = _extensionMethods.ConvertFluidsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(f => f.PartCategoryId == "3897c106-7357-4ab8-b594-02020a7ce9c6").OrderBy(c => c.PartName).ToList()),
-            //    Comments = "Few issues on this truck"
-            //};
+           
             //Act
             var result = _truckInspectionService.CreateTruckInspection(truckInspectionObjectFromViewWithDropDownAndCheckBoxListPopulated);
          
@@ -397,9 +385,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             IRepository<TruckInspection> _truckInspectionContext = new MockTruckCheckUpContext<TruckInspection>();
             IRepository<Driver> _driverContext = new MockTruckCheckUpContext<Driver>();
             IRepository<Truck> _truckContext = new MockTruckCheckUpContext<Truck>();
-            IRepository<DriverComment> _driverCommentContext = new MockTruckCheckUpContext<DriverComment>();
+            IRepository<PartsInspected> _partsInspectedContext = new MockTruckCheckUpContext<PartsInspected>();
             ILogger _logger = new MockTruckCheckUpLogger();
-            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
+            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _partsInspectedContext, _logger);
 
             /****Create a Mock TruckInspection object that represents current data in DB ****/
             _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now, DriverId = "1", TruckId = "10", Mileage = 1000});
@@ -436,105 +424,17 @@ namespace TruckCheckUp.WebUI.Tests.Services
                 TruckId = "10",
                 CurrentMileage = "2000",
                 LastMileageReported = 0,
-                TicketNumber = 0,
+                PartsReportedForeignKeyId = "1234",
                 LastTimeAReportWasSubmitted = DateTime.Now.Date,
                 //Populate of DropDownLists and Checkboxlists is done by the PopulateDriversTrucksAndPartsCatalog method
                 Comments = "Few issues on this truck"
             });
-            //var truckInspectionObjectFromView = new TruckInspectionViewModel()
-            //{
-            //    DriverId = "1",
-            //    TruckId = "10",
-            //    CurrentMileage = "2000",
-            //    LastMileageReported = 0,
-            //    TicketNumber = 0,
-            //    LastTimeAReportWasSubmitted = DateTime.Now.Date,
-            //    DriverList = _extensionMethods.ConvertDriverNamesToDropDownListView(_driverContext.Collection().OrderBy(n => n.FirstName).ToList()),
-            //    TruckList = _extensionMethods.ConvertTruckNumbersToDropDownListView(_truckContext.Collection().OrderBy(t => t.TruckNumber).ToList()),
-            //    GeneralCatalog = _extensionMethods.ConvertGeneralCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(g => g.PartCategoryId == "607412fa-729b-4dfd-94ee-9a8d84d1eed8").OrderBy(p => p.PartName).ToList()),
-            //    LightsCatalog = _extensionMethods.ConvertLightsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(l => l.PartCategoryId == "43d29546-83c4-4a92-bafe-262aa58d6496").OrderBy(c => c.PartName).ToList()),
-            //    FluidsCatalog = _extensionMethods.ConvertFluidsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(f => f.PartCategoryId == "3897c106-7357-4ab8-b594-02020a7ce9c6").OrderBy(c => c.PartName).ToList()),
-            //    Comments = "Few issues on this truck"
-            //};
+           
             //Act
             var result = _truckInspectionService.CreateTruckInspection(truckInspectionObjectFromViewWithDropDownAndCheckBoxListPopulated);
             
             //Assert
             Assert.AreEqual("danger", result.AlertStyle);
-        }
-
-        [TestMethod]
-        public void Test_CurrentMileageReportedIsGreaterThanPreviousSubmittedAndInspectionHasNOTBeenSubmittedForThisTruckToday_InspectionCommentsAddedToDriverCommentsTable()
-        {
-            //Arrange
-            IRepository<PartCatalog> _partCatalogContext = new MockTruckCheckUpContext<PartCatalog>();
-            IRepository<TruckInspection> _truckInspectionContext = new MockTruckCheckUpContext<TruckInspection>();
-            IRepository<Driver> _driverContext = new MockTruckCheckUpContext<Driver>();
-            IRepository<Truck> _truckContext = new MockTruckCheckUpContext<Truck>();
-            IRepository<DriverComment> _driverCommentContext = new MockTruckCheckUpContext<DriverComment>();
-            ILogger _logger = new MockTruckCheckUpLogger();
-            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
-
-            /****Create a Mock TruckInspection object that represents current data in DB ****/
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "10", Mileage = 1000});
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "11", Mileage = 1000});
-            _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "12", Mileage = 1000});
-
-            /****Create a Mock Driver object that represents current data in DB****/
-            _driverContext.Insert(new Driver() { FirstName = "Juan", LastName = "Gonzalez" });
-            _driverContext.Insert(new Driver() { FirstName = "Jose", LastName = "Morales" });
-            _driverContext.Insert(new Driver() { FirstName = "Jesus", LastName = "Ramos" });
-
-            /****Create a Mock Truck object that represents current data in DB ****/
-            _truckContext.Insert(new Truck() { TruckNumber = 10 });
-            _truckContext.Insert(new Truck() { TruckNumber = 11 });
-            _truckContext.Insert(new Truck() { TruckNumber = 12 });
-
-            /*****Create PartCatalog mock class that represents data in DB and add 3 general parts*****/
-            _partCatalogContext.Insert(new PartCatalog() { PartName = "Driver-Front Tire", PartCategoryId = "607412fa-729b-4dfd-94ee-9a8d84d1eed8" });
-            _partCatalogContext.Insert(new PartCatalog() { PartName = "Passenger-Rear Tire", PartCategoryId = "607412fa-729b-4dfd-94ee-9a8d84d1eed8" });
-            _partCatalogContext.Insert(new PartCatalog() { PartName = "Check Engine Light", PartCategoryId = "607412fa-729b-4dfd-94ee-9a8d84d1eed8" });
-            //Add 3 light parts
-            _partCatalogContext.Insert(new PartCatalog() { PartName = "Driver-Brake Light", PartCategoryId = "43d29546-83c4-4a92-bafe-262aa58d6496" });
-            _partCatalogContext.Insert(new PartCatalog() { PartName = "Passenger-Parking Light", PartCategoryId = "43d29546-83c4-4a92-bafe-262aa58d6496" });
-            _partCatalogContext.Insert(new PartCatalog() { PartName = "Driver-Headlamp", PartCategoryId = "43d29546-83c4-4a92-bafe-262aa58d6496" });
-            //add 3 fluid parts
-            _partCatalogContext.Insert(new PartCatalog() { PartName = "Engine Oil", PartCategoryId = "3897c106-7357-4ab8-b594-02020a7ce9c6" });
-            _partCatalogContext.Insert(new PartCatalog() { PartName = "Transmission Oil", PartCategoryId = "3897c106-7357-4ab8-b594-02020a7ce9c6" });
-            _partCatalogContext.Insert(new PartCatalog() { PartName = "Brake fluid", PartCategoryId = "3897c106-7357-4ab8-b594-02020a7ce9c6" });
-
-            //Create ViewModel Mock that represents data coming from View
-            var truckInspectionObjectFromViewWithDropDownAndCheckBoxListPopulated = _truckInspectionService.PopulateDriversTrucksAndPartsCatalog(new TruckInspectionViewModel()
-            {
-                DriverId = "1",
-                TruckId = "10",
-                CurrentMileage = "2000",
-                LastMileageReported = 0,
-                TicketNumber = 0,
-                LastTimeAReportWasSubmitted = DateTime.Now.Date,
-                //Populate of DropDownLists and Checkboxlists is done by the PopulateDriversTrucksAndPartsCatalog method
-                Comments = "Few issues on this truck"
-            });
-            //var truckInspectionObjectFromView = new TruckInspectionViewModel()
-            //{
-            //    DriverId = "1",
-            //    TruckId = "10",
-            //    CurrentMileage = "2000",
-            //    LastMileageReported = 0,
-            //    TicketNumber = 0,
-            //    LastTimeAReportWasSubmitted = DateTime.Now.Date,
-            //    DriverList = _extensionMethods.ConvertDriverNamesToDropDownListView(_driverContext.Collection().OrderBy(n => n.FirstName).ToList()),
-            //    TruckList = _extensionMethods.ConvertTruckNumbersToDropDownListView(_truckContext.Collection().OrderBy(t => t.TruckNumber).ToList()),
-            //    GeneralCatalog = _extensionMethods.ConvertGeneralCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(g => g.PartCategoryId == "607412fa-729b-4dfd-94ee-9a8d84d1eed8").OrderBy(p => p.PartName).ToList()),
-            //    LightsCatalog = _extensionMethods.ConvertLightsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(l => l.PartCategoryId == "43d29546-83c4-4a92-bafe-262aa58d6496").OrderBy(c => c.PartName).ToList()),
-            //    FluidsCatalog = _extensionMethods.ConvertFluidsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(f => f.PartCategoryId == "3897c106-7357-4ab8-b594-02020a7ce9c6").OrderBy(c => c.PartName).ToList()),
-            //    Comments = "Few issues on this truck"
-            //};
-            //Act
-            _truckInspectionService.CreateTruckInspection(truckInspectionObjectFromViewWithDropDownAndCheckBoxListPopulated);
-            var result = _driverCommentContext.Collection().ToList();
-            //Assert
-            Assert.AreEqual(1, result.Count);
         }
 
         [TestMethod]
@@ -545,9 +445,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             IRepository<TruckInspection> _truckInspectionContext = new MockTruckCheckUpContext<TruckInspection>();
             IRepository<Driver> _driverContext = new MockTruckCheckUpContext<Driver>();
             IRepository<Truck> _truckContext = new MockTruckCheckUpContext<Truck>();
-            IRepository<DriverComment> _driverCommentContext = new MockTruckCheckUpContext<DriverComment>();
+            IRepository<PartsInspected> _partsInspectedContext = new MockTruckCheckUpContext<PartsInspected>();
             ILogger _logger = new MockTruckCheckUpLogger();           
-            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
+            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _partsInspectedContext, _logger);
 
             /****Create a Mock TruckInspection object that represents current data in DB ****/
             _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now, DriverId = "1", TruckId = "10", Mileage = 1000});
@@ -584,29 +484,15 @@ namespace TruckCheckUp.WebUI.Tests.Services
                 TruckId = "10",
                 CurrentMileage = "2000",
                 LastMileageReported = 0,
-                TicketNumber = 0,
+                PartsReportedForeignKeyId = "1234",
                 LastTimeAReportWasSubmitted = DateTime.Now.Date,
                 //Populate of DropDownLists and Checkboxlists is done by the PopulateDriversTrucksAndPartsCatalog method
                 Comments = "Few issues on this truck"
             });
-            //var truckInspectionObjectFromView = new TruckInspectionViewModel()
-            //{
-            //    DriverId = "1",
-            //    TruckId = "10",
-            //    CurrentMileage = "2000",
-            //    LastMileageReported = 0,
-            //    TicketNumber = 0,
-            //    LastTimeAReportWasSubmitted = DateTime.Now.Date,
-            //    DriverList = _extensionMethods.ConvertDriverNamesToDropDownListView(_driverContext.Collection().OrderBy(n => n.FirstName).ToList()),
-            //    TruckList = _extensionMethods.ConvertTruckNumbersToDropDownListView(_truckContext.Collection().OrderBy(t => t.TruckNumber).ToList()),
-            //    GeneralCatalog = _extensionMethods.ConvertGeneralCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(g => g.PartCategoryId == "607412fa-729b-4dfd-94ee-9a8d84d1eed8").OrderBy(p => p.PartName).ToList()),
-            //    LightsCatalog = _extensionMethods.ConvertLightsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(l => l.PartCategoryId == "43d29546-83c4-4a92-bafe-262aa58d6496").OrderBy(c => c.PartName).ToList()),
-            //    FluidsCatalog = _extensionMethods.ConvertFluidsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(f => f.PartCategoryId == "3897c106-7357-4ab8-b594-02020a7ce9c6").OrderBy(c => c.PartName).ToList()),
-            //    Comments = "Few issues on this truck"
-            //};
+            
             //Act
             _truckInspectionService.CreateTruckInspection(truckInspectionObjectFromViewWithDropDownAndCheckBoxListPopulated);
-            var result = _driverCommentContext.Collection().ToList();
+            var result = _partsInspectedContext.Collection().ToList();
             //Assert
             Assert.AreEqual(0, result.Count);
         }
@@ -619,9 +505,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             IRepository<TruckInspection> _truckInspectionContext = new MockTruckCheckUpContext<TruckInspection>();
             IRepository<Driver> _driverContext = new MockTruckCheckUpContext<Driver>();
             IRepository<Truck> _truckContext = new MockTruckCheckUpContext<Truck>();
-            IRepository<DriverComment> _driverCommentContext = new MockTruckCheckUpContext<DriverComment>();
+            IRepository<PartsInspected> _partsInspectedContext = new MockTruckCheckUpContext<PartsInspected>();
             ILogger _logger = new MockTruckCheckUpLogger();
-            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
+            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _partsInspectedContext, _logger);
 
             /****Create a Mock TruckInspection object that represents current data in DB ****/
             _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now.AddDays(-1), DriverId = "1", TruckId = "10", Mileage = 1000});
@@ -658,29 +544,15 @@ namespace TruckCheckUp.WebUI.Tests.Services
                 TruckId = "10",
                 CurrentMileage = "900",
                 LastMileageReported = 0,
-                TicketNumber = 0,
+                PartsReportedForeignKeyId = "1234",
                 LastTimeAReportWasSubmitted = DateTime.Now.Date,
                 //Populate of DropDownLists and Checkboxlists is done by the PopulateDriversTrucksAndPartsCatalog method
                 Comments = "Few issues on this truck"
             });
-            //var truckInspectionObjectFromView = new TruckInspectionViewModel()
-            //{
-            //    DriverId = "1",
-            //    TruckId = "10",
-            //    CurrentMileage = "900",
-            //    LastMileageReported = 0,
-            //    TicketNumber = 0,
-            //    LastTimeAReportWasSubmitted = DateTime.Now.Date,
-            //    DriverList = _extensionMethods.ConvertDriverNamesToDropDownListView(_driverContext.Collection().OrderBy(n => n.FirstName).ToList()),
-            //    TruckList = _extensionMethods.ConvertTruckNumbersToDropDownListView(_truckContext.Collection().OrderBy(t => t.TruckNumber).ToList()),
-            //    GeneralCatalog = _extensionMethods.ConvertGeneralCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(g => g.PartCategoryId == "607412fa-729b-4dfd-94ee-9a8d84d1eed8").OrderBy(p => p.PartName).ToList()),
-            //    LightsCatalog = _extensionMethods.ConvertLightsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(l => l.PartCategoryId == "43d29546-83c4-4a92-bafe-262aa58d6496").OrderBy(c => c.PartName).ToList()),
-            //    FluidsCatalog = _extensionMethods.ConvertFluidsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(f => f.PartCategoryId == "3897c106-7357-4ab8-b594-02020a7ce9c6").OrderBy(c => c.PartName).ToList()),
-            //    Comments = "Few issues on this truck"
-            //};
+            
             //Act
             _truckInspectionService.CreateTruckInspection(truckInspectionObjectFromViewWithDropDownAndCheckBoxListPopulated);
-            var result = _driverCommentContext.Collection().ToList();
+            var result = _partsInspectedContext.Collection().ToList();
             //Assert
             Assert.AreEqual(0, result.Count);
         }
@@ -693,9 +565,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             IRepository<TruckInspection> _truckInspectionContext = new MockTruckCheckUpContext<TruckInspection>();
             IRepository<Driver> _driverContext = new MockTruckCheckUpContext<Driver>();
             IRepository<Truck> _truckContext = new MockTruckCheckUpContext<Truck>();
-            IRepository<DriverComment> _driverCommentContext = new MockTruckCheckUpContext<DriverComment>();
+            IRepository<PartsInspected> _partsInspectedContext = new MockTruckCheckUpContext<PartsInspected>();
             ILogger _logger = new MockTruckCheckUpLogger();
-            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
+            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _partsInspectedContext, _logger);
 
             /****Create a Mock TruckInspection object that represents current data in DB ****/
             _truckInspectionContext.Insert(new TruckInspection() { CreationDate = DateTime.Now, DriverId = "1", TruckId = "10", Mileage = 1000});
@@ -732,29 +604,15 @@ namespace TruckCheckUp.WebUI.Tests.Services
                 TruckId = "10",
                 CurrentMileage = "900",
                 LastMileageReported = 0,
-                TicketNumber = 0,
+                PartsReportedForeignKeyId = "1234",
                 LastTimeAReportWasSubmitted = DateTime.Now.Date,
                 //Populate of DropDownLists and Checkboxlists is done by the PopulateDriversTrucksAndPartsCatalog method
                 Comments = "Few issues on this truck"
             });
-            //var truckInspectionObjectFromView = new TruckInspectionViewModel()
-            //{
-            //    DriverId = "1",
-            //    TruckId = "10",
-            //    CurrentMileage = "900",
-            //    LastMileageReported = 0,
-            //    TicketNumber = 0,
-            //    LastTimeAReportWasSubmitted = DateTime.Now.Date,
-            //    DriverList = _extensionMethods.ConvertDriverNamesToDropDownListView(_driverContext.Collection().OrderBy(n => n.FirstName).ToList()),
-            //    TruckList = _extensionMethods.ConvertTruckNumbersToDropDownListView(_truckContext.Collection().OrderBy(t => t.TruckNumber).ToList()),
-            //    GeneralCatalog = _extensionMethods.ConvertGeneralCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(g => g.PartCategoryId == "607412fa-729b-4dfd-94ee-9a8d84d1eed8").OrderBy(p => p.PartName).ToList()),
-            //    LightsCatalog = _extensionMethods.ConvertLightsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(l => l.PartCategoryId == "43d29546-83c4-4a92-bafe-262aa58d6496").OrderBy(c => c.PartName).ToList()),
-            //    FluidsCatalog = _extensionMethods.ConvertFluidsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(f => f.PartCategoryId == "3897c106-7357-4ab8-b594-02020a7ce9c6").OrderBy(c => c.PartName).ToList()),
-            //    Comments = "Few issues on this truck"
-            //};
+            
             //Act
             _truckInspectionService.CreateTruckInspection(truckInspectionObjectFromViewWithDropDownAndCheckBoxListPopulated);
-            var result = _driverCommentContext.Collection().ToList();
+            var result = _partsInspectedContext.Collection().ToList();
             //Assert
             Assert.AreEqual(0, result.Count);
         }
@@ -767,9 +625,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             IRepository<TruckInspection> _truckInspectionContext = new MockTruckCheckUpContext<TruckInspection>();
             IRepository<Driver> _driverContext = new MockTruckCheckUpContext<Driver>();
             IRepository<Truck> _truckContext = new MockTruckCheckUpContext<Truck>();
-            IRepository<DriverComment> _driverCommentContext = new MockTruckCheckUpContext<DriverComment>();
+            IRepository<PartsInspected> _partsInspectedContext = new MockTruckCheckUpContext<PartsInspected>();
             ILogger _logger = new MockTruckCheckUpLogger();
-            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
+            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _partsInspectedContext, _logger);
             bool expected = true;
             bool actual = false;
             //Act
@@ -791,9 +649,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             IRepository<TruckInspection> _truckInspectionContext = new MockTruckCheckUpContext<TruckInspection>();
             IRepository<Driver> _driverContext = new MockTruckCheckUpContext<Driver>();
             IRepository<Truck> _truckContext = new MockTruckCheckUpContext<Truck>();
-            IRepository<DriverComment> _driverCommentContext = new MockTruckCheckUpContext<DriverComment>();
+            IRepository<PartsInspected> _partsInspectedContext = new MockTruckCheckUpContext<PartsInspected>();
             ILogger _logger = new MockTruckCheckUpLogger();
-            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
+            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _partsInspectedContext, _logger);
             
             /****Create some Mock Driver objects that represents current data in DB****/
             _driverContext.Insert(new Driver() { FirstName = "Juan", LastName = "Gonzalez" });
@@ -817,9 +675,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             IRepository<TruckInspection> _truckInspectionContext = new MockTruckCheckUpContext<TruckInspection>();
             IRepository<Driver> _driverContext = new MockTruckCheckUpContext<Driver>();
             IRepository<Truck> _truckContext = new MockTruckCheckUpContext<Truck>();
-            IRepository<DriverComment> _driverCommentContext = new MockTruckCheckUpContext<DriverComment>();
+            IRepository<PartsInspected> _partsInspectedContext = new MockTruckCheckUpContext<PartsInspected>();
             ILogger _logger = new MockTruckCheckUpLogger();
-            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
+            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _partsInspectedContext, _logger);
 
             /****Create a Mock Truck object that represents current data in DB ****/
             _truckContext.Insert(new Truck() { TruckNumber = 10 });
@@ -843,9 +701,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             IRepository<TruckInspection> _truckInspectionContext = new MockTruckCheckUpContext<TruckInspection>();
             IRepository<Driver> _driverContext = new MockTruckCheckUpContext<Driver>();
             IRepository<Truck> _truckContext = new MockTruckCheckUpContext<Truck>();
-            IRepository<DriverComment> _driverCommentContext = new MockTruckCheckUpContext<DriverComment>();
+            IRepository<PartsInspected> _partsInspectedContext = new MockTruckCheckUpContext<PartsInspected>();
             ILogger _logger = new MockTruckCheckUpLogger();
-            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
+            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _partsInspectedContext, _logger);
 
             /*****Create PartCatalog mock class that represents data in DB and add 3 general parts*****/
             _partCatalogContext.Insert(new PartCatalog() { PartName = "Driver-Front Tire", PartCategoryId = "607412fa-729b-4dfd-94ee-9a8d84d1eed8" });
@@ -870,9 +728,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             IRepository<TruckInspection> _truckInspectionContext = new MockTruckCheckUpContext<TruckInspection>();
             IRepository<Driver> _driverContext = new MockTruckCheckUpContext<Driver>();
             IRepository<Truck> _truckContext = new MockTruckCheckUpContext<Truck>();
-            IRepository<DriverComment> _driverCommentContext = new MockTruckCheckUpContext<DriverComment>();
+            IRepository<PartsInspected> _partsInspectedContext = new MockTruckCheckUpContext<PartsInspected>();
             ILogger _logger = new MockTruckCheckUpLogger();
-            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
+            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _partsInspectedContext, _logger);
 
             //Add 3 light parts
             _partCatalogContext.Insert(new PartCatalog() { PartName = "Driver-Brake Light", PartCategoryId = "43d29546-83c4-4a92-bafe-262aa58d6496" });
@@ -896,9 +754,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             IRepository<TruckInspection> _truckInspectionContext = new MockTruckCheckUpContext<TruckInspection>();
             IRepository<Driver> _driverContext = new MockTruckCheckUpContext<Driver>();
             IRepository<Truck> _truckContext = new MockTruckCheckUpContext<Truck>();
-            IRepository<DriverComment> _driverCommentContext = new MockTruckCheckUpContext<DriverComment>();
+            IRepository<PartsInspected> _partsInspectedContext = new MockTruckCheckUpContext<PartsInspected>();
             ILogger _logger = new MockTruckCheckUpLogger();
-            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
+            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _partsInspectedContext, _logger);
 
             //add 3 fluid parts
             _partCatalogContext.Insert(new PartCatalog() { PartName = "Engine Oil", PartCategoryId = "3897c106-7357-4ab8-b594-02020a7ce9c6" });
@@ -921,9 +779,9 @@ namespace TruckCheckUp.WebUI.Tests.Services
             IRepository<TruckInspection> _truckInspectionContext = new MockTruckCheckUpContext<TruckInspection>();
             IRepository<Driver> _driverContext = new MockTruckCheckUpContext<Driver>();
             IRepository<Truck> _truckContext = new MockTruckCheckUpContext<Truck>();
-            IRepository<DriverComment> _driverCommentContext = new MockTruckCheckUpContext<DriverComment>();
+            IRepository<PartsInspected> _partsInspectedContext = new MockTruckCheckUpContext<PartsInspected>();
             ILogger _logger = new MockTruckCheckUpLogger();
-            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _driverCommentContext, _logger);
+            ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _partsInspectedContext, _logger);
             bool expected = true;
             bool actual = false;
             //Act

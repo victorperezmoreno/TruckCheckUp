@@ -16,23 +16,23 @@ namespace TruckCheckUp.Services
         private IRepository<TruckInspection> _truckInspectionContext;
         private IRepository<Driver> _driverContext;
         private IRepository<Truck> _truckContext;
-        private IRepository<DriverComment> _driverCommentContext;
+        private IRepository<PartsInspected> _partsInspectedContext;
         private ILogger _logger;
         private string truckInspectionTableNameUsedByLogger;
-        private string driverCommentsTableNameUsedByLogger;
+        private string partsInspectedTableNameUsedByLogger;
 
         public TruckInspectionService(IRepository<PartCatalog> partCatalogContext, IRepository<TruckInspection> truckInspectionContext,
                                       IRepository<Driver> driverContext, IRepository<Truck> truckContext,
-                                      IRepository<DriverComment> driverCommentContext, ILogger logger)
+                                      IRepository<PartsInspected> partsInspectedContext, ILogger logger)
         {
             _partCatalogContext = partCatalogContext;
             _truckInspectionContext = truckInspectionContext;
             _driverContext = driverContext;
             _truckContext = truckContext;
-            _driverCommentContext = driverCommentContext;
+            _partsInspectedContext = partsInspectedContext;
             _logger = logger;
             truckInspectionTableNameUsedByLogger = "TruckInspection";
-            driverCommentsTableNameUsedByLogger = "DriverComments";
+            partsInspectedTableNameUsedByLogger = "PartsInspected";
         }
 
         public TruckInspectionViewModel CreateNewTruckInspectionObject()
@@ -82,7 +82,6 @@ namespace TruckCheckUp.Services
                 TruckId = inspectionObjectFromView.TruckId,
                 CurrentMileage = inspectionObjectFromView.CurrentMileage,
                 LastMileageReported = inspectionObjectFromView.LastMileageReported,
-                ReportId = inspectionObjectFromView.ReportId,
                 LastTimeAReportWasSubmitted = inspectionObjectFromView.LastTimeAReportWasSubmitted,
                 DriverList = inspectionObjectFromView.DriverList,
                 TruckList = inspectionObjectFromView.TruckList,
@@ -131,7 +130,9 @@ namespace TruckCheckUp.Services
 
         private bool InspectionReportHasNOTBeenSubmittedForThisTruckToday(TruckInspectionViewModel InspectionObject)
         {
-            if (DateTime.Today.Date > InspectionObject.LastTimeAReportWasSubmitted)
+            //Validate that last report was submitted before today's date
+            //Also check that LastTimeAReportWasSubmitted was tomorrow - we set this date in case table has no records
+            if (DateTime.Today.Date > InspectionObject.LastTimeAReportWasSubmitted || InspectionObject.LastTimeAReportWasSubmitted == DateTime.Today.AddDays(1).Date)
             {
                 return true;
             }
@@ -140,48 +141,60 @@ namespace TruckCheckUp.Services
 
         private void PostNewTruckInspectionToDB(TruckInspectionViewModel inspectionFromUser)
         {
-            //Insert data from General Catalog into TruckInspection Table 
-            AddCatalogItemsIntoTruckInspectionTable(inspectionFromUser, inspectionFromUser.GeneralCatalog);
-
-            //Insert data from Lights Catalog into TruckInspection Table 
-            AddCatalogItemsIntoTruckInspectionTable(inspectionFromUser, inspectionFromUser.LightsCatalog);
-
-            //Insert data from Fluids Catalog into TruckInspection Table
-            AddCatalogItemsIntoTruckInspectionTable(inspectionFromUser, inspectionFromUser.FluidsCatalog);
-
-            //Log TruckInspection insertion notification and save the data into DB
-            _logger.Info("Inserted report number " + inspectionFromUser.ReportId.ToString() + " into Table " + truckInspectionTableNameUsedByLogger);
-            _truckInspectionContext.Commit();
-
-            //Insert comments from Driver into DriverComment table
-            AddTruckInspectionCommentsToDriverCommentsTable(inspectionFromUser);
+            //Insert Inspection data from UI into TruckInspection table and return report ID
+            //that we will use as a FK to insert items into PartsInspected table
+            string partsInspectedForeignKey = AddMasterDataToTruckInspectionTableAndReturnTruckInspectionId(inspectionFromUser);
+            inspectionFromUser.PartsReportedForeignKeyId = partsInspectedForeignKey;
 
             //Log Comments insertion notification and save the data into DB
-            _logger.Info("Inserted report number " + inspectionFromUser.ReportId.ToString() + " into Table " + driverCommentsTableNameUsedByLogger);
-            _driverCommentContext.Commit();
+            _logger.Info("Inserted inspection report number " + inspectionFromUser.PartsReportedForeignKeyId + " for Truck " + inspectionFromUser.TruckId + " into Table " + truckInspectionTableNameUsedByLogger);
+            _truckInspectionContext.Commit();
+
+            //Insert data from General Catalog into TruckInspection Table 
+            AddCatalogItemsIntoPartsInspectedTable(inspectionFromUser, inspectionFromUser.GeneralCatalog);
+
+            //Insert data from Lights Catalog into TruckInspection Table 
+            AddCatalogItemsIntoPartsInspectedTable(inspectionFromUser, inspectionFromUser.LightsCatalog);
+
+            //Insert data from Fluids Catalog into TruckInspection Table
+            AddCatalogItemsIntoPartsInspectedTable(inspectionFromUser, inspectionFromUser.FluidsCatalog);
+
+            //Log TruckInspection insertion notification and save the data into DB
+            _logger.Info("Inserted report number " + inspectionFromUser.PartsReportedForeignKeyId + " into Table " + partsInspectedTableNameUsedByLogger);
+            _partsInspectedContext.Commit();
         }
 
-        private void AddCatalogItemsIntoTruckInspectionTable(TruckInspectionViewModel inspectionObject, List<CheckBoxListViewModel> partsCatalog)
+        private void AddCatalogItemsIntoPartsInspectedTable(TruckInspectionViewModel inspectionObject, List<CheckBoxListViewModel> partsCatalog)
         {
             foreach (CheckBoxListViewModel part in partsCatalog)
             {
-                var truckInspectionToInsert = new TruckInspection();
-                truckInspectionToInsert.DriverId = inspectionObject.DriverId;
-                truckInspectionToInsert.TruckId = inspectionObject.TruckId;
-                truckInspectionToInsert.Mileage = Convert.ToInt32(inspectionObject.CurrentMileage);
-                //truckInspectionToInsert.IsOK = part.IsChecked;
-                //truckInspectionToInsert.ReportId = inspectionObject.ReportId;
-                //truckInspectionToInsert.PartCatalogId = part.Id;
-                _truckInspectionContext.Insert(truckInspectionToInsert);
+                var partInspectedToInsert = new PartsInspected();
+                partInspectedToInsert.IsOK = part.IsChecked;
+                partInspectedToInsert.TruckInspectionId = inspectionObject.PartsReportedForeignKeyId;
+                partInspectedToInsert.PartCatalogId = part.Id;
+                _partsInspectedContext.Insert(partInspectedToInsert);
             }
         }
 
-        private void AddTruckInspectionCommentsToDriverCommentsTable(TruckInspectionViewModel truckInspection)
+        private string AddMasterDataToTruckInspectionTableAndReturnTruckInspectionId(TruckInspectionViewModel truckInspection)
         {
-            var driverComments = new DriverComment();
-            driverComments.CommentDriver = truckInspection.Comments;
-            driverComments.ReportId = truckInspection.ReportId;
-            _driverCommentContext.Insert(driverComments);
+            var inspectionDataToInsert = new TruckInspection();
+            inspectionDataToInsert.DriverId = truckInspection.DriverId;
+            inspectionDataToInsert.TruckId = truckInspection.TruckId;
+            var currentMileageConvertedToString = ConvertStringToInt(truckInspection.CurrentMileage);
+            //Check that string mileage coming from UI is a valid integer
+            if ( currentMileageConvertedToString != -1)
+            {
+                inspectionDataToInsert.Mileage = currentMileageConvertedToString;
+            }
+            else
+            {
+                _logger.Warning("There was an error converting CurrentMileage from String to Int in TruckInspectionService");
+            }
+            
+            inspectionDataToInsert.Comments = truckInspection.Comments;
+            _truckInspectionContext.Insert(inspectionDataToInsert);
+            return inspectionDataToInsert.Id;
         }
 
         private List<DropDownListViewModel> ConvertDriverNamesToDropDownListView(List<Driver> driversRetrievedFromDB)
@@ -259,12 +272,15 @@ namespace TruckCheckUp.Services
 
         private DateTime RetrieveDateLatestReportWasSubmittedForThisTruck(TruckInspectionViewModel inspectionFromUser)
         {
-            return _truckInspectionContext.Collection().Where(d => d.TruckId == inspectionFromUser.TruckId).DefaultIfEmpty().Max(d => d == null ? DateTime.Now : d.CreationDate).Date;
+            //Set date for tomorrow, so we know that TruckInspection table has no records
+            var defaultDate = DateTimeOffset.Now.AddDays(1);
+            return _truckInspectionContext.Collection().Where(d => d.TruckId == inspectionFromUser.TruckId).DefaultIfEmpty().Max(d => d == null ?  defaultDate : d.CreationDate).Date;
         }
 
-        //private int RetrieveLastReportId(TruckInspectionViewModel inspectionFromUser)
-        //{
-        //    return (_truckInspectionContext.Collection().DefaultIfEmpty().Max(t => t == null ? 0 : t.ReportId)) +1;
-        //}
+        private int ConvertStringToInt(string intString)
+        {
+            int i = 0;
+            return (Int32.TryParse(intString, out i) ? i : -1);
+        }
     }
 }

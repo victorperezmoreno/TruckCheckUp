@@ -10,10 +10,10 @@ namespace TruckCheckUp.DataAccess.SQL
         }
 
         public DbSet<Driver> Drivers { get; set; }
-        public DbSet<DriverComment> DriverComments { get; set; }
         public DbSet<MechanicComment> MechanicComments { get; set; }
         public DbSet<PartCatalog> PartsCatalog { get; set; }
         public DbSet<PartCategory> PartsCategory { get; set; }
+        public DbSet<PartsInspected> PartsInspected { get; set; }
         public DbSet<TruckInspection> TruckInspection { get; set; } //PartsReported
         public DbSet<Situation> Situations { get; set; }
         public DbSet<Truck> Trucks { get; set; }
