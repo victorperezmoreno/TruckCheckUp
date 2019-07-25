@@ -16,17 +16,11 @@ namespace TruckCheckUp.Core.Models
         [Required]
         public string Description { get; set; }
 
-        //[ForeignKey("TruckInspection")]
-        //public string PartReportedId { get; set; }
-
-        // Navigation properties
-        //public virtual TruckInspection TruckInspection { get; set; }
-
-        public virtual ICollection<MechanicComment> MechanicComment { get; set; }
+        public virtual ICollection<PartSituation> PartSituation { get; set; }
 
         public Situation()
         {
-            MechanicComment = new List<MechanicComment>();
+            PartSituation = new List<PartSituation>();
         }
     }
 }

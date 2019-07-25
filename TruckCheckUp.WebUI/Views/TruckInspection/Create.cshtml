@@ -19,7 +19,7 @@
             </div>
         }
         <br />
-        <div class="form-group">
+        <div class="form-group form">
             @Html.LabelFor(model => model.DriverList, htmlAttributes: new { @class = "control-label col-md-1" })
             <div class="col-md-6">
                 @Html.DropDownListFor(model => model.DriverId, new SelectList(Model.DriverList, "Id", "Text"), "- Please Select -", new { @class = "form-control" })

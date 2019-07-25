@@ -1,0 +1,149 @@
+﻿@model TruckCheckUp.Core.ViewModels.InspectionReportUI.ReportListViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*BeginForm is used to tranfer data objects from View to Controller,
+    also use it in Create controller*@
+
+@using (Ajax.BeginForm("RetrieveInspectionReportsListSortedByUserRequest", "InspectionReport", new AjaxOptions()
+{
+    HttpMethod = "Post",
+    InsertionMode = InsertionMode.Replace
+}))
+{
+
+    @Html.Hidden("SortField", Model.SortField)
+    @Html.Hidden("SortDirection", Model.SortDirection)
+    @Html.Hidden("PageCount", Model.PageCount)
+    @Html.Hidden("PageSize", Model.PageSize)
+    @Html.Hidden("CurrentPageIndex", Model.CurrentPageIndex)
+    @Html.Hidden("TruckNumberId", Model.TruckNumberId)
+
+    if (Model.ReportsList.Count() == 0)
+    {
+        <div class="form-control">
+            <p>No records found</p>
+        </div>
+    }
+    else
+    {
+        <table id="tblInspectionReports" class="table">
+            <tr>
+                <th>
+                    <a href="#" data-sortfield="Id" class="header">Id</a>
+                </th>
+                <th>
+                    <a href="#" data-sortfield="DateCreated" class="header">Date Created</a>
+                </th>
+                <th>
+                    <a href="#" data-sortfield="Driver" class="header">Driver</a>
+                </th>
+                <th>
+                    <a href="#" data-sortfield="Comments" class="header">Comments</a>
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.ReportsList)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateCreated)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Driver)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comments)
+                    </td>
+                    <td>
+                        |@Html.ActionLink("Full Report", "ReportDetails", new { id = item.Id }) 
+                    </td>
+                </tr>
+            }
+
+            <tr>
+                @*The below number is arbitrary based on number of columns in table*@
+                @*If number of columns change please update accordingly*@
+                <td colspan="5">
+                    @for (var i = 0; i < Model.PageCount; i++)
+                    {
+                        if (i == Model.CurrentPageIndex)
+                        {
+                            <span>@(i + 1)</span>
+                        }
+                        else
+                        {
+                            <a href="#" data-pageindex="@i"
+                               class="pager">@(i + 1)</a>
+                        }
+                    }
+                </td>
+            </tr>
+        </table>
+    }
+}
+
+<script>
+    $(document).ready(function () {
+
+        $(".header").click(function (evt) {
+            var sortfield = $(evt.target).data("sortfield");
+            if ($("#SortField").val() == sortfield) {
+                if ($("#SortDirection").val() == "ascending") {
+                    $("#SortDirection").val("descending");
+                }
+                else {
+                    $("#SortDirection").val("ascending");
+                }
+            }
+            else {
+                $("#SortField").val(sortfield);
+                $("#SortDirection").val("ascending");
+            }
+
+            //Call function to populate object to pass to controller
+            populateUserSortingRequestObject();
+        });
+
+        $(".pager").click(function (evt) {
+            var pageindex = $(evt.target).data("pageindex");
+            $("#CurrentPageIndex").val(pageindex);
+            //Call function to populate object to pass to controller
+            populateUserSortingRequestObject();
+
+        });
+
+        //Format table with stripes
+        $("#tblInspectionReports tr:even").not('thead tr').css("background-color", "#ccc");
+        $("#tblInspectionReports tr:odd").css("background-color", "#f5f5f5");
+
+    });
+
+    //function to populate and return object to controller to display data in table
+    function populateUserSortingRequestObject() {
+        varUrl = '@Url.Action("RetrieveInspectionReportsListSortedByUserRequest", "InspectionReport")';
+        varType = "GET";
+        var userSortingRequest = {
+            SortField: $("#SortField").val(),
+            SortDirection: $("#SortDirection").val(),
+            PageSize: $("#PageSize").val(),
+            PageCount: $("#PageCount").val(),
+            CurrentPageIndex: $("#CurrentPageIndex").val(),
+            TruckNumberId: $("#TruckNumberId").val()
+        }
+        $.ajax({
+            url: varUrl,
+            type: varType,
+            data: userSortingRequest,
+            success: function (partialViewResult) {
+                $("#tblInspectionReports").html(partialViewResult);
+            }
+        })
+    }
+</script>

@@ -18,8 +18,11 @@ namespace TruckCheckUp.Services
         private IRepository<Truck> _truckContext;
         private IRepository<PartsInspected> _partsInspectedContext;
         private ILogger _logger;
-        private string truckInspectionTableNameUsedByLogger;
-        private string partsInspectedTableNameUsedByLogger;
+        private string truckInspectionTableNameUsedByLogger = "TruckInspection";
+        private string partsInspectedTableNameUsedByLogger = "PartsInspected";
+        private string generalCategoryId = "607412fa-729b-4dfd-94ee-9a8d84d1eed8";
+        private string lightCategoryId = "43d29546-83c4-4a92-bafe-262aa58d6496";
+        private string fluidCategoryId = "3897c106-7357-4ab8-b594-02020a7ce9c6";
 
         public TruckInspectionService(IRepository<PartCatalog> partCatalogContext, IRepository<TruckInspection> truckInspectionContext,
                                       IRepository<Driver> driverContext, IRepository<Truck> truckContext,
@@ -31,8 +34,6 @@ namespace TruckCheckUp.Services
             _truckContext = truckContext;
             _partsInspectedContext = partsInspectedContext;
             _logger = logger;
-            truckInspectionTableNameUsedByLogger = "TruckInspection";
-            partsInspectedTableNameUsedByLogger = "PartsInspected";
         }
 
         public TruckInspectionViewModel CreateNewTruckInspectionObject()
@@ -43,10 +44,10 @@ namespace TruckCheckUp.Services
         public TruckInspectionViewModel PopulateDriversTrucksAndPartsCatalog(TruckInspectionViewModel inspectionToPopulate)
         {
             inspectionToPopulate.DriverList = ConvertDriverNamesToDropDownListView(_driverContext.Collection().OrderBy(n => n.FirstName).ToList());
-            inspectionToPopulate.TruckList = ConvertTruckNumbersToDropDownListView(_truckContext.Collection().OrderBy(t => t.TruckNumber).ToList());
-            inspectionToPopulate.GeneralCatalog = ConvertGeneralCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(g => g.PartCategoryId == "607412fa-729b-4dfd-94ee-9a8d84d1eed8").OrderBy(p => p.PartName).ToList());
-            inspectionToPopulate.LightsCatalog = ConvertLightsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(l => l.PartCategoryId == "43d29546-83c4-4a92-bafe-262aa58d6496").OrderBy(c => c.PartName).ToList());
-            inspectionToPopulate.FluidsCatalog = ConvertFluidsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(f => f.PartCategoryId == "3897c106-7357-4ab8-b594-02020a7ce9c6").OrderBy(c => c.PartName).ToList());
+            inspectionToPopulate.TruckList = ConvertTruckNumbersToDropDownListView(_truckContext.Collection().OrderBy(t => t.TruckNumber).Where(s => s.Status == true).ToList());
+            inspectionToPopulate.GeneralCatalog = ConvertGeneralCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(g => g.PartCategoryId == generalCategoryId).OrderBy(p => p.PartName).ToList());
+            inspectionToPopulate.LightsCatalog = ConvertLightsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(l => l.PartCategoryId == lightCategoryId).OrderBy(c => c.PartName).ToList());
+            inspectionToPopulate.FluidsCatalog = ConvertFluidsCatalogToCheckBoxListView(_partCatalogContext.Collection().Where(f => f.PartCategoryId == fluidCategoryId).OrderBy(c => c.PartName).ToList());
 
             return inspectionToPopulate;
         }

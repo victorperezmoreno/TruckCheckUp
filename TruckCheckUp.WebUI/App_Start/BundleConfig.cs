@@ -23,6 +23,10 @@ namespace TruckCheckUp.WebUI
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
                        "~/Scripts/Custom/truck-1.0.js"));
 
+            //Custom Script for dropdownlist truck numbers in InspectionReport controller
+            bundles.Add(new ScriptBundle("~/bundles/custom").Include(
+                       "~/Scripts/Custom/inspectionreport-trucknumberselection-1.0.js"));
+
             //Common Script for all JS files
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
                        "~/Scripts/Custom/Common.js"));

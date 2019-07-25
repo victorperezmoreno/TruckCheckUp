@@ -10,12 +10,10 @@ namespace TruckCheckUp.WebUI.Controllers
     public class TruckManufacturerManagementController : Controller
     {
         private TruckManufacturerService _truckManufacturerService;
-        //, ILogger logger
 
         public TruckManufacturerManagementController(TruckManufacturerService truckManufacturerService)
         {
             this._truckManufacturerService = truckManufacturerService;
-           // this._logger = logger;
         }
 
         // GET: TruckManufacturerManagement

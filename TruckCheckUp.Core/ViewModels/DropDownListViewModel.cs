@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TruckCheckUp.Core.ViewModels.TruckInspection
+namespace TruckCheckUp.Core.ViewModels
 {
     public class DropDownListViewModel
     {

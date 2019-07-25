@@ -203,6 +203,7 @@
     <Compile Include="Controllers\DriverManagementController.cs" />
     <Compile Include="Controllers\ErrorHandlerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InspectionReportController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PartCatalogManagementController.cs" />
     <Compile Include="Controllers\PartCategoryManagementController.cs" />
@@ -296,6 +297,7 @@
     <Content Include="Scripts\Custom\truckmodel-1.0.js" />
     <Content Include="Scripts\bootstrap2-toggle.min.js.map" />
     <Content Include="Scripts\bootstrap-toggle.min.js.map" />
+    <Content Include="Scripts\Custom\inspectionreport-trucknumberselection-1.0.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -371,9 +373,13 @@
     <Content Include="Views\PartCatalogManagement\Delete.cshtml" />
     <Content Include="Views\TruckInspection\Create.cshtml" />
     <Content Include="Views\Shared\_Alerts.cshtml" />
+    <Content Include="Views\InspectionReport\Index.cshtml" />
+    <Content Include="Views\InspectionReport\_InspectionReportsList.cshtml" />
+    <Content Include="Views\InspectionReport\ReportDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Reports\" />
     <Folder Include="Views\ErrorHandler\" />
   </ItemGroup>
   <ItemGroup>

@@ -18,16 +18,21 @@ namespace TruckCheckUp.Core.Models
         [ForeignKey("TruckInspection")]
         public string TruckInspectionId { get; set; }
 
-        // Navigation property
+        // Navigation properties
         public virtual PartCatalog PartCatalog { get; set; }
-        // Navigation property
+    
         public virtual TruckInspection TruckInspection { get; set; }
-
+        
+        //Link or connection to "join" table
         public virtual ICollection<MechanicComment> MechanicComment { get; set; }
+        
+        public virtual ICollection<PartSituation> PartSituation { get; set; }
 
         public PartsInspected()
         {
             MechanicComment = new List<MechanicComment>();
+            PartSituation = new List<PartSituation>();
+
         }
     }
 }
