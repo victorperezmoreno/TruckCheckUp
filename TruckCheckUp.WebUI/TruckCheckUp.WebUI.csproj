@@ -232,6 +232,7 @@
     <Content Include="Content\bootstrap2-toggle.min.css" />
     <Content Include="Content\Images\404-Error.jpg" />
     <Content Include="Content\Images\500-Error.png" />
+    <Content Include="Content\OverrideBottomFooter.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
