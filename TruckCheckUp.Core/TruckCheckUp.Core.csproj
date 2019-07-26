@@ -74,7 +74,6 @@
     <Compile Include="Models\TruckManufacturer.cs" />
     <Compile Include="Models\TruckModel.cs" />
     <Compile Include="Models\TruckYear.cs" />
-    <Compile Include="ViewModels\InspectionReportUI\InspectionReportMasterDataDTO.cs" />
     <Compile Include="ViewModels\InspectionReportUI\IssuesListViewModel.cs" />
     <Compile Include="ViewModels\InspectionReportUI\ReportDetailsViewModel.cs" />
     <Compile Include="ViewModels\InspectionReportUI\ReportListViewModel.cs" />
