@@ -59,7 +59,7 @@ namespace TruckCheckUp.WebUI
             container.RegisterType<IRepository<PartSituation>, SQLRepository<PartSituation>>();
             container.RegisterType<IRepository<Situation>, SQLRepository<Situation>>();
             container.RegisterType<IRepository<Truck>, SQLRepository<Truck>>();
-            //container.RegisterType<IRepository<TruckInspection>, SQLRepository<TruckInspection>>();
+            container.RegisterType<IRepository<TruckManufacturer>, SQLRepository<TruckManufacturer>>();
             container.RegisterType<IRepository<TruckModel>, SQLRepository<TruckModel>>();
             container.RegisterType<IRepository<TruckYear>, SQLRepository<TruckYear>>();
            
@@ -74,7 +74,9 @@ namespace TruckCheckUp.WebUI
 
             //ServicesType Container
             container.RegisterType<IDriverService, DriverService>();
+            container.RegisterType<ITruckService, TruckService>();
             container.RegisterType<ITruckManufacturerService, TruckManufacturerService>();
+            container.RegisterType<ITruckModelService, TruckModelService>();
             container.RegisterType<IPartCategoryService, PartCategoryService>();
             container.RegisterType<IPartCatalogService, PartCatalogService>();
             container.RegisterType<ITruckInspectionService, TruckInspectionService>();

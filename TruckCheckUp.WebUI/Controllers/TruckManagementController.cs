@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.UI;
+using TruckCheckUp.Core.Contracts.Services;
 using TruckCheckUp.Core.ViewModels.TruckUI;
 using TruckCheckUp.Services;
 
@@ -8,9 +9,9 @@ namespace TruckCheckUp.WebUI.Controllers
 {
     public class TruckManagementController : Controller
     {
-        private TruckService _truckService;
+        private ITruckService _truckService;
         
-        public TruckManagementController(TruckService truckService)
+        public TruckManagementController(ITruckService truckService)
         {
             _truckService = truckService;
         }

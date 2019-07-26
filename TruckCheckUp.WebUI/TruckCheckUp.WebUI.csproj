@@ -359,9 +359,6 @@
     <Content Include="Views\DriverManagement\Delete.cshtml" />
     <Content Include="Views\Administration\Index.cshtml" />
     <Content Include="Views\TruckManagement\Index.cshtml" />
-    <Content Include="Views\TruckManagement\Create.cshtml" />
-    <Content Include="Views\TruckManagement\Edit.cshtml" />
-    <Content Include="Views\TruckManagement\Delete.cshtml" />
     <Content Include="Views\TruckManufacturerManagement\Index.cshtml" />
     <Content Include="Views\TruckModelManagement\Index.cshtml" />
     <Content Include="Views\PartCategoryManagement\Index.cshtml" />

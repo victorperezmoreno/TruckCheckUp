@@ -4,12 +4,13 @@ using System.Linq;
 using TruckCheckUp.Core.Contracts.DataAccess;
 using TruckCheckUp.Core.Contracts.InputValidation;
 using TruckCheckUp.Core.Contracts.Logger;
+using TruckCheckUp.Core.Contracts.Services;
 using TruckCheckUp.Core.Models;
 using TruckCheckUp.Core.ViewModels.TruckUI;
 
 namespace TruckCheckUp.Services
 {
-    public class TruckService
+    public class TruckService : ITruckService
     {
         private IRepository<Truck> _truckContext;
         private IRepository<TruckModel> _truckModelContext;

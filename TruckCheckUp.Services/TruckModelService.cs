@@ -15,7 +15,7 @@ namespace TruckCheckUp.Services
         private IRepository<TruckManufacturer> _truckManufacturerContext;
         private ILogger _logger;
         private IValidateUserInput _validate;
-        string tableNameUsedByLogger = "";
+        private string tableNameUsedByLogger = "TruckModel";
         public TruckModelService(IRepository<TruckModel> truckModelContext,
                                  IRepository<TruckManufacturer> truckManufacturerContext,
                                  ILogger logger, IValidateUserInput validate)
@@ -24,7 +24,6 @@ namespace TruckCheckUp.Services
             _truckManufacturerContext = truckManufacturerContext;
             _logger = logger;
             _validate = validate;
-            tableNameUsedByLogger = "TruckModel";
         }
 
         public List<TruckModelViewModel> RetrieveAllTruckModels()

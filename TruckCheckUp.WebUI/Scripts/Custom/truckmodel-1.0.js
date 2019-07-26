@@ -1,10 +1,10 @@
 ﻿$(document).ready(function () {
-	//Ensure that only alphanumerics are entered in model field
-	validateModelTextbox();
-	//Disable autocomplete for textboxes
-	$("input:text,form").attr("autocomplete", "off");
-	//Load Data in Table when documents is ready
-	loadModelData();
+    loadModelData();
+    //Ensure that only alphanumerics are entered in model field
+    validateModelTextbox();
+    //Disable autocomplete for textboxes
+    $("input:text,form").attr("autocomplete", "off");
+    //Load Data in Table when documents is ready
 });
 
 function validateSearchTextBox() {

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
 using TruckCheckUp.Core.Contracts.Logger;
+using TruckCheckUp.Core.Contracts.Services;
 using TruckCheckUp.Core.ViewModels.TruckModelUI;
 using TruckCheckUp.Services;
 
@@ -12,9 +13,9 @@ namespace TruckCheckUp.WebUI.Controllers
 {
     public class TruckModelManagementController : Controller
     {
-        private TruckModelService _truckModelService;
+        private ITruckModelService _truckModelService;
 
-        public TruckModelManagementController(TruckModelService truckModelService)
+        public TruckModelManagementController(ITruckModelService truckModelService)
         {
             _truckModelService = truckModelService;
         }
@@ -25,6 +26,7 @@ namespace TruckCheckUp.WebUI.Controllers
             return View();
         }
 
+        //[Route ("/TruckModelManagement/ListOfModels")]
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
         public JsonResult ListOfModels()
         {
