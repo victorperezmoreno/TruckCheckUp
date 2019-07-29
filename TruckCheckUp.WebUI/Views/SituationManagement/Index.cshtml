@@ -11,8 +11,8 @@
         </div>
         <label class="control-label col-md-2">Find by Situation :</label>
         <div class="col-md-3">
-            <input type="text" id="situationSearch" class="form-control input-normal" placeholder="Only letters" />
-            <div id="truckTextBox_error" class="text-danger"> </div>
+            <input type="text" id="situation" class="form-control input-normal" placeholder="Only letters" />
+            <div id="situationTextBox_error" class="text-danger"> </div>
         </div>
         <div class="col-md-1">
             <button type="button" id="truckSearch_button" class="btn btn-default" onclick="searchSituation();">Search</button>
@@ -58,12 +58,12 @@
                     </div>
                     <div class="form-group">
                         <label for="Situation">Situation</label>
-                        <input type="text" class="form-control" id="situation" placeholder="Only letters" />
-                        <div id="situationTextBox_error" class="text-danger"> </div>
+                        <input type="text" class="form-control" id="description" placeholder="Only letters" />
+                        <div id="descriptionTextBox_error" class="text-danger"> </div>
                     </div>
                     <div class="form-group form-horizontal">
-                        <label for="SituationStatus">Status</label> <input type="checkbox" id="situationStatus" checked disabled onchange="changeSituationStatus(this)" /> <span class="text-success" id="statusText"><strong>Active</strong></span>
-                        <div id="situationStatus_error" class="text-danger"> </div>
+                        <label for="SituationStatus">Status</label> <input type="checkbox" id="descriptionStatus" checked disabled onchange="changeSituationStatus(this)" /> <span class="text-success" id="statusText"><strong>Active</strong></span>
+                        <div id="descriptionStatus_error" class="text-danger"> </div>
                     </div>
                 </form>
             </div>

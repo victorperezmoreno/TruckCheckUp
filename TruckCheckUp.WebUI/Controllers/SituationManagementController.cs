@@ -52,6 +52,47 @@ namespace TruckCheckUp.WebUI.Controllers
             } 
         }
 
+        public JsonResult GetSituationkById(string Id)
+        {
+            try
+            {
+                var situationByIdResult = _situationService.RetrieveSituationById(Id);
+                return Json(situationByIdResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public JsonResult Update(SituationViewModel situationObject)
+        {
+            try
+            {
+                var situationUpdateResult = _situationService.UpdateSituation(situationObject);
+                return Json(situationUpdateResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public JsonResult SearchSituationDescription (SituationViewModel situationObject)
+        {
+            try
+            {
+                var searchSituationResult = _situationService.SearchSituationInDB(situationObject);
+                return Json(searchSituationResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         [HttpPost]
         public JsonResult Delete (string Id)
         {

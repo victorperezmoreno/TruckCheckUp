@@ -1,52 +1,13 @@
 ﻿$(document).ready(function () {
-    //Ensure that only letters and numbers are entered in VIN textbox
+    //Ensure that only letters are entered in situation textbox located in modal window
     validateTextboxContainsOnlyCharacters('situation');
+    //Ensure that only letters are entered in description Search textbox 
+    validateTextboxContainsOnlyCharacters('description');
     //Disable autocomplete for textboxes
     $("input:text,form").attr("autocomplete", "off");
     //Load Data in Table when documents is ready
     loadSituationData();
 });
-
-//function validateManufacturerDropDownList(manufacturerSelected) {
-//    //Ensures a valid value is selected
-//    let validValueSelectedByUser = ValidateUserSelectedAValueInDropDownList("manufacturer");
-
-//    if (validValueSelectedByUser == true) {
-//        populateModelAndYearDropDownBoxes(manufacturerSelected.value);
-//    }
-//}
-
-//function populateModelAndYearDropDownBoxes(manufacturerId) {
-//    varUrl = "/TruckManagement/GetModelAndYearLists/" + manufacturerId;
-//    varType = "GET";
-//    varContentType = "application/json;charset=utf-8";
-//    varDataType = "json";
-//    $.ajax({
-//        url: varUrl,
-//        type: varType,
-//        contentType: varContentType,
-//        dataType: varDataType,
-//        success: populateModelAndYearDropDownLists,
-//        error: function (errormessage) {
-//            alert(errormessage.responseText);
-//        }
-//    });
-//}
-
-//function populateModelAndYearDropDownLists(truck) {
-//    populateModelsDropDownList(truck);
-//    populateYearsDropDownList(truck);
-//}
-
-//function validateModelDropDownList(modelSelected) {
-//    //Ensures "Select Model" or "Please Select" is not selected 
-//    ValidateUserSelectedAValueInDropDownList("model");
-//}
-
-//function validateYearDropDownList(yearSelected) {
-//    //Ensures "Select Model" or "Please Select" is not selected 
-//    ValidateUserSelectedAValueInDropDownList("year");
-//}
 
 function searchSituation() {
     //Search only if search textbox not empty
@@ -59,7 +20,7 @@ function retrieveSituationRecord() {
     varUrl = "/SituationManagement/SearchSituationDescription";
     let situationSearchObj = {
         Id: "",
-        TruckNumber: $('#situation').val(),
+        Description: $('#situation').val(),
         ExistInDB: true,
         IsValid: true,
         Status : true
@@ -92,7 +53,7 @@ function situationRecordRetrieved(situationRecord) {
                 html += '<tr>';
                 html += '<td>' + item.Id + '</td>';
                 html += '<td>' + item.Description + '</td>';
-                html += '<td>' + item.Status + '</td>';
+                //html += '<td>' + item.Status + '</td>';
 
                 if (item.Status == true) {
                     html += '<td class="text-success"><strong>' + item.StatusLabel + '</strong></td>';
@@ -100,7 +61,7 @@ function situationRecordRetrieved(situationRecord) {
                 else {
                     html += '<td class="text-danger"><strong>' + item.StatusLabel + '</strong></td>';
                 }
-                html += '<td><a href="#" onclick="return getTruckById(\'' + item.Id + '\')">Edit</a> | <a href="#" onclick="deleteSituation(\'' + item.Id + '\')">Delete</a></td>';
+                html += '<td><a href="#" onclick="return getSituationById(\'' + item.Id + '\')">Edit</a> | <a href="#" onclick="deleteSituation(\'' + item.Id + '\')">Delete</a></td>';
                 html += '</tr>';
             });
             $('.tbodySituation').html(html);
@@ -174,12 +135,12 @@ function dataRetrievedFromDatabase(allSituations) {
 
 //Add Data Function
 function addSituation() {
-    if (validateSituationTextBoxWhenUserPostToServer("situation")) {
+    if (ValidateUITextBoxIsNotEmpty("description")) {
         varUrl = "/SituationManagement/Add";
         let situationObj = {
             Id: "",
-            Situation: $('#situation').val(),
-            Status: $('#situationStatus').val(),
+            Description: $('#description').val(),
+            Status: $('#descriptionStatus').val(),
             IsValid: true,
             ExistInDB: false
         };
@@ -202,11 +163,11 @@ function addSituation() {
 
 function situationAdded(situationObject) {
     if (situationObject.IsValid == false) {
-        DisplayWarningMessageForTextBox("Invalid Situation Description", "situationDescription");
+        DisplayWarningMessageForTextBox("Invalid Situation Description", "description");
     }
     else {
         if (situationObject.ExistInDB) {
-            DisplayWarningMessageForTextBox("Situation Description already in Database", "situationDescription");
+            DisplayWarningMessageForTextBox("Situation Description already in Database", "description");
         }
         else {
             loadSituationData();
@@ -226,7 +187,7 @@ function getSituationById(Id) {
         type: varType,
         contentType: varContentType,
         dataType: varDataType,
-        success: situationByIdReturned,
+        success: situationByIdRetrieved,
         error: function (errormessage) {
             alert(errormessage.responseText);
         }
@@ -234,40 +195,28 @@ function getSituationById(Id) {
     return false;
 }
 
-function situationByIdReturned(situation) {
+function situationByIdRetrieved(situation) {
 
     $('#Id').val(situation.Id);
-    $('#situationDescription').val(situation.Description);
+    $('#description').val(situation.Description);
     //Enable checkbox, so user can enable/disable truck
-    document.getElementById("situationStatus").disabled = false;
-    $('#situationStatus').val(situation.Status);
-    $('#statusText').val(truck.StatusLabel)
+    document.getElementById("descriptionStatus").disabled = false;
+    $('#descriptionStatus').val(situation.Status);
+    $('#statusText').val(situation.StatusLabel)
     $('#situationModal').modal('show');
     $('#situationUpdate_button').show();
     $('#situationAdd_button').hide();
 }
 
-
-
-//function for updating manufacturer's record
-//function evaluateSituation(elementToEvaluate)
-//{
-//    let result = validateSituationWhenUserPostToServer(elementToEvaluate);
-//    if (result == false)
-//    {
-//        return false;
-//    }
-//}
-
 function updateSituation()
 {
-    if (evaluateSituation("situationDescription") == true)
+    if (ValidateUITextBoxIsNotEmpty("description"))
     {
         varUrl = "/SituationManagement/Update";
         let situationObjToUpdate = {
             Id: $('#Id').val(),
-            Description: $('#situationDescription').val(),
-            Status: $('#truckStatus').is(':checked'),
+            Description: $('#description').val(),
+            Status: $('#descriptionStatus').is(':checked'),
             IsValid: true,
             ExistInDB: true
         };
@@ -290,7 +239,7 @@ function updateSituation()
 
 function situationUpdated(situation) {
     if (situation.IsValid == false) {
-        DisplayWarningMessageForTextBox("Invalid Situation Description", "situationDescription");
+        DisplayWarningMessageForTextBox("Invalid Situation Description", "description");
     }
     else {
         loadSituationData();
@@ -325,11 +274,11 @@ function deleteSituation(Id) {
 //Function for clearing the textboxes
 function clearSituationTextBoxes() {
     let element = document.getElementById('statusText');
-    let currentStatus = document.getElementById('situationStatus');
+    let currentStatus = document.getElementById('descriptionStatus');
     $('#Id').val("");
-    $('#situation').val("");
-    $('#situationTextBox_error').text("");
-    $('#situation').css('border-color', 'lightgrey');
+    $('#description').val("");
+    $('#descriptionTextBox_error').text("");
+    $('#description').css('border-color', 'lightgrey');
     //if status checkbox false from last operation then returned to true
     if (currentStatus.checked == false) {
         currentStatus.checked = true;
@@ -338,15 +287,9 @@ function clearSituationTextBoxes() {
         element.innerHTML = "<strong>Active</strong>";
     }
     //Disable Status checkbox, so when user inserts new truck we saved as active by default
-    document.getElementById("situationStatus").disabled = true;
+    document.getElementById("descriptionStatus").disabled = true;
     $('#situationUpdate_button').hide();
     $('#situationAdd_button').show();
-}
-
-//Validation using jquery
-function validateSituationTextBoxWhenUserPostToServer(uiElement) {
-    //Validate that user entered a situation description
-    return ValidateUITextBoxIsNotEmpty(uiElement);
 }
 
 function changeSituationStatus(currentStatus) {

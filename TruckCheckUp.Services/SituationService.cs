@@ -38,22 +38,30 @@ namespace TruckCheckUp.Services
                 }).ToList();
         }
 
-        public SituationListViewModel RetrieveSituationById(string Id)
+        public SituationViewModel RetrieveSituationById(string Id)
         {
-            var situationRetrievedFromDB = _situationContext.Find(Id);
+            return MoveSituationDataToSituationViewModel(_situationContext.Find(Id));
+        }
 
-            var situationViewModel = new SituationListViewModel();
+        private SituationViewModel MoveSituationDataToSituationViewModel(Situation situationRetrievedFromDB)
+        {
+            if (situationRetrievedFromDB != null)
+            {
+                return new SituationViewModel
+                {
+                    Id = situationRetrievedFromDB.Id,
+                    Description = situationRetrievedFromDB.Description,
+                    Status = situationRetrievedFromDB.Status
+                };
+            }
 
-            situationViewModel.Id = situationRetrievedFromDB.Id;
-            situationViewModel.Description = situationRetrievedFromDB.Description;
-
-            return situationViewModel;
+            return new SituationViewModel();
         }
 
         public SituationViewModel AddSituation(SituationViewModel situationObject)
         {
-            bool descriptionHasOnlyLetters = _validate.OnlyLetters(situationObject.Situation);
-            bool situationAlreadyExistInDatabase = SituationDescriptionAlreadyExistInDatabase(situationObject.Situation);
+            bool descriptionHasOnlyLetters = _validate.OnlyLetters(situationObject.Description);
+            bool situationAlreadyExistInDatabase = SituationDescriptionAlreadyExistInDatabase(situationObject.Description);
             //Validate that situation description field contains only letters and is not in database already
             if (descriptionHasOnlyLetters == true && situationAlreadyExistInDatabase == false)
             {
@@ -66,19 +74,16 @@ namespace TruckCheckUp.Services
             return situationObject;
         }
 
-        public SituationViewModel UpdateTruck(SituationViewModel situationObject)
+        public SituationViewModel UpdateSituation(SituationViewModel situationObject)
         {
+            Boolean situationContainsOnlyLetters = _validate.OnlyLetters(situationObject.Description);
             //Validate situation description contains only letters
-            if (_validate.OnlyLetters(situationObject.Situation) == true)
+            if (situationContainsOnlyLetters == true)
             {
                 UpdateSituationData(situationObject);
-                situationObject.IsValid = true;
-            }
-            else
-            {
-                situationObject.IsValid = false;
             }
 
+            situationObject.IsValid = situationContainsOnlyLetters;
             return situationObject;
         }
 
@@ -92,7 +97,7 @@ namespace TruckCheckUp.Services
         {
             var situationToInsert = new Situation();
 
-            situationToInsert.Description = situationObject.Situation;
+            situationToInsert.Description = situationObject.Description;
             situationToInsert.Status = situationObject.Status;
             _situationContext.Insert(situationToInsert);
             _situationContext.Commit();
@@ -100,44 +105,44 @@ namespace TruckCheckUp.Services
 
         }
 
-        public void UpdateSituationData(SituationViewModel situationObject)
+        private void UpdateSituationData(SituationViewModel situationObject)
         {
             var situationToUpdate = _situationContext.Find(situationObject.Id);
             if (situationToUpdate != null)
             {
                 _logger.Info("Found record Id " + situationToUpdate.Id + " in Table " + tableNameUsedByLogger);
-                situationToUpdate.Description = situationObject.Situation;
+                situationToUpdate.Description = situationObject.Description;
+                situationToUpdate.Status = situationObject.Status;
 
                 _situationContext.Commit();
                 _logger.Info("Updated record Id " + situationToUpdate.Id + " in Table " + tableNameUsedByLogger);
-
             }
         }
 
         public SituationViewModel SearchSituationInDB(SituationViewModel situationObject)
         {
-            var situationSearchResult = new Situation();
+            var situationDescriptionIsValid = _validate.OnlyLetters(situationObject.Description) == true && string.IsNullOrEmpty(situationObject.Description) == false;
             var situationViewModel = new SituationViewModel();
-            if (string.IsNullOrEmpty(situationObject.Situation) == false && _validate.OnlyLetters(situationObject.Situation) == true)
+            if (situationDescriptionIsValid == true)
             {
-                situationSearchResult = _situationContext.Collection().Where(s => s.Id == situationObject.Id).FirstOrDefault();
-                if (situationSearchResult == null)
+                var situationSearchResult = _situationContext.Collection().Where(s => s.Description.Equals(situationObject.Description, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+
+                if (situationSearchResult != null)
                 {
-                    situationObject.ExistInDB = false;
+                    situationViewModel.Id = situationSearchResult.Id;
+                    situationViewModel.Description = situationSearchResult.Description;
+                    situationViewModel.Status = situationSearchResult.Status;
+                    situationViewModel.ExistInDB = true;
                 }
                 else
                 {
-                    situationObject.Id = situationSearchResult.Id;
-                    situationObject.Situation = situationSearchResult.Description;
-                }
-                situationObject.IsValid = true;
+                    situationViewModel.ExistInDB = false;
+                } 
             }
-            else
-            {
-                situationObject.IsValid = false;
-            }
+            
+            situationViewModel.IsValid = situationDescriptionIsValid;
 
-            return situationObject;
+            return situationViewModel;
         }
 
         public void DeleteSituation(string situationId)

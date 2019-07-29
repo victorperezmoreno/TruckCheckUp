@@ -10,12 +10,20 @@ namespace TruckCheckUp.Core.ViewModels.SituationUI
     {
         public string Id { get; set; }
 
-        public string Situation { get; set; }
+        public string Description { get; set; }
+
+        public bool Status { get; set; } = true;
 
         public bool ExistInDB { get; set; } = true;
 
         public bool IsValid { get; set; } = true;
 
-        public bool Status { get; set; } = true;
+        public string StatusLabel
+        {
+            get
+            {
+                return (bool)this.Status ? "Active" : "Inactive";
+            }
+        }
     }
 }
