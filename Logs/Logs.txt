@@ -11583,3 +11583,8 @@ INFO -2019-07-29 19:19:37,077--Found record Id dcebd8fc-76a8-4897-bfa6-bb1483b83
 INFO -2019-07-29 19:19:37,080--Updated record Id dcebd8fc-76a8-4897-bfa6-bb1483b83452 in Table Situation
 INFO -2019-07-29 19:19:42,980--Found record Id dcebd8fc-76a8-4897-bfa6-bb1483b83452 in Table Situation
 INFO -2019-07-29 19:19:43,040--Deleted record Id dcebd8fc-76a8-4897-bfa6-bb1483b83452 from Table Situation
+INFO -2019-07-29 19:35:03,752--Application Started...
+INFO -2019-07-29 19:39:02,359--Found record Id 4c2958eb-5d58-4aff-85b1-1a2932e31e11 in Table Situation
+INFO -2019-07-29 19:39:02,615--Updated record Id 4c2958eb-5d58-4aff-85b1-1a2932e31e11 in Table Situation
+INFO -2019-07-29 19:39:07,931--Found record Id 4c2958eb-5d58-4aff-85b1-1a2932e31e11 in Table Situation
+INFO -2019-07-29 19:39:07,975--Updated record Id 4c2958eb-5d58-4aff-85b1-1a2932e31e11 in Table Situation
