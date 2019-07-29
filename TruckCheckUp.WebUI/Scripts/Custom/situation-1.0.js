@@ -301,13 +301,14 @@ function situationUpdated(situation) {
 
 //function for deleting manufacturer's record
 function deleteSituation(Id) {
-    let userResponse = confirm("Are you sure you want to delete this Record?");
-    varUrl = "/SituationManagement/Delete/" + Id;
-    varType = "POST";
-    varContentType = "application/json;charset=utf-8";
-    varDataType = "json";
+    let userResponseYes = confirm("Are you sure you want to delete this Record?");
 
-    if (userResponse) {
+    if (userResponseYes) {
+        varUrl = "/SituationManagement/Delete/" + Id;
+        varType = "POST";
+        varContentType = "application/json;charset=utf-8";
+        varDataType = "json";
+
         $.ajax({
             url: varUrl,
             type: varType,
@@ -326,9 +327,9 @@ function clearSituationTextBoxes() {
     let element = document.getElementById('statusText');
     let currentStatus = document.getElementById('situationStatus');
     $('#Id').val("");
-    $('#situationDescription').val("");
-    $('#situationDescriptionTextBox_error').text("");
-    $('#situationDescription').css('border-color', 'lightgrey');
+    $('#situation').val("");
+    $('#situationTextBox_error').text("");
+    $('#situation').css('border-color', 'lightgrey');
     //if status checkbox false from last operation then returned to true
     if (currentStatus.checked == false) {
         currentStatus.checked = true;

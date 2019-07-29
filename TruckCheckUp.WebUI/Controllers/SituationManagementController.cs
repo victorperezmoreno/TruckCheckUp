@@ -51,5 +51,19 @@ namespace TruckCheckUp.WebUI.Controllers
                 throw;
             } 
         }
+
+        [HttpPost]
+        public JsonResult Delete (string Id)
+        {
+            try
+            {
+                _situationService.DeleteSituation(Id);
+                return Json(Id, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
