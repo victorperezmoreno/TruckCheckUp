@@ -1,0 +1,77 @@
+﻿<script src="~/Scripts/Custom/situation-1.0.js"></script>
+<script src="~/Scripts/Custom/Common.js"></script>
+<div class="container">
+    <h2>Situation Records</h2>
+    <p>
+        @Html.ActionLink("Back to Administration Page", "Index", "Administration")
+    </p>
+    <div class="form-group form-horizontal">
+        <div class="col-md-4">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#situationModal" onclick="clearSituationTextBoxes();">Add Situation</button>
+        </div>
+        <label class="control-label col-md-2">Find by Situation :</label>
+        <div class="col-md-3">
+            <input type="text" id="situationSearch" class="form-control input-normal" placeholder="Only letters" />
+            <div id="truckTextBox_error" class="text-danger"> </div>
+        </div>
+        <div class="col-md-1">
+            <button type="button" id="truckSearch_button" class="btn btn-default" onclick="searchSituation();">Search</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" id="truckClear_button" class="btn btn-default" onclick="clearSituationSearch();">Clear Filter</button>
+        </div>
+        <br />
+        <br />
+    </div>
+    <table class="table table-bordered table-hover table-striped">
+        <thead class="alert alert-info">
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Situation
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tbodySituation"></tbody>
+    </table>
+</div>
+<div class="modal fade" id="situationModal" tabindex="-1" role="dialog" aria-labelledby="situationLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title" id="situationLabel">Situation</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="Id">Id</label>
+                        <input type="text" class="form-control" id="Id" placeholder="Id" disabled="disabled" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Situation">Situation</label>
+                        <input type="text" class="form-control" id="situation" placeholder="Only letters" />
+                        <div id="situationTextBox_error" class="text-danger"> </div>
+                    </div>
+                    <div class="form-group form-horizontal">
+                        <label for="SituationStatus">Status</label> <input type="checkbox" id="situationStatus" checked disabled onchange="changeSituationStatus(this)" /> <span class="text-success" id="statusText"><strong>Active</strong></span>
+                        <div id="situationStatus_error" class="text-danger"> </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="situationAdd_button" onclick="return addSituation();">Add</button>
+                <button type="button" class="btn btn-primary" id="situationUpdate_button" style="display:none;" onclick="updateSituation();">Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="clearSituationTextBoxes();">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -207,6 +207,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PartCatalogManagementController.cs" />
     <Compile Include="Controllers\PartCategoryManagementController.cs" />
+    <Compile Include="Controllers\SituationManagementController.cs" />
     <Compile Include="Controllers\TruckInspectionController.cs" />
     <Compile Include="Controllers\TruckManagementController.cs" />
     <Compile Include="Controllers\TruckManufacturerManagementController.cs" />
@@ -293,6 +294,7 @@
     <Content Include="Scripts\bootstrap2-toggle.js" />
     <Content Include="Scripts\bootstrap2-toggle.min.js" />
     <Content Include="Scripts\Custom\Common.js" />
+    <Content Include="Scripts\Custom\situation-1.0.js" />
     <Content Include="Scripts\Custom\truck-1.0.js" />
     <Content Include="Scripts\Custom\truckmanufacturer-1.0.js" />
     <Content Include="Scripts\Custom\truckmodel-1.0.js" />
@@ -374,6 +376,7 @@
     <Content Include="Views\InspectionReport\Index.cshtml" />
     <Content Include="Views\InspectionReport\_InspectionReportsList.cshtml" />
     <Content Include="Views\InspectionReport\ReportDetails.cshtml" />
+    <Content Include="Views\SituationManagement\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

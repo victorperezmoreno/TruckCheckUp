@@ -15,5 +15,11 @@ namespace TruckCheckUp.Core.Contracts.InputValidation
             Regex regexDefinition = new Regex(@"^[0-9]+$");
             return (regexDefinition.IsMatch(inputToValidate));
         }
+
+        public bool OnlyLetters(string inputToValidate)
+        {
+            Regex regexDefinition = new Regex(@"(?i)^[a-z ]+");
+            return (regexDefinition.IsMatch(inputToValidate));
+        }
     }
 }

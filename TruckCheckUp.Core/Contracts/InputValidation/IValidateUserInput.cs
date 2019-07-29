@@ -4,5 +4,6 @@
     {
         bool Alphanumeric(string inputToValidate);
         bool Numeric(string inputToValidate);
+        bool OnlyLetters(string inputToValidate);
     }
 }

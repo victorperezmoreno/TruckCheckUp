@@ -11,10 +11,17 @@ namespace TruckCheckUp.Core.Models
 {
     public class Situation : BaseEntity
     {
+        //[Required]
+        //Will not use it now, will search for the "Open" option in a query
+        //public int StatusCode { get; set; } 
+        
         [Required]
-        public int StatusCode { get; set; }
-        [Required]
+        [StringLength(20)]
         public string Description { get; set; }
+
+        //Indicate whether a situation is active nor inactive
+        [Required]
+        public bool Status { get; set; }
 
         public virtual ICollection<PartSituation> PartSituation { get; set; }
 

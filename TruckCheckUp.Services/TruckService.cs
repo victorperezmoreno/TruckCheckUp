@@ -18,7 +18,7 @@ namespace TruckCheckUp.Services
         private IRepository<TruckYear> _truckYearContext;
         private ILogger _logger;
         private IValidateUserInput _validate;
-        string tableNameUsedByLogger = "";
+        string tableNameUsedByLogger = "Truck";
 
         public TruckService(IRepository<Truck> truckContext, IRepository<TruckManufacturer> truckManufacturerContext,
                             IRepository<TruckModel> truckModelContext,  IRepository<TruckYear> truckYearContext,
@@ -30,7 +30,6 @@ namespace TruckCheckUp.Services
             _truckYearContext = truckYearContext;
             _logger = logger;
             _validate = validate;
-            tableNameUsedByLogger = "Truck";
         }
 
         public List<TruckViewModel> RetrieveAllTrucks()
@@ -294,90 +293,6 @@ namespace TruckCheckUp.Services
                 _truckContext.Commit();
                 _logger.Info("Deleted record Id " + truckToDelete.Id + " from Table " + tableNameUsedByLogger);
             }
-
-
-
-            //Old methods using Razor
-            //public void PostNewTruckToDB(TruckInsertViewModel truck)
-            //{
-            //    var truckToInsert = new Truck();
-            //    truckToInsert.VIN          = truck.VIN;
-            //    truckToInsert.TruckNumber  = truck.TruckNumber;
-            //    truckToInsert.Manufacturer = truck.Manufacturer;
-            //    truckToInsert.Model        = truck.Model;
-            //    truckToInsert.Year         = truck.Year;
-            //    truckToInsert.Status       = truck.Status;
-
-            //    _truckContext.Insert(truckToInsert);
-            //    _truckContext.Commit();
-            //}
-
-            //public TruckUpdateViewModel RetrieveTruckDataToUpdate(string truckId)
-            //{
-            //    //Look for truck and return her data
-            //    var truckToUpdate = (
-            //            from truckStoredInDB in _truckContext.Collection()
-            //            where truckStoredInDB.Id == truckId
-            //            select new TruckUpdateViewModel()
-            //            {
-            //                Id           = truckStoredInDB.Id,
-            //                VIN          = truckStoredInDB.VIN,
-            //                TruckNumber  = truckStoredInDB.TruckNumber,
-            //                Manufacturer = truckStoredInDB.Manufacturer,
-            //                Model        = truckStoredInDB.Model,
-            //                Year         = truckStoredInDB.Year,
-            //                Status       = truckStoredInDB.Status
-            //            }).FirstOrDefault();
-
-            //    if (truckToUpdate != null)
-            //    {
-            //        return truckToUpdate;
-            //    }
-            //    else
-            //    {
-            //        return new TruckUpdateViewModel();
-            //    }
-            //}
-
-            //public void UpdateTruckData(TruckUpdateViewModel truck, string truckId)
-            //{
-            //    var truckToUpdate = _truckContext.Find(truckId);
-            //    if (truckToUpdate != null)
-            //    {
-            //        truckToUpdate.VIN          = truck.VIN;
-            //        truckToUpdate.TruckNumber  = truck.TruckNumber;
-            //        truckToUpdate.Manufacturer = truck.Manufacturer;
-            //        truckToUpdate.Model        = truck.Model;
-            //        truckToUpdate.Year         = truck.Year;
-            //        truckToUpdate.Status       = truck.Status;
-
-            //        _truckContext.Commit();
-            //    }
-            //}
-
-            //public Truck RetrieveTruckToDelete(string truckId)
-            //{
-            //    var truckToDelete = _truckContext.Find(truckId);
-            //    if (truckToDelete != null)
-            //    {
-            //        return truckToDelete;
-            //    }
-            //    else
-            //    {
-            //        return new Truck();
-            //    }
-            //}
-
-            //public void DeleteTruck(string truckId)
-            //{
-            //    var truckToDelete = _truckContext.Find(truckId);
-            //    if (truckToDelete != null)
-            //    {
-            //        _truckContext.Delete(truckToDelete);
-            //        _truckContext.Commit();
-            //    }
-            //}
-
         }
     }
 }

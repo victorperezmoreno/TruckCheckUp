@@ -1,5 +1,6 @@
 ﻿function DisplayWarningMessageForTextBox(message, elementId)
 {
+    initializeDropDownList("model");
     let elementFromUI = document.getElementById(elementId);
     $(elementFromUI).css('border-color', 'Red');
 
@@ -106,6 +107,29 @@ function validateTextboxContainsOnlyAlphanumericCharacters(txtBxAlphanumericId) 
         }
     });
 }
+
+function validateTextboxContainsOnlyCharacters(txtBxOnlyLettersId) {
+    var $regexLetterName = /^[A-Za-z]+$/;
+    var txtBxLettersElement = document.getElementById(txtBxOnlyLettersId);
+    var errorMessageIdForLetters = "#" + txtBxOnlyLettersId + "TextBox_error";
+    $(txtBxLettersElement).on('keypress keydown keyup', function () {
+        if (!$(this).val().match($regexLetterName)) {
+            // there is a mismatch, hence show the error message
+            $(txtBxLettersElement).css('border-color', 'Red');
+            $(errorMessageIdForLetters).text("Please only letters without spaces");
+            $("#situationAdd_button").prop('disabled', true);
+            $("#situationUpdate_button").prop('disabled', true);
+        }
+        else {
+            // else, do not display message
+            $(txtBxLettersElement).css('border-color', 'lightgrey');
+            $(errorMessageIdForLetters).text("");
+            $("#situationAdd_button").prop('disabled', false);
+            $("#situationUpdate_button").prop('disabled', false);
+        }
+    });
+}
+
 
 function initializeDropDownList(dropDownListIdentifier) {
     let dDLIdWithFirstLetterCapitalized = capitalizeFirstLetter(dropDownListIdentifier);

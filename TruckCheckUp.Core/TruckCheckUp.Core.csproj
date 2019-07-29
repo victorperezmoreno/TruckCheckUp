@@ -80,6 +80,8 @@
     <Compile Include="ViewModels\InspectionReportUI\ReportListViewModel.cs" />
     <Compile Include="ViewModels\InspectionReportUI\ReportsViewModel.cs" />
     <Compile Include="ViewModels\InspectionReportUI\TruckNumberViewmodel.cs" />
+    <Compile Include="ViewModels\SituationUI\SituationListViewModel.cs" />
+    <Compile Include="ViewModels\SituationUI\SituationViewModel.cs" />
     <Compile Include="ViewModels\TruckInspection\ValidTruckMileage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CatalogUI\PartViewModel.cs" />
