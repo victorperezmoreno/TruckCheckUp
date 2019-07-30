@@ -178,7 +178,7 @@ function situationAdded(situationObject) {
 
 function getSituationById(Id) {
 
-    varUrl = "/SituationManagement/GetSituationkById/" + Id;
+    varUrl = "/SituationManagement/GetSituationById/" + Id;
     varType = "GET";
     varContentType = "application/json;charset=utf-8";
     varDataType = "json";

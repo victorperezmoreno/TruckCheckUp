@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
+using TruckCheckUp.Core.Contracts.Services;
 using TruckCheckUp.Core.ViewModels.SituationUI;
 using TruckCheckUp.Services;
 
@@ -11,9 +12,9 @@ namespace TruckCheckUp.WebUI.Controllers
 {
     public class SituationManagementController : Controller
     {
-        private SituationService _situationService;
+        private ISituationService _situationService;
 
-        public SituationManagementController(SituationService situationService)
+        public SituationManagementController(ISituationService situationService)
         {
             _situationService = situationService;
         }
@@ -29,7 +30,7 @@ namespace TruckCheckUp.WebUI.Controllers
         {
             try
             {
-                var situationResultsList = _situationService.RetrieveAllSituationsfromDatabase();
+                var situationResultsList = _situationService.RetrieveAllSituations();
                 return Json(situationResultsList, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
@@ -52,7 +53,7 @@ namespace TruckCheckUp.WebUI.Controllers
             } 
         }
 
-        public JsonResult GetSituationkById(string Id)
+        public JsonResult GetSituationById(string Id)
         {
             try
             {
@@ -84,7 +85,7 @@ namespace TruckCheckUp.WebUI.Controllers
         {
             try
             {
-                var searchSituationResult = _situationService.SearchSituationInDB(situationObject);
+                var searchSituationResult = _situationService.SearchSituation(situationObject);
                 return Json(searchSituationResult, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)

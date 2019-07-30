@@ -49,6 +49,7 @@
     <Compile Include="Contracts\DataAccess\IRepository.cs" />
     <Compile Include="Contracts\InputValidation\IValidateUserInput.cs" />
     <Compile Include="Contracts\InputValidation\ValidateUserInput.cs" />
+    <Compile Include="Contracts\Services\ISituationService.cs" />
     <Compile Include="Contracts\Logger\ILogger.cs" />
     <Compile Include="Contracts\Logger\Log4NetLogger.cs" />
     <Compile Include="Contracts\Services\IDriverService.cs" />

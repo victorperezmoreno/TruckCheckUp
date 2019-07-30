@@ -11588,3 +11588,82 @@ INFO -2019-07-29 19:39:02,359--Found record Id 4c2958eb-5d58-4aff-85b1-1a2932e31
 INFO -2019-07-29 19:39:02,615--Updated record Id 4c2958eb-5d58-4aff-85b1-1a2932e31e11 in Table Situation
 INFO -2019-07-29 19:39:07,931--Found record Id 4c2958eb-5d58-4aff-85b1-1a2932e31e11 in Table Situation
 INFO -2019-07-29 19:39:07,975--Updated record Id 4c2958eb-5d58-4aff-85b1-1a2932e31e11 in Table Situation
+INFO -2019-07-29 19:55:51,034--Application Started...
+INFO -2019-07-29 20:08:10,247--Application Started...
+INFO -2019-07-29 20:10:51,024--Inserted record Id 05c735b3-806d-4b2a-a8a4-97b76c73c7ab into Table Situation
+ERROR-2019-07-29 20:10:53,944--Unhandled Exception Application Error
+User : 
+Page : http://localhost:49233/SituationManagement/GetSituationkById/05c735b3-806d-4b2a-a8a4-97b76c73c7ab
+System.Web.HttpException (0x80004005): A public action method 'GetSituationkById' was not found on controller 'TruckCheckUp.WebUI.Controllers.SituationManagementController'.
+   at System.Web.Mvc.Controller.HandleUnknownAction(String actionName)
+   at System.Web.Mvc.Controller.<>c.<BeginExecuteCore>b__152_1(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<>c.<BeginExecute>b__151_2(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<>c.<BeginProcessRequest>b__20_1(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ERROR-2019-07-29 20:10:59,024--Unhandled Exception Application Error
+User : 
+Page : http://localhost:49233/SituationManagement/GetSituationkById/05c735b3-806d-4b2a-a8a4-97b76c73c7ab
+System.Web.HttpException (0x80004005): A public action method 'GetSituationkById' was not found on controller 'TruckCheckUp.WebUI.Controllers.SituationManagementController'.
+   at System.Web.Mvc.Controller.HandleUnknownAction(String actionName)
+   at System.Web.Mvc.Controller.<>c.<BeginExecuteCore>b__152_1(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<>c.<BeginExecute>b__151_2(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<>c.<BeginProcessRequest>b__20_1(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ERROR-2019-07-29 20:11:33,050--Unhandled Exception Application Error
+User : 
+Page : http://localhost:49233/SituationManagement/GetSituationkById/05c735b3-806d-4b2a-a8a4-97b76c73c7ab
+System.Web.HttpException (0x80004005): A public action method 'GetSituationkById' was not found on controller 'TruckCheckUp.WebUI.Controllers.SituationManagementController'.
+   at System.Web.Mvc.Controller.HandleUnknownAction(String actionName)
+   at System.Web.Mvc.Controller.<>c.<BeginExecuteCore>b__152_1(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<>c.<BeginExecute>b__151_2(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<>c.<BeginProcessRequest>b__20_1(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+INFO -2019-07-29 20:11:39,643--Found record Id 05c735b3-806d-4b2a-a8a4-97b76c73c7ab in Table Situation
+INFO -2019-07-29 20:11:39,661--Deleted record Id 05c735b3-806d-4b2a-a8a4-97b76c73c7ab from Table Situation
+INFO -2019-07-29 20:13:17,646--Application Started...
+INFO -2019-07-29 20:14:54,347--Inserted record Id 6e641591-bbe9-40de-a6d1-dd3aa0209b2a into Table Situation
+INFO -2019-07-29 20:15:03,139--Found record Id 6e641591-bbe9-40de-a6d1-dd3aa0209b2a in Table Situation
+INFO -2019-07-29 20:15:03,158--Updated record Id 6e641591-bbe9-40de-a6d1-dd3aa0209b2a in Table Situation
+INFO -2019-07-29 20:15:09,419--Found record Id 6e641591-bbe9-40de-a6d1-dd3aa0209b2a in Table Situation
+INFO -2019-07-29 20:15:09,426--Updated record Id 6e641591-bbe9-40de-a6d1-dd3aa0209b2a in Table Situation
+INFO -2019-07-29 20:17:50,965--Inserted inspection report number 8624f191-10bf-4345-8937-4670f92e8ab3 for Truck adcf8100-cb00-4b0d-bee1-f21f29412085 into Table TruckInspection
+INFO -2019-07-29 20:17:51,098--Inserted report number 8624f191-10bf-4345-8937-4670f92e8ab3 into Table PartsInspected

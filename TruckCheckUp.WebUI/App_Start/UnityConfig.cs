@@ -80,7 +80,8 @@ namespace TruckCheckUp.WebUI
             container.RegisterType<IPartCategoryService, PartCategoryService>();
             container.RegisterType<IPartCatalogService, PartCatalogService>();
             container.RegisterType<ITruckInspectionService, TruckInspectionService>();
-            container.RegisterType<IInspectionReportService, InspectionReportService>();           
+            container.RegisterType<IInspectionReportService, InspectionReportService>();
+            container.RegisterType<ISituationService, SituationService>();          
         }
     }
 }

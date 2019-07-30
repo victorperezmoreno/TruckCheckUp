@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 using TruckCheckUp.Core.Contracts.DataAccess;
 using TruckCheckUp.Core.Contracts.InputValidation;
 using TruckCheckUp.Core.Contracts.Logger;
+using TruckCheckUp.Core.Contracts.Services;
 using TruckCheckUp.Core.Models;
 using TruckCheckUp.Core.ViewModels.SituationUI;
 using TruckCheckUp.Core.ViewModels.TruckUI;
 
 namespace TruckCheckUp.Services
 {
-    public class SituationService
+    public class SituationService : ISituationService
     {
         private IRepository<Situation> _situationContext;
         private ILogger _logger;
@@ -26,7 +27,7 @@ namespace TruckCheckUp.Services
             _validate = validate;
         }
 
-        public List<SituationListViewModel> RetrieveAllSituationsfromDatabase()
+        public List<SituationListViewModel> RetrieveAllSituations()
         {
             //Get a list of Situations from DB
             return _situationContext.Collection().OrderByDescending(s => s.Description).Select(
@@ -74,6 +75,24 @@ namespace TruckCheckUp.Services
             return situationObject;
         }
 
+        private bool SituationDescriptionAlreadyExistInDatabase(string situationDescription)
+        {
+            //Check whether situation description already in DB
+            return _situationContext.Collection().Any(d => d.Description == situationDescription.Trim());
+        }
+
+        private void PostNewSituationToDB(SituationViewModel situationObject)
+        {
+            var situationToInsert = new Situation();
+
+            situationToInsert.Description = situationObject.Description;
+            situationToInsert.Status = situationObject.Status;
+            _situationContext.Insert(situationToInsert);
+            _situationContext.Commit();
+            _logger.Info("Inserted record Id " + situationToInsert.Id + " into Table " + tableNameUsedByLogger);
+
+        }
+
         public SituationViewModel UpdateSituation(SituationViewModel situationObject)
         {
             Boolean situationContainsOnlyLetters = _validate.OnlyLetters(situationObject.Description);
@@ -85,24 +104,6 @@ namespace TruckCheckUp.Services
 
             situationObject.IsValid = situationContainsOnlyLetters;
             return situationObject;
-        }
-
-        public bool SituationDescriptionAlreadyExistInDatabase(string situationDescription)
-        {
-            //Check whether situation description already in DB
-            return _situationContext.Collection().Any(d => d.Description == situationDescription.Trim());
-        }
-
-        public void PostNewSituationToDB(SituationViewModel situationObject)
-        {
-            var situationToInsert = new Situation();
-
-            situationToInsert.Description = situationObject.Description;
-            situationToInsert.Status = situationObject.Status;
-            _situationContext.Insert(situationToInsert);
-            _situationContext.Commit();
-            _logger.Info("Inserted record Id " + situationToInsert.Id + " into Table " + tableNameUsedByLogger);
-
         }
 
         private void UpdateSituationData(SituationViewModel situationObject)
@@ -119,7 +120,7 @@ namespace TruckCheckUp.Services
             }
         }
 
-        public SituationViewModel SearchSituationInDB(SituationViewModel situationObject)
+        public SituationViewModel SearchSituation(SituationViewModel situationObject)
         {
             var situationDescriptionIsValid = _validate.OnlyLetters(situationObject.Description) == true && string.IsNullOrEmpty(situationObject.Description) == false;
             var situationViewModel = new SituationViewModel();
