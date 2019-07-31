@@ -11667,3 +11667,6 @@ INFO -2019-07-29 20:15:09,419--Found record Id 6e641591-bbe9-40de-a6d1-dd3aa0209
 INFO -2019-07-29 20:15:09,426--Updated record Id 6e641591-bbe9-40de-a6d1-dd3aa0209b2a in Table Situation
 INFO -2019-07-29 20:17:50,965--Inserted inspection report number 8624f191-10bf-4345-8937-4670f92e8ab3 for Truck adcf8100-cb00-4b0d-bee1-f21f29412085 into Table TruckInspection
 INFO -2019-07-29 20:17:51,098--Inserted report number 8624f191-10bf-4345-8937-4670f92e8ab3 into Table PartsInspected
+INFO -2019-07-30 11:47:06,606--Application Started...
+INFO -2019-07-30 12:17:22,276--Found record Id 6e641591-bbe9-40de-a6d1-dd3aa0209b2a in Table Situation
+INFO -2019-07-30 12:17:22,541--Deleted record Id 6e641591-bbe9-40de-a6d1-dd3aa0209b2a from Table Situation

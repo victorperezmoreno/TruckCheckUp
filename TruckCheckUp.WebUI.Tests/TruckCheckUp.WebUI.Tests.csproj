@@ -94,6 +94,7 @@
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Services\TruckInspectionUnitTests.cs" />
     <Compile Include="Services\TruckManufacturerUnitTests.cs" />
+    <Compile Include="Services\SituationUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

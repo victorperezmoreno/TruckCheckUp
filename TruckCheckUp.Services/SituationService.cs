@@ -78,7 +78,7 @@ namespace TruckCheckUp.Services
         private bool SituationDescriptionAlreadyExistInDatabase(string situationDescription)
         {
             //Check whether situation description already in DB
-            return _situationContext.Collection().Any(d => d.Description == situationDescription.Trim());
+            return _situationContext.Collection().Any(d => d.Description.Equals(situationDescription.Trim(), StringComparison.OrdinalIgnoreCase));
         }
 
         private void PostNewSituationToDB(SituationViewModel situationObject)
@@ -95,15 +95,20 @@ namespace TruckCheckUp.Services
 
         public SituationViewModel UpdateSituation(SituationViewModel situationObject)
         {
-            Boolean situationContainsOnlyLetters = _validate.OnlyLetters(situationObject.Description);
-            //Validate situation description contains only letters
-            if (situationContainsOnlyLetters == true)
+            //Move data from situationObject parameter to new situation object including situation validation
+            var newSituationObject = new SituationViewModel()
+            { Id = situationObject.Id, Description = situationObject.Description,
+              Status = situationObject.Status,
+              ExistInDB = SituationDescriptionAlreadyExistInDatabase(situationObject.Description),
+              IsValid = _validate.OnlyLetters(situationObject.Description)};
+
+            //Validate that situation description field contains only letters and is not in database already
+            if (newSituationObject.IsValid == true && newSituationObject.ExistInDB == false)
             {
-                UpdateSituationData(situationObject);
+                UpdateSituationData(newSituationObject);
             }
 
-            situationObject.IsValid = situationContainsOnlyLetters;
-            return situationObject;
+            return newSituationObject;
         }
 
         private void UpdateSituationData(SituationViewModel situationObject)
@@ -123,27 +128,27 @@ namespace TruckCheckUp.Services
         public SituationViewModel SearchSituation(SituationViewModel situationObject)
         {
             var situationDescriptionIsValid = _validate.OnlyLetters(situationObject.Description) == true && string.IsNullOrEmpty(situationObject.Description) == false;
-            var situationViewModel = new SituationViewModel();
+            var newSituationObject = new SituationViewModel();
             if (situationDescriptionIsValid == true)
             {
                 var situationSearchResult = _situationContext.Collection().Where(s => s.Description.Equals(situationObject.Description, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
 
                 if (situationSearchResult != null)
                 {
-                    situationViewModel.Id = situationSearchResult.Id;
-                    situationViewModel.Description = situationSearchResult.Description;
-                    situationViewModel.Status = situationSearchResult.Status;
-                    situationViewModel.ExistInDB = true;
+                    newSituationObject.Id = situationSearchResult.Id;
+                    newSituationObject.Description = situationSearchResult.Description;
+                    newSituationObject.Status = situationSearchResult.Status;
+                    newSituationObject.ExistInDB = true;
                 }
                 else
                 {
-                    situationViewModel.ExistInDB = false;
+                    newSituationObject.ExistInDB = false;
                 } 
             }
-            
-            situationViewModel.IsValid = situationDescriptionIsValid;
 
-            return situationViewModel;
+            newSituationObject.IsValid = situationDescriptionIsValid;
+
+            return newSituationObject;
         }
 
         public void DeleteSituation(string situationId)

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TruckCheckUp.Core.Contracts.DataAccess;
+using TruckCheckUp.Core.Contracts.Logger;
 using TruckCheckUp.Core.Models;
 
 namespace TruckCheckUp.WebUI.Tests.Mocks
@@ -12,6 +13,7 @@ namespace TruckCheckUp.WebUI.Tests.Mocks
     {
         List<T> items;
         string className;
+        private ILogger _logger = new MockTruckCheckUpLogger();
 
         public MockTruckCheckUpContext()
         {
@@ -22,7 +24,16 @@ namespace TruckCheckUp.WebUI.Tests.Mocks
 
         public IQueryable<T> Collection()
         {
-            return items.AsQueryable();
+            try
+            {
+                return items.AsQueryable();
+            }
+            catch (Exception ex)
+            {
+                _logger.Error("Application unable to return data from Table: " + className, ex);
+                throw;
+            }
+           
         }
 
         public void Commit()
@@ -32,29 +43,34 @@ namespace TruckCheckUp.WebUI.Tests.Mocks
 
         public void Delete(T objectToDelete)
         {
-            //T objectToDelete = items.Find(item => item.Id == Id);
-            if (objectToDelete != null)
+           try
             {
-                items.Remove(objectToDelete);
+                //Use Find method below to look for record in table
+                if (objectToDelete != null)
+                {
+                    items.Remove(objectToDelete);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                throw new Exception(className + " Not found");
+                _logger.Error("Application unable to Delete Id " + objectToDelete.Id + " record in Table " + className, ex);
+                throw;
             }
-           
+
 
         }
 
         public T Find(string Id)
         {
-            T objectToFind = items.Find(item => item.Id == Id);
-            if (objectToFind != null)
+            try
             {
+                T objectToFind = items.Find(item => item.Id == Id);
                 return objectToFind;
             }
-            else
+            catch (Exception ex)
             {
-                throw new Exception(className + " Not found");
+                _logger.Error("Error looking for Id " + Id + " record in Table " + className, ex);
+                throw;
             }
         }
 
@@ -65,14 +81,16 @@ namespace TruckCheckUp.WebUI.Tests.Mocks
 
         public void Update(T objectClass)
         {
-            T objectToUpdate = items.Find(item => item.Id == objectClass.Id);
-            if (objectToUpdate != null)
+
+            try
             {
+                T objectToUpdate = items.Find(item => item.Id == objectClass.Id);
                 objectToUpdate = objectClass;
             }
-            else
+            catch (Exception ex)
             {
-                throw new Exception(className + " Not found");
+                _logger.Error("Application unable to Update Id " + objectClass.Id + " record in Table: " + className, ex);
+                throw;
             }
         }
     }
