@@ -659,7 +659,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             _driverContext.Insert(new Driver() { FirstName = "Jesus", LastName = "Ramos" });
 
             //Act
-            //Check that a TruckInspectionViewModel object contains a list of drivers list
+            //Check that a TruckInspectionViewModel object contains a list of drivers
             var result = _truckInspectionService.CreateNewTruckInspectionObject();
 
             //Assert
@@ -680,12 +680,12 @@ namespace TruckCheckUp.WebUI.Tests.Services
             ITruckInspectionService _truckInspectionService = new TruckInspectionService(_partCatalogContext, _truckInspectionContext, _driverContext, _truckContext, _partsInspectedContext, _logger);
 
             /****Create a Mock Truck object that represents current data in DB ****/
-            _truckContext.Insert(new Truck() { TruckNumber = 10 });
-            _truckContext.Insert(new Truck() { TruckNumber = 11 });
-            _truckContext.Insert(new Truck() { TruckNumber = 12 });
+            _truckContext.Insert(new Truck() { VIN = "1", TruckNumber = 10, Status = true });
+            _truckContext.Insert(new Truck() { VIN = "2", TruckNumber = 11, Status = true });
+            _truckContext.Insert(new Truck() { VIN = "3", TruckNumber = 12, Status = true });
 
             //Act
-            //Check that a TruckInspectionViewModel object contains a list of drivers list
+            //Check that a TruckInspectionViewModel object contains a list of Trucks
             var result = _truckInspectionService.CreateNewTruckInspectionObject();
 
             //Assert

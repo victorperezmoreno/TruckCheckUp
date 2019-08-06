@@ -399,5 +399,27 @@ namespace TruckCheckUp.WebUI.Tests.Services
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void Test_CountSituationViewModelClassProperties_PropertiesCountEqualToSix()
+        {
+            //Arrange
+            Type type = typeof(SituationViewModel);
+            //Act
+            int NumberOfProperties = type.GetProperties().Length;
+            //Assert
+            Assert.AreEqual(6, NumberOfProperties);
+        }
+
+        [TestMethod]
+        public void Test_CountSituationListViewModelClassProperties_PropertiesCountEqualToFour()
+        {
+            //Arrange
+            Type type = typeof(SituationListViewModel);
+            //Act
+            int NumberOfProperties = type.GetProperties().Length;
+            //Assert
+            Assert.AreEqual(4, NumberOfProperties);
+        }
+
     }
 }
