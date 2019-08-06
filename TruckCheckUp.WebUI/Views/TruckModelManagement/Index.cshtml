@@ -1,0 +1,85 @@
+﻿<script src="~/Scripts/Custom/truckmodel-1.0.js"></script>
+<div class="container">
+    <h2>Truck Model Records</h2>
+    <p>
+        @Html.ActionLink("Back to Administration Page", "Index", "Administration")
+    </p>
+    <div class="form-group form-horizontal">
+        <div class="col-md-4">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modelModal" onclick="clearModelTextBoxes();">Add Model</button>
+        </div>
+        <label class="control-label col-md-2">Find by Model:</label>
+        <div class="col-md-3">
+            <input type="text" id="modelSearch_textbox" class="form-control input-normal" />
+            <div id="modelSearch_error" class="text-danger"> </div>
+        </div>
+        <div class="col-md-1">
+            <button type="button" id="modelSearch_button" class="btn btn-default" onclick="searchModel();">Search</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" id="modelClear_button" class="btn btn-default" onclick="clearModelSearch();">Clear Filter</button>
+        </div>
+        <br />
+        <br />
+    </div>
+    <table class="table table-bordered table-hover table-striped">
+        <thead class="alert alert-info">
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Model
+                </th>
+                <th>
+                    Manufacturer
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tbodyModel"></tbody>
+    </table>
+</div>
+<div class="modal fade" id="modelModal" tabindex="-1" role="dialog" aria-labelledby="modelModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title" id="modelModalLabel">Truck Model</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="Id">Id</label>
+                        <input type="text" class="form-control" id="Id" placeholder="Id" disabled="disabled" />
+                    </div>
+                    <div class="form-group">
+                        <label for="ManufacturerDescription">Manufacturer</label>
+                        <div id="manufacturer_dropdownlist">
+                            <select id="manufacturer" class="form-control" onchange="validateManufacturerDropDownList(this)">
+                                <option>- Select Manufacturer -</option>
+                            </select>
+                        </div>
+                        <div id="manufacturerDescription_error" class="text-danger"> </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ModelDescription">Model</label>
+                        <input type="text" class="form-control" id="modelDescription_textbox" placeholder="Model" />
+                        <div id="modelDescription_error" class="text-danger"> </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="modelAdd_button" onclick="return addModel();">Add</button>
+                <button type="button" class="btn btn-primary" id="modelUpdate_button" style="display:none;" onclick="updateModel();">Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="clearModelTextBoxes();">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

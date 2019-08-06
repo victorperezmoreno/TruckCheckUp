@@ -1,0 +1,9 @@
+C:\Projects\TruckCheckUp\TruckCheckUp.Services\bin\Debug\TruckCheckUp.Services.dll
+C:\Projects\TruckCheckUp\TruckCheckUp.Services\bin\Debug\TruckCheckUp.Services.pdb
+C:\Projects\TruckCheckUp\TruckCheckUp.Services\obj\Debug\TruckCheckUp.Services.csprojResolveAssemblyReference.cache
+C:\Projects\TruckCheckUp\TruckCheckUp.Services\obj\Debug\TruckCheckUp.Services.dll
+C:\Projects\TruckCheckUp\TruckCheckUp.Services\obj\Debug\TruckCheckUp.Services.pdb
+C:\Projects\TruckCheckUp\TruckCheckUp.Services\bin\Debug\TruckCheckUp.Core.dll
+C:\Projects\TruckCheckUp\TruckCheckUp.Services\bin\Debug\log4net.dll
+C:\Projects\TruckCheckUp\TruckCheckUp.Services\bin\Debug\TruckCheckUp.Core.pdb
+C:\Projects\TruckCheckUp\TruckCheckUp.Services\bin\Debug\log4net.xml

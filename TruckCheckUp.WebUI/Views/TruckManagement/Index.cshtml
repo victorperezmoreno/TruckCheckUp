@@ -1,0 +1,121 @@
+﻿<script src="~/Scripts/Custom/truck-1.0.js"></script>
+<script src="~/Scripts/Custom/Common.js"></script>
+<div class="container">
+    <h2>Truck Records</h2>
+    <p>
+        @Html.ActionLink("Back to Administration Page", "Index", "Administration")
+    </p>
+    <div class="form-group form-horizontal">
+        <div class="col-md-4">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#truckModal" onclick="clearTruckTextBoxes();">Add Truck</button>
+        </div>
+        <label class="control-label col-md-2">Find by Truck Number:</label>
+        <div class="col-md-3">
+            <input type="text" id="truck" class="form-control input-normal"  placeholder="Only digits" />
+            <div id="truckTextBox_error" class="text-danger"> </div>
+        </div>
+        <div class="col-md-1">
+            <button type="button" id="truckSearch_button" class="btn btn-default" onclick="searchTruck();">Search</button>
+        </div>
+        <div class="col-md-2">
+            <button type="button" id="truckClear_button" class="btn btn-default" onclick="clearTruckSearch();">Clear Filter</button>
+        </div>
+        <br />
+        <br />
+    </div>
+    <table class="table table-bordered table-hover table-striped">
+        <thead class="alert alert-info">
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Truck #
+                </th>
+                <th>
+                    VIN
+                </th>
+                <th>
+                    Manufacturer
+                </th>
+                <th>
+                    Model
+                </th>
+                <th>
+                    Year
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tbodyTruck"></tbody>
+    </table>
+</div>
+<div class="modal fade" id="truckModal" tabindex="-1" role="dialog" aria-labelledby="truckLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title" id="truckLabel">Truck</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="Id">Id</label>
+                        <input type="text" class="form-control" id="Id" placeholder="Id" disabled="disabled" />
+                    </div>
+                    <div class="form-group">
+                        <label for="TruckManufacturer">Manufacturer</label>
+                        <div id="manufacturer_dropdownlist">
+                            <select id="manufacturer" class="form-control" onchange="validateManufacturerDropDownList(this)">
+                                <option>- Please Select -</option>
+                            </select>
+                        </div>
+                        <div id="manufacturerDropDownList_error" class="text-danger"> </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="TruckModel">Model</label>
+                        <div id="model_dropdownlist">
+                            <select id="model" class="form-control" onchange="validateModelDropDownList(this)">
+                                <option>- Please Select -</option>
+                            </select>
+                        </div>
+                        <div id="modelDropDownList_error" class="text-danger"> </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="TruckYear">Year</label>
+                        <div id="year_dropdownlist">
+                            <select id="year" class="form-control" onchange="validateYearDropDownList(this)">
+                                <option>- Please Select -</option>
+                            </select>
+                        </div>
+                        <div id="yearDropDownList_error" class="text-danger"> </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="VIN">VIN #</label>
+                        <input type="text" class="form-control" id="vinNumber" placeholder="Only letters or numbers" />
+                        <div id="vinNumberTextBox_error" class="text-danger"> </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="TruckNumber">Truck #</label>
+                        <input type="text" class="form-control" id="truckNumber" maxlength="5" placeholder="Only digits" />
+                        <div id="truckNumberTextBox_error" class="text-danger"> </div>
+                    </div>
+                    <div class="form-group form-horizontal">
+                        <label for="TruckStatus">Status</label> <input type="checkbox" id="truckStatus" checked disabled onchange="changeTruckStatus(this)"/> <span class="text-success" id="statusText"><strong>Active</strong></span>
+                        <div id="truckStatus_error" class="text-danger"> </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="truckAdd_button" onclick="return addTruck();">Add</button>
+                <button type="button" class="btn btn-primary" id="truckUpdate_button" style="display:none;" onclick="updateTruck();">Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="clearTruckTextBoxes();">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

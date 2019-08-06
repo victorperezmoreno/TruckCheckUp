@@ -1,0 +1,23 @@
+﻿<script src="~/Scripts/Custom/inspectionreport-trucknumberselection-1.0.js"></script>
+@model TruckCheckUp.Core.ViewModels.InspectionReportUI.TruckNumberViewmodel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Inspection Reports By Truck</h2>
+    <div class="form-horizontal">
+        <hr />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TruckNumbers, htmlAttributes: new { @class = "control-label  col-md-2" })
+            <div class="col-md-7">
+                @Html.DropDownListFor(model => model.TruckNumberId, new SelectList(Model.TruckNumbers, "Id", "Text"), "- Select Truck Number -", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TruckNumberId, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+        @*Display list of reports for truck number selected in dropdownlist*@
+        <div id="tblInpectionReportsList">
+        </div>
+    </div>
+
+

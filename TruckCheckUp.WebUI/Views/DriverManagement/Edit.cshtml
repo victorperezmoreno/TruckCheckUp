@@ -1,0 +1,82 @@
+﻿@model TruckCheckUp.Core.ViewModels.DriverUpdateViewModel
+
+@{
+    ViewBag.Title = "Update Driver Information";
+}
+
+<h2>Update Driver Information</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Status, new { data_val = false })
+                    @if (Model.Status)
+                    {
+                        <span class="text-success" id="driver-status-message"><b>@Html.DisplayFor(model => model.StatusLabel)</b></span>
+                    }
+                    else
+                    {
+                        <span class="text-danger" id="driver-status-message"><b>@Html.DisplayFor(model => model.StatusLabel)</b></span>
+                    }
+                    <br />
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List of Drivers", "Index")
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            //Helps to display driver status (active or inactive)
+            $(document.body).on('click', '#Status', function () {
+                var value = $('#Status').is(':checked');
+                if (value == false) {
+                    $('#driver-status-message').addClass('text-danger').removeClass('text-success');
+                    $("#driver-status-message").html("<b>Inactive</b>");
+                } else {
+                    $('#driver-status-message').addClass('text-success').removeClass('text-danger');
+                    $("#driver-status-message").html("<b>Active</b>");
+                }
+            });
+        });
+</script>
+}

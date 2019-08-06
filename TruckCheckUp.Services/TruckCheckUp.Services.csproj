@@ -40,8 +40,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DriverService.cs" />
+    <Compile Include="InspectionReportService.cs" />
+    <Compile Include="PartCatalogService.cs" />
+    <Compile Include="PartCategoryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SituationService.cs" />
+    <Compile Include="TruckInspectionService.cs" />
+    <Compile Include="TruckManufacturerService.cs" />
+    <Compile Include="TruckModelService.cs" />
+    <Compile Include="TruckService.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TruckCheckUp.Core\TruckCheckUp.Core.csproj">
+      <Project>{cbd38fcd-255b-49ac-853a-81cff2e786d1}</Project>
+      <Name>TruckCheckUp.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

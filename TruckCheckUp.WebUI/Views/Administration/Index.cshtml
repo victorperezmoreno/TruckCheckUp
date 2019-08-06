@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Administration";
+}
+
+<h2>Administration Page</h2>
+
+<div class="col-md-6">
+    <h4>Driver Management </h4>
+    <div class="list-group">
+        @Html.ActionLink("Driver", "Index", "DriverManagement", null, new { @class = "list-group-item" })
+    </div>
+    <h4>Truck Management </h4>
+    <div class="list-group">
+        @Html.ActionLink("Truck", "Index", "TruckManagement", null, new { @class = "list-group-item" })
+    </div>
+    <h4>Truck Manufacturer Management </h4>
+    <div class="list-group">
+        @Html.ActionLink("Truck Manufacturer", "Index", "TruckManufacturerManagement", null, new { @class = "list-group-item" })
+    </div>
+    <h4>Truck Model Management </h4>
+    <div class="list-group">
+        @Html.ActionLink("Truck Model", "Index", "TruckModelManagement", null, new { @class = "list-group-item" })
+    </div>
+</div>
+
+<div class="col-md-6">
+    <h4>Part Categories Management </h4>
+    <div class="list-group">
+        @Html.ActionLink("Part Categories", "Index", "PartCategoryManagement", null, new { @class = "list-group-item" })
+    </div>
+    <h4>Parts Catalog Management </h4>
+    <div class="list-group">
+        @Html.ActionLink("Parts Catalog", "Index", "PartCatalogManagement", null, new { @class = "list-group-item" })
+    </div>
+    <h4>Situations Catalog Management </h4>
+    <div class="list-group">
+        @Html.ActionLink("Situations Catalog", "Index", "SituationManagement", null, new { @class = "list-group-item" })
+    </div>
+</div>
+<div class="col-md-12 clearfix"></div>
+

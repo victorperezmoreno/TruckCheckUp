@@ -1,5 +1,12 @@
 using System;
-
+using TruckCheckUp.Contracts.Services;
+using TruckCheckUp.Core.Contracts.DataAccess;
+using TruckCheckUp.Core.Contracts.InputValidation;
+using TruckCheckUp.Core.Contracts.Logger;
+using TruckCheckUp.Core.Contracts.Services;
+using TruckCheckUp.Core.Models;
+using TruckCheckUp.DataAccess.SQL;
+using TruckCheckUp.Services;
 using Unity;
 
 namespace TruckCheckUp.WebUI
@@ -42,6 +49,39 @@ namespace TruckCheckUp.WebUI
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
+            //TableType Container
+            container.RegisterType<IRepository<Driver>, SQLRepository<Driver>>();
+            container.RegisterType<IRepository<PartsInspected>, SQLRepository<PartsInspected>>();
+            container.RegisterType<IRepository<MechanicComment>, SQLRepository<MechanicComment>>();
+            container.RegisterType<IRepository<PartCatalog>, SQLRepository<PartCatalog>>();
+            container.RegisterType<IRepository<PartCategory>, SQLRepository<PartCategory>>();
+            container.RegisterType<IRepository<TruckInspection>, SQLRepository<TruckInspection>>();
+            container.RegisterType<IRepository<PartSituation>, SQLRepository<PartSituation>>();
+            container.RegisterType<IRepository<Situation>, SQLRepository<Situation>>();
+            container.RegisterType<IRepository<Truck>, SQLRepository<Truck>>();
+            container.RegisterType<IRepository<TruckManufacturer>, SQLRepository<TruckManufacturer>>();
+            container.RegisterType<IRepository<TruckModel>, SQLRepository<TruckModel>>();
+            container.RegisterType<IRepository<TruckYear>, SQLRepository<TruckYear>>();
+           
+            //IdentityType Container /**Once Identity configured un-comment the below command
+            //container.RegisterType<AccountController>(new InjectionConstructor());
+
+            //LoggerType Container
+            container.RegisterType<ILogger, Log4NetLogger>();
+
+            //ValidationType Container
+            container.RegisterType<IValidateUserInput, ValidateUserInput>();
+
+            //ServicesType Container
+            container.RegisterType<IDriverService, DriverService>();
+            container.RegisterType<ITruckService, TruckService>();
+            container.RegisterType<ITruckManufacturerService, TruckManufacturerService>();
+            container.RegisterType<ITruckModelService, TruckModelService>();
+            container.RegisterType<IPartCategoryService, PartCategoryService>();
+            container.RegisterType<IPartCatalogService, PartCatalogService>();
+            container.RegisterType<ITruckInspectionService, TruckInspectionService>();
+            container.RegisterType<IInspectionReportService, InspectionReportService>();
+            container.RegisterType<ISituationService, SituationService>();          
         }
     }
 }
