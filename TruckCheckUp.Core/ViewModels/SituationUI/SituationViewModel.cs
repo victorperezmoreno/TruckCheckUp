@@ -25,5 +25,19 @@ namespace TruckCheckUp.Core.ViewModels.SituationUI
                 return (bool)this.Status ? "Active" : "Inactive";
             }
         }
+
+        public SituationViewModel(string id, string description, bool status, bool existInDB, bool isValid)
+        {
+            Id = id;
+            Description = description;
+            Status = status;
+            ExistInDB = existInDB;
+            IsValid = isValid;
+        }
+
+        public SituationViewModel()
+        {
+
+        }
     }
 }

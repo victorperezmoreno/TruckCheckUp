@@ -5,11 +5,11 @@ namespace TruckCheckUp.Core.Contracts.Services
 {
     public interface ISituationService
     {
-        SituationViewModel AddSituation(SituationViewModel situationObject);
+        SituationViewModel EvaluateSituationDescriptionBeforeAdding(SituationViewModel situationObject);
         void DeleteSituation(string situationId);
         List<SituationListViewModel> RetrieveAllSituations();
         SituationViewModel RetrieveSituationById(string Id);
-        SituationViewModel SearchSituation(SituationViewModel situationObject);
-        SituationViewModel UpdateSituation(SituationViewModel situationObject);
+        SituationViewModel EvaluateSituationDescriptionBeforeSearching(SituationViewModel situationObject);
+        SituationViewModel EvaluateSituationDescriptionBeforeUpdating(SituationViewModel situationObject);
     }
 }

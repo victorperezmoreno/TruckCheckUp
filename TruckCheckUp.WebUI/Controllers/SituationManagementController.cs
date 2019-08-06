@@ -19,6 +19,7 @@ namespace TruckCheckUp.WebUI.Controllers
             _situationService = situationService;
         }
 
+
         // GET: SituationManagement
         public ActionResult Index()
         {
@@ -44,7 +45,7 @@ namespace TruckCheckUp.WebUI.Controllers
         {
             try
             {
-                var situationAddResult = _situationService.AddSituation(situationObject);
+                var situationAddResult = _situationService.EvaluateSituationDescriptionBeforeAdding(situationObject);
                 return Json(situationAddResult, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
@@ -71,7 +72,7 @@ namespace TruckCheckUp.WebUI.Controllers
         {
             try
             {
-                var situationUpdateResult = _situationService.UpdateSituation(situationObject);
+                var situationUpdateResult = _situationService.EvaluateSituationDescriptionBeforeUpdating(situationObject);
                 return Json(situationUpdateResult, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
@@ -85,7 +86,7 @@ namespace TruckCheckUp.WebUI.Controllers
         {
             try
             {
-                var searchSituationResult = _situationService.SearchSituation(situationObject);
+                var searchSituationResult = _situationService.EvaluateSituationDescriptionBeforeSearching(situationObject);
                 return Json(searchSituationResult, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)

@@ -29,63 +29,64 @@
     }
     else
     {
-        <table id="tblInspectionReports" class="table">
-            <tr>
-                <th>
-                    <a href="#" data-sortfield="Id" class="header">Id</a>
-                </th>
-                <th>
-                    <a href="#" data-sortfield="DateCreated" class="header">Date Created</a>
-                </th>
-                <th>
-                    <a href="#" data-sortfield="Driver" class="header">Driver</a>
-                </th>
-                <th>
-                    <a href="#" data-sortfield="Comments" class="header">Comments</a>
-                </th>
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model.ReportsList)
-            {
+        <table id="tblInspectionReports" class="table table-bordered table-hover table-striped">
+            <thead class="alert alert-info">
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateCreated)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Driver)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Comments)
-                    </td>
-                    <td>
-                        |@Html.ActionLink("Full Report", "ReportDetails", new { id = item.Id }) 
-                    </td>
+                    <th>
+                        <a href="#" data-sortfield="Id" class="header">Id</a>
+                    </th>
+                    <th>
+                        <a href="#" data-sortfield="DateCreated" class="header">Date Created</a>
+                    </th>
+                    <th>
+                        <a href="#" data-sortfield="Driver" class="header">Driver</a>
+                    </th>
+                    <th>
+                        <a href="#" data-sortfield="Comments" class="header">Comments</a>
+                    </th>
+                    <th></th>
                 </tr>
-            }
+            </thead>
+                @foreach (var item in Model.ReportsList)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateCreated)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Driver)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Comments)
+                        </td>
+                        <td>
+                            |@Html.ActionLink("Full Report", "ReportDetails", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
 
-            <tr>
-                @*The below number is arbitrary based on number of columns in table*@
-                @*If number of columns change please update accordingly*@
-                <td colspan="5">
-                    @for (var i = 0; i < Model.PageCount; i++)
+                <tr>
+                    @*The below number is arbitrary based on number of columns in table*@
+                    @*If number of columns change please update accordingly*@
+                    <td colspan="5">
+                        @for (var i = 0; i < Model.PageCount; i++)
                     {
                         if (i == Model.CurrentPageIndex)
                         {
-                            <span>@(i + 1)</span>
+                                <span>@(i + 1)</span>
+                            }
+                            else
+                            {
+                                <a href="#" data-pageindex="@i"
+                                   class="pager">@(i + 1)</a>
+                            }
                         }
-                        else
-                        {
-                            <a href="#" data-pageindex="@i"
-                               class="pager">@(i + 1)</a>
-                        }
-                    }
-                </td>
-            </tr>
-        </table>
+                    </td>
+                </tr>
+</table>
     }
 }
 
@@ -118,11 +119,6 @@
             populateUserSortingRequestObject();
 
         });
-
-        //Format table with stripes
-        $("#tblInspectionReports tr:even").not('thead tr').css("background-color", "#ccc");
-        $("#tblInspectionReports tr:odd").css("background-color", "#f5f5f5");
-
     });
 
     //function to populate and return object to controller to display data in table

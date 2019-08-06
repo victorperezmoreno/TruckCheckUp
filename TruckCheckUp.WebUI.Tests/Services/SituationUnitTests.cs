@@ -28,7 +28,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             _situationContext.Insert(new Situation() { Id = "2", CreationDate = DateTimeOffset.Now, Description = "Open", Status = true });
             //Act
             //Add a third record to test 
-            _situationService.AddSituation(new SituationViewModel() { Id = "3", Description = "Closed", Status = true, ExistInDB = false, IsValid = true });
+            _situationService.EvaluateSituationDescriptionBeforeAdding(new SituationViewModel() { Id = "3", Description = "Closed", Status = true, ExistInDB = false, IsValid = true });
             var result = _situationService.RetrieveAllSituations();
             //Assert
             Assert.AreEqual(3, result.Count);
@@ -47,7 +47,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             _situationContext.Insert(new Situation() { Id = "2", CreationDate = DateTimeOffset.Now, Description = "Open", Status = true });
             //Act
             //Add a third record to test 
-            _situationService.AddSituation(new SituationViewModel() { Id = "3", Description = "Open", Status = true, ExistInDB = false, IsValid = true });
+            _situationService.EvaluateSituationDescriptionBeforeAdding(new SituationViewModel() { Id = "3", Description = "Open", Status = true, ExistInDB = false, IsValid = true });
             var result = _situationService.RetrieveAllSituations();
             //Assert
             Assert.AreEqual(2, result.Count);
@@ -66,7 +66,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             _situationContext.Insert(new Situation() { Id = "2", CreationDate = DateTimeOffset.Now, Description = "Open", Status = true });
             //Act
             //Add a third record to test 
-            _situationService.AddSituation(new SituationViewModel() { Id = "3", Description = "open", Status = true, ExistInDB = false, IsValid = true });
+            _situationService.EvaluateSituationDescriptionBeforeAdding(new SituationViewModel() { Id = "3", Description = "open", Status = true, ExistInDB = false, IsValid = true });
             var result = _situationService.RetrieveAllSituations();
             //Assert
             Assert.AreEqual(2, result.Count);
@@ -85,7 +85,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             _situationContext.Insert(new Situation() { Id = "2", CreationDate = DateTimeOffset.Now, Description = "Open", Status = true });
             //Act
             //Add a third record to test 
-            _situationService.AddSituation(new SituationViewModel() { Id = "3", Description = "open88", Status = true, ExistInDB = false, IsValid = true });
+            _situationService.EvaluateSituationDescriptionBeforeAdding(new SituationViewModel() { Id = "3", Description = "open88", Status = true, ExistInDB = false, IsValid = true });
             var result = _situationService.RetrieveAllSituations();
             //Assert
             Assert.AreEqual(2, result.Count);
@@ -156,7 +156,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             _situationContext.Insert(new Situation() { Id = "1", CreationDate = DateTimeOffset.Now, Description = "InProgress", Status = true });
             _situationContext.Insert(new Situation() { Id = "2", CreationDate = DateTimeOffset.Now, Description = "Open", Status = true });
             //Act
-            var result = _situationService.SearchSituation(new SituationViewModel() { Id ="1", Description ="InProgress", Status = true, ExistInDB = true, IsValid = true });
+            var result = _situationService.EvaluateSituationDescriptionBeforeSearching(new SituationViewModel() { Id ="1", Description ="InProgress", Status = true, ExistInDB = true, IsValid = true });
 
             //Assert
             Assert.AreEqual("InProgress", result.Description);
@@ -174,7 +174,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             _situationContext.Insert(new Situation() { Id = "1", CreationDate = DateTimeOffset.Now, Description = "InProgress", Status = true });
             _situationContext.Insert(new Situation() { Id = "2", CreationDate = DateTimeOffset.Now, Description = "Open", Status = true });
             //Act
-            var result = _situationService.SearchSituation(new SituationViewModel() { Id = "1", Description = "inprogress", Status = true, ExistInDB = true, IsValid = true });
+            var result = _situationService.EvaluateSituationDescriptionBeforeSearching(new SituationViewModel() { Id = "1", Description = "inprogress", Status = true, ExistInDB = true, IsValid = true });
 
             //Assert
             Assert.AreEqual("InProgress", result.Description);
@@ -192,7 +192,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             _situationContext.Insert(new Situation() { Id = "1", CreationDate = DateTimeOffset.Now, Description = "InProgress", Status = true });
             _situationContext.Insert(new Situation() { Id = "2", CreationDate = DateTimeOffset.Now, Description = "Open", Status = true });
             //Act
-            var result = _situationService.SearchSituation(new SituationViewModel() { Id = "1", Description = "Closed", Status = true, ExistInDB = true, IsValid = true });
+            var result = _situationService.EvaluateSituationDescriptionBeforeSearching(new SituationViewModel() { Id = "1", Description = "Closed", Status = true, ExistInDB = true, IsValid = true });
 
             //Assert
             Assert.AreEqual(null, result.Description);
@@ -210,7 +210,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             _situationContext.Insert(new Situation() { Id = "1", CreationDate = DateTimeOffset.Now, Description = "InProgress", Status = true });
             _situationContext.Insert(new Situation() { Id = "2", CreationDate = DateTimeOffset.Now, Description = "Open", Status = true });
             //Act
-            var result = _situationService.SearchSituation(new SituationViewModel() { Id = "1", Description = "Closed", Status = true, ExistInDB = true, IsValid = true });
+            var result = _situationService.EvaluateSituationDescriptionBeforeSearching(new SituationViewModel() { Id = "1", Description = "Closed", Status = true, ExistInDB = true, IsValid = true });
 
             //Assert
             Assert.AreEqual(false, result.ExistInDB); 
@@ -228,14 +228,14 @@ namespace TruckCheckUp.WebUI.Tests.Services
             _situationContext.Insert(new Situation() { Id = "1", CreationDate = DateTimeOffset.Now, Description = "InProgress", Status = true });
             _situationContext.Insert(new Situation() { Id = "2", CreationDate = DateTimeOffset.Now, Description = "Open", Status = true });
             //Act
-            var result = _situationService.SearchSituation(new SituationViewModel() { Id = "1", Description = "InProgress", Status = true, ExistInDB = true, IsValid = true });
+            var result = _situationService.EvaluateSituationDescriptionBeforeSearching(new SituationViewModel() { Id = "1", Description = "InProgress", Status = true, ExistInDB = true, IsValid = true });
 
             //Assert
             Assert.AreEqual(true, result.ExistInDB);
         }
 
         [TestMethod]
-        public void Test_SearchSituationWhenSituationEXISTInDatabaseAndSituationContainsOnlyLetters_IsValidPropertyReturnsFalse()
+        public void Test_SearchSituationWhenSituationEXISTInDatabaseAndSituationContainsAlphanumericCharacters_IsValidPropertyReturnsFalse()
         {
             //Arrange
             IRepository<Situation> _situationContext = new MockTruckCheckUpContext<Situation>();
@@ -246,13 +246,12 @@ namespace TruckCheckUp.WebUI.Tests.Services
             _situationContext.Insert(new Situation() { Id = "1", CreationDate = DateTimeOffset.Now, Description = "InProgress", Status = true });
             _situationContext.Insert(new Situation() { Id = "2", CreationDate = DateTimeOffset.Now, Description = "Open", Status = true });
             //Act
-            var result = _situationService.SearchSituation(new SituationViewModel() { Id = "1", Description = "InProgress88", Status = true, ExistInDB = true, IsValid = true });
+            var result = _situationService.EvaluateSituationDescriptionBeforeSearching(new SituationViewModel() { Id = "1", Description = "InProgress88", Status = true, ExistInDB = true, IsValid = true });
 
             //Assert
             Assert.AreEqual(false, result.IsValid);
         }
 
-        //SituationViewModel UpdateSituation(SituationViewModel situationObject);
         [TestMethod]
         public void Test_UpdateSituationWhenSituationEnteredDoesNotExistInDatabaseAndContainsOnlyLetters_SituationDescriptionUpdated()
         {
@@ -265,8 +264,8 @@ namespace TruckCheckUp.WebUI.Tests.Services
             _situationContext.Insert(new Situation() { Id = "1", CreationDate = DateTimeOffset.Now, Description = "InProgress", Status = true });
             _situationContext.Insert(new Situation() { Id = "2", CreationDate = DateTimeOffset.Now, Description = "Open", Status = true });
             //Act
-            _situationService.UpdateSituation(new SituationViewModel() { Id = "1", Description = "Closed", Status = true, ExistInDB = true, IsValid = true });
-            var result = _situationService.SearchSituation(new SituationViewModel() { Id = "1", Description = "Closed", Status = true, ExistInDB = true, IsValid = true });
+            _situationService.EvaluateSituationDescriptionBeforeUpdating(new SituationViewModel() { Id = "1", Description = "Closed", Status = true, ExistInDB = true, IsValid = true });
+            var result = _situationService.EvaluateSituationDescriptionBeforeSearching(new SituationViewModel() { Id = "1", Description = "Closed", Status = true, ExistInDB = true, IsValid = true });
             //Assert
             Assert.AreEqual("Closed", result.Description);
         }
@@ -283,7 +282,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             _situationContext.Insert(new Situation() { Id = "1", CreationDate = DateTimeOffset.Now, Description = "InProgress", Status = true });
             _situationContext.Insert(new Situation() { Id = "2", CreationDate = DateTimeOffset.Now, Description = "Open", Status = true });
             //Act
-            _situationService.UpdateSituation(new SituationViewModel() { Id = "1", Description = "Open", Status = true, ExistInDB = true, IsValid = true });
+            _situationService.EvaluateSituationDescriptionBeforeUpdating(new SituationViewModel() { Id = "1", Description = "Open", Status = true, ExistInDB = true, IsValid = true });
             var result = _situationService.RetrieveSituationById("1");
             //Assert
             Assert.AreEqual("InProgress", result.Description);
@@ -301,7 +300,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             _situationContext.Insert(new Situation() { Id = "1", CreationDate = DateTimeOffset.Now, Description = "InProgress", Status = true });
             _situationContext.Insert(new Situation() { Id = "2", CreationDate = DateTimeOffset.Now, Description = "Open", Status = true });
             //Act
-            var result = _situationService.UpdateSituation(new SituationViewModel() { Id = "1", Description = "Open", Status = true, ExistInDB = true, IsValid = true });
+            var result = _situationService.EvaluateSituationDescriptionBeforeUpdating(new SituationViewModel() { Id = "1", Description = "Open", Status = true, ExistInDB = true, IsValid = true });
             
             //Assert
             Assert.AreEqual(true, result.ExistInDB);
@@ -319,7 +318,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             _situationContext.Insert(new Situation() { Id = "1", CreationDate = DateTimeOffset.Now, Description = "InProgress", Status = true });
             _situationContext.Insert(new Situation() { Id = "2", CreationDate = DateTimeOffset.Now, Description = "Open", Status = true });
             //Act
-            var result = _situationService.UpdateSituation(new SituationViewModel() { Id = "1", Description = "Open88", Status = true, ExistInDB = true, IsValid = true });
+            var result = _situationService.EvaluateSituationDescriptionBeforeUpdating(new SituationViewModel() { Id = "1", Description = "Open88", Status = true, ExistInDB = true, IsValid = true });
 
             //Assert
             Assert.AreEqual(false, result.IsValid);
@@ -337,7 +336,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
             _situationContext.Insert(new Situation() { Id = "1", CreationDate = DateTimeOffset.Now, Description = "InProgress", Status = true });
             _situationContext.Insert(new Situation() { Id = "2", CreationDate = DateTimeOffset.Now, Description = "Open", Status = true });
             //Act
-            _situationService.UpdateSituation(new SituationViewModel() { Id = "1", Description = "Open88", Status = true, ExistInDB = true, IsValid = true });
+            _situationService.EvaluateSituationDescriptionBeforeUpdating(new SituationViewModel() { Id = "1", Description = "Open88", Status = true, ExistInDB = true, IsValid = true });
             var result = _situationService.RetrieveSituationById("1");
             //Assert
             Assert.AreEqual("InProgress", result.Description);
@@ -379,7 +378,7 @@ namespace TruckCheckUp.WebUI.Tests.Services
         }
 
         [TestMethod]
-        public void Test_RetrieveAllSituationsFromDatabase_SituationListViewModelClassReturned()
+        public void Test_RetrieveAllSituationsFromDatabase_SituationListViewModelObjectReturned()
         {
             //Arrange 
             IRepository<Situation> _situationContext = new MockTruckCheckUpContext<Situation>();

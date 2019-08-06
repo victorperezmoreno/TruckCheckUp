@@ -11670,3 +11670,30 @@ INFO -2019-07-29 20:17:51,098--Inserted report number 8624f191-10bf-4345-8937-46
 INFO -2019-07-30 11:47:06,606--Application Started...
 INFO -2019-07-30 12:17:22,276--Found record Id 6e641591-bbe9-40de-a6d1-dd3aa0209b2a in Table Situation
 INFO -2019-07-30 12:17:22,541--Deleted record Id 6e641591-bbe9-40de-a6d1-dd3aa0209b2a from Table Situation
+INFO -2019-08-05 21:00:20,158--Application Started...
+ERROR-2019-08-05 21:07:21,438--Unhandled Exception Application Error
+User : 
+Page : http://localhost:49233/SituationManagement/ListOfSituations
+System.Web.HttpException (0x80004005): A public action method 'ListOfSituations' was not found on controller 'TruckCheckUp.WebUI.Controllers.SituationManagementController'.
+   at System.Web.Mvc.Controller.HandleUnknownAction(String actionName)
+   at System.Web.Mvc.Controller.<>c.<BeginExecuteCore>b__152_1(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<>c.<BeginExecute>b__151_2(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<>c.<BeginProcessRequest>b__20_1(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+INFO -2019-08-05 21:21:56,031--Application Started...
+INFO -2019-08-05 21:28:39,654--Application Started...
+INFO -2019-08-05 21:39:21,306--Application Started...
+INFO -2019-08-05 21:43:40,301--Application Started...
